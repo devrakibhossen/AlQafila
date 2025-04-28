@@ -44,7 +44,7 @@ const LeftSidebar = () => {
   ];
 
   return (
-    <div className="w-full hidden lg:block">
+    <div className="w-full hidden md:block">
       <div className="bg-white p-6 flex flex-col items-center space-y-4 border rounded-md mb-5">
         <div className="relative group">
           <Image

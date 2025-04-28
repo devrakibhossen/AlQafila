@@ -8,18 +8,6 @@ export default function Home() {
   const posts = [
     {
       _id: 1,
-      username: "Rakib Hossen",
-      profilePic: "/images/profile.png",
-      time: "April 25 at 5:50 AM",
-      text: "Help out your favorite open source projects and become a better developer while doing it.",
-      hashtags: ["#OpenSource", "#DeveloperLife"],
-      image: "https://i.ibb.co/YFLQWG4g/image.png",
-      likes: "3.5K",
-      comments: 300,
-      shares: 3,
-    },
-    {
-      _id: 2,
       username: "John Doe",
       profilePic: "/images/profile.png",
       time: "April 26 at 10:00 AM",
@@ -29,11 +17,25 @@ export default function Home() {
       likes: "1.2K",
       comments: 150,
       shares: 2,
+      profileStatus: "follow",
+    },
+    {
+      _id: 2,
+      username: "Rakib Hossen",
+      profilePic: "https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg",
+      time: "April 25 at 5:50 AM",
+      text: "Help out your favorite open source projects and become a better developer while doing it.",
+      hashtags: ["#OpenSource", "#DeveloperLife"],
+      image: "https://i.ibb.co/MkS5PKcv/image.png",
+      likes: "3.5K",
+      comments: 300,
+      shares: 3,
+      profileStatus: "ping",
     },
     {
       _id: 3,
-      username: "Jane Smith",
-      profilePic: "/images/profile.png",
+      username: "Jahidul Islam",
+      profilePic: "https://i.ibb.co/b5WMgQDn/self.jpg",
       time: "April 26 at 8:45 PM",
       text: "Exploring the world of JavaScript everyday!",
       hashtags: ["#JavaScript", "#100DaysOfCode"],
@@ -41,6 +43,7 @@ export default function Home() {
       likes: "2K",
       comments: 210,
       shares: 5,
+      profileStatus: "ping",
     },
     {
       _id: 4,
@@ -53,6 +56,7 @@ export default function Home() {
       likes: "850",
       comments: 95,
       shares: 1,
+      profileStatus: "ping",
     },
     {
       _id: 5,
@@ -65,6 +69,7 @@ export default function Home() {
       likes: "3.8K",
       comments: 400,
       shares: 7,
+      profileStatus: "ping",
     },
     {
       _id: 6,
@@ -77,6 +82,7 @@ export default function Home() {
       likes: "2.3K",
       comments: 180,
       shares: 4,
+      profileStatus: "ping",
     },
     {
       _id: 7,
@@ -89,6 +95,7 @@ export default function Home() {
       likes: "1.9K",
       comments: 170,
       shares: 3,
+      profileStatus: "follow",
     },
     {
       _id: 8,
@@ -101,6 +108,7 @@ export default function Home() {
       likes: "1.5K",
       comments: 120,
       shares: 2,
+      profileStatus: "ping",
     },
     {
       _id: 9,
@@ -113,6 +121,7 @@ export default function Home() {
       likes: "2.7K",
       comments: 260,
       shares: 6,
+      profileStatus: "ping",
     },
     {
       _id: 10,
@@ -125,6 +134,7 @@ export default function Home() {
       likes: "2.1K",
       comments: 190,
       shares: 3,
+      profileStatus: "follow",
     },
   ];
 
@@ -148,8 +158,8 @@ export default function Home() {
           <div className="flex justify-between gap-1.5 items-center mb-3.5">
             <div className="flex gap-1.5 items-center">
               <Image
-                className="rounded-full "
-                src={post.image}
+                className="rounded-full w-11 h-11 "
+                src={post.profilePic}
                 alt="logo"
                 width={50}
                 height={28}
@@ -162,15 +172,21 @@ export default function Home() {
                 <p className="text-[13px] text-gray-700">{post.time}</p>
               </div>
             </div>
-            <button className="py-1 text-sm px-4 border text-[#155D8C] border-[#155D8C] rounded-full cursor-pointer">
-              Follow
-            </button>
+            {post.profileStatus === "follow" ? (
+              <button className="py-1 text-sm px-4 border text-[#155D8C] border-[#155D8C] rounded-full cursor-pointer">
+                Follow
+              </button>
+            ) : (
+              <button className="py-1 text-sm px-4 border text-white bg-[#155D8C] rounded-full cursor-pointer">
+                Request
+              </button>
+            )}
           </div>
           <div className="space-y-3.5">
             <p className=" text-gray-700">{post.text}</p>
             <Image
               className="rounded-md w-full border max-h-[400px]"
-              src="https://i.ibb.co/YFLQWG4g/image.png"
+              src={post.image}
               alt="logo"
               width={500}
               height={300}

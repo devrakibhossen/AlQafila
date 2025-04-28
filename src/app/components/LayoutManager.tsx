@@ -18,11 +18,13 @@ const LayoutManager = ({ children }: { children: React.ReactNode }) => {
     <div>
       <Navbar></Navbar>
       <div className="grid grid-cols-12 w-11/12 mx-auto my-5 ">
-        <div className="md:col-span-3 pt-16">
+        <div className="col-span-3 md:col-span-4 lg:col-span-3 pt-16">
           <LeftSidebar></LeftSidebar>
         </div>
-        <div className="md:col-span-6  col-span-12">{children}</div>
-        <div className="md:col-span-3  pt-16">
+        <div className="lg:col-span-6  md:col-span-8 col-span-12">
+          {children}
+        </div>
+        <div className="lg:col-span-3  pt-16">
           <RightSidebar></RightSidebar>
         </div>
       </div>

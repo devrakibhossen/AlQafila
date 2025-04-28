@@ -8,6 +8,13 @@ import { GoPeople } from "react-icons/go";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { MdOutlineVideoLibrary, MdWorkOutline } from "react-icons/md";
 import { RiHome9Line } from "react-icons/ri";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -64,9 +71,9 @@ const Navbar = () => {
 
             <li>
               <Link
-                href="/videos"
+                href="/watch"
                 className={`flex flex-col items-center text-sm cursor-pointer ${
-                  pathname === "/videos"
+                  pathname === "/watch"
                     ? "text-[#155D8C] font-semibold"
                     : "text-gray-700"
                 }`}
@@ -109,7 +116,20 @@ const Navbar = () => {
             className="rounded-full md:w-72 md:p-5 "
             placeholder="Start typing to search..."
           />
-          <IoNotificationsOutline className="md:text-4xl text-3xl md:border md:not-first:p-1.5 rounded-full" />
+
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <IoNotificationsOutline className="md:text-4xl text-2xl md:border md:p-1.5 rounded-full" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Notifications</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <div className="w-[240px] min-h-[200px] flex justify-center items-center">
+                No notifications here
+              </div>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <Image
             className="rounded-full "
             src="/images/profile.png"

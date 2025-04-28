@@ -41,9 +41,9 @@ const Bottombar = () => {
 
           <li>
             <Link
-              href="/videos"
+              href="/watch"
               className={`flex flex-col items-center text-sm cursor-pointer ${
-                pathname === "/videos"
+                pathname === "/watch"
                   ? "text-[#155D8C] font-semibold"
                   : "text-gray-700"
               }`}
