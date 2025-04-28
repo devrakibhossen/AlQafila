@@ -1,19 +1,208 @@
 import Image from "next/image";
+import Link from "next/link";
+import { FaRegComment } from "react-icons/fa";
+import { IoShareSocialOutline } from "react-icons/io5";
+import { SlLike } from "react-icons/sl";
 
 export default function Home() {
+  const posts = [
+    {
+      _id: 1,
+      username: "Rakib Hossen",
+      profilePic: "/images/profile.png",
+      time: "April 25 at 5:50 AM",
+      text: "Help out your favorite open source projects and become a better developer while doing it.",
+      hashtags: ["#OpenSource", "#DeveloperLife"],
+      image: "https://i.ibb.co/YFLQWG4g/image.png",
+      likes: "3.5K",
+      comments: 300,
+      shares: 3,
+    },
+    {
+      _id: 2,
+      username: "John Doe",
+      profilePic: "/images/profile.png",
+      time: "April 26 at 10:00 AM",
+      text: "Learning React is super fun! 🚀",
+      hashtags: ["#ReactJS", "#Coding"],
+      image: "https://i.ibb.co/YFLQWG4g/image.png",
+      likes: "1.2K",
+      comments: 150,
+      shares: 2,
+    },
+    {
+      _id: 3,
+      username: "Jane Smith",
+      profilePic: "/images/profile.png",
+      time: "April 26 at 8:45 PM",
+      text: "Exploring the world of JavaScript everyday!",
+      hashtags: ["#JavaScript", "#100DaysOfCode"],
+      image: "https://i.ibb.co/YFLQWG4g/image.png",
+      likes: "2K",
+      comments: 210,
+      shares: 5,
+    },
+    {
+      _id: 4,
+      username: "Alex Johnson",
+      profilePic: "/images/profile.png",
+      time: "April 27 at 9:30 AM",
+      text: "Just launched my portfolio website! Feeling proud.",
+      hashtags: ["#Portfolio", "#WebDeveloper"],
+      image: "https://i.ibb.co/YFLQWG4g/image.png",
+      likes: "850",
+      comments: 95,
+      shares: 1,
+    },
+    {
+      _id: 5,
+      username: "Emily Davis",
+      profilePic: "/images/profile.png",
+      time: "April 27 at 11:15 AM",
+      text: "Code, Coffee, and Creativity. ☕💻",
+      hashtags: ["#DeveloperLife", "#StayProductive"],
+      image: "https://i.ibb.co/YFLQWG4g/image.png",
+      likes: "3.8K",
+      comments: 400,
+      shares: 7,
+    },
+    {
+      _id: 6,
+      username: "Michael Brown",
+      profilePic: "/images/profile.png",
+      time: "April 28 at 1:00 PM",
+      text: "New blog post out now: 'Why Tailwind CSS is a game changer!'",
+      hashtags: ["#TailwindCSS", "#WebDesign"],
+      image: "https://i.ibb.co/YFLQWG4g/image.png",
+      likes: "2.3K",
+      comments: 180,
+      shares: 4,
+    },
+    {
+      _id: 7,
+      username: "Olivia Wilson",
+      profilePic: "/images/profile.png",
+      time: "April 28 at 2:20 PM",
+      text: "Frontend development is not just coding, it's an art! 🎨",
+      hashtags: ["#FrontendDev", "#Creativity"],
+      image: "https://i.ibb.co/YFLQWG4g/image.png",
+      likes: "1.9K",
+      comments: 170,
+      shares: 3,
+    },
+    {
+      _id: 8,
+      username: "Daniel Martinez",
+      profilePic: "/images/profile.png",
+      time: "April 28 at 4:45 PM",
+      text: "Stay consistent, stay motivated.",
+      hashtags: ["#CodingJourney", "#KeepLearning"],
+      image: "https://i.ibb.co/YFLQWG4g/image.png",
+      likes: "1.5K",
+      comments: 120,
+      shares: 2,
+    },
+    {
+      _id: 9,
+      username: "Sophia Anderson",
+      profilePic: "/images/profile.png",
+      time: "April 29 at 8:10 AM",
+      text: "UI/UX design makes a huge difference in web apps. Never underestimate good design!",
+      hashtags: ["#UIUX", "#DesignMatters"],
+      image: "https://i.ibb.co/YFLQWG4g/image.png",
+      likes: "2.7K",
+      comments: 260,
+      shares: 6,
+    },
+    {
+      _id: 10,
+      username: "Liam Thomas",
+      profilePic: "/images/profile.png",
+      time: "April 29 at 9:50 AM",
+      text: "Master the basics first. Strong fundamentals make a strong developer!",
+      hashtags: ["#CodingBasics", "#DevTips"],
+      image: "https://i.ibb.co/YFLQWG4g/image.png",
+      likes: "2.1K",
+      comments: 190,
+      shares: 3,
+    },
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <Image
-        className=""
-        src="/alQafila.png"
-        alt="Next.js logo"
-        width={180}
-        height={38}
-        priority
-      />
-      <h3 className="text-2xl text-[#155D8C] font-extrabold">
-        Professional social media web platform
-      </h3>
+    <div className="md:w-11/12 mx-auto  h-screen overflow-y-auto hide-scrollbar ">
+      <div className="bg-white p-5 flex gap-1.5 items-center border rounded-md mb-5 md:mt-16">
+        <Image
+          className="rounded-full "
+          src="/images/profile.png"
+          alt="logo"
+          width={50}
+          height={28}
+          priority
+        />
+        <button className="border hover:bg-gray-100 px-6 py-2 text-start text-sm text-gray-700 rounded-full w-full cursor-pointer">
+          Create Post
+        </button>
+      </div>
+      {posts.map((post) => (
+        <div key={post._id} className="bg-white p-5  border rounded-md mb-5">
+          <div className="flex justify-between gap-1.5 items-center mb-3.5">
+            <div className="flex gap-1.5 items-center">
+              <Image
+                className="rounded-full "
+                src={post.image}
+                alt="logo"
+                width={50}
+                height={28}
+                priority
+              />
+              <div>
+                <h3 className="text-black font-semibold">
+                  <Link href="/">{post.username}</Link>
+                </h3>
+                <p className="text-[13px] text-gray-700">{post.time}</p>
+              </div>
+            </div>
+            <button className="py-1 text-sm px-4 border text-[#155D8C] border-[#155D8C] rounded-full cursor-pointer">
+              Follow
+            </button>
+          </div>
+          <div className="space-y-3.5">
+            <p className=" text-gray-700">{post.text}</p>
+            <Image
+              className="rounded-md w-full border max-h-[400px]"
+              src="https://i.ibb.co/YFLQWG4g/image.png"
+              alt="logo"
+              width={500}
+              height={300}
+              priority
+            />
+            <div>
+              <div className="flex justify-between gap-1.5 items-center pb-1.5 ">
+                <p className="text-sm">{post.likes} Likes</p>
+                <div className="flex items-center gap-2">
+                  <p className="text-sm">{post.comments} Comments,</p>
+                  <p className="text-sm">{post.shares} Shares</p>
+                </div>
+              </div>
+
+              <div className="flex justify-between gap-1.5 items-center border-t pt-1.5">
+                <div className="flex  gap-1.5 items-center ">
+                  <SlLike />
+                  <p className="text-sm font-semibold">Like</p>
+                </div>
+                <div className="flex  gap-1.5 items-center ">
+                  <FaRegComment />
+                  <p className="text-sm font-semibold">Comments</p>
+                </div>
+                <div className="flex  gap-1.5 items-center ">
+                  <IoShareSocialOutline />
+                  <p className="text-sm font-semibold">Share</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
