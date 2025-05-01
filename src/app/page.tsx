@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaRegComment } from "react-icons/fa";
+import { FaBookOpen, FaCamera, FaRegComment, FaVideo } from "react-icons/fa";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { SlLike } from "react-icons/sl";
 
@@ -140,21 +140,40 @@ export default function Home() {
 
   return (
     <div className="md:w-11/12 mx-auto  h-screen overflow-y-auto hide-scrollbar ">
-      <div className="bg-white p-5 flex gap-1.5 items-center border rounded-md mb-5 md:mt-16">
-        <Image
-          className="rounded-full "
-          src="/images/profile.png"
-          alt="logo"
-          width={50}
-          height={28}
-          priority
-        />
-        <button className="border hover:bg-gray-100 px-6 py-2 text-start text-sm text-gray-700 rounded-full w-full cursor-pointer">
-          Create Post
-        </button>
+      <div className="bg-white dark:bg-zinc-900 md:p-5 p-2.5  border rounded-md mb-5 md:mt-16">
+        <div className="flex gap-1.5 items-center">
+          <Image
+            className="rounded-full "
+            src="/images/profile.png"
+            alt="logo"
+            width={50}
+            height={28}
+            priority
+          />
+          <button className="border hover:bg-gray-100 dark:hover:bg-transparent px-6 py-2 text-start text-sm dark:text-gray-300 text-gray-700 rounded-full w-full cursor-pointer">
+            Create Post
+          </button>
+        </div>
+        <div className="flex justify-between gap-1.5 items-center md:w-11/12 mx-auto mt-4">
+          <div className="flex gap-1 items-center dark:text-gray-300 text-gray-700 cursor-pointer border rounded-full px-3 py-1">
+            <FaVideo className="text-red-500" />
+            <span className="text-sm">Video</span>
+          </div>
+          <div className="flex gap-1 items-center dark:text-gray-300 text-gray-700 cursor-pointer border rounded-full px-3 py-1">
+            <FaCamera className="text-green-500" />
+            <span className="text-sm">Photo</span>
+          </div>
+          <div className="flex gap-1 items-center dark:text-gray-300 text-gray-700 cursor-pointer border rounded-full px-3 py-1">
+            <FaBookOpen className="text-blue-500" />
+            <span className="text-sm">Story</span>
+          </div>
+        </div>
       </div>
       {posts.map((post) => (
-        <div key={post._id} className="bg-white p-5  border rounded-md mb-5">
+        <div
+          key={post._id}
+          className="bg-white dark:bg-zinc-900 md:p-5 p-2.5  border rounded-md mb-5"
+        >
           <div className="flex justify-between gap-1.5 items-center mb-3.5">
             <div className="flex gap-1.5 items-center">
               <Image
@@ -166,10 +185,12 @@ export default function Home() {
                 priority
               />
               <div>
-                <h3 className="text-black font-semibold">
+                <h3 className="text-black dark:text-white font-semibold">
                   <Link href="/">{post.username}</Link>
                 </h3>
-                <p className="text-[13px] text-gray-700">{post.time}</p>
+                <p className="text-[13px] dark:text-gray-300 text-gray-700">
+                  {post.time}
+                </p>
               </div>
             </div>
             {post.profileStatus === "follow" ? (
@@ -183,7 +204,7 @@ export default function Home() {
             )}
           </div>
           <div className="space-y-3.5">
-            <p className=" text-gray-700">{post.text}</p>
+            <p className=" text-gray-700 dark:text-gray-300">{post.text}</p>
             <Image
               className="rounded-md w-full border max-h-[400px]"
               src={post.image}

@@ -45,7 +45,7 @@ const LeftSidebar = () => {
 
   return (
     <div className="w-full hidden md:block">
-      <div className="bg-white p-6 flex flex-col items-center space-y-4 border rounded-md mb-5">
+      <div className="bg-white dark:bg-zinc-900 p-6 flex flex-col items-center space-y-4 border rounded-md mb-5">
         <div className="relative group">
           <Image
             className="rounded-full border-4 border-gray-200 group-hover:scale-105 transition-transform duration-300"
@@ -57,23 +57,25 @@ const LeftSidebar = () => {
           />
         </div>
         <div className="text-center">
-          <h2 className="text-lg font-semibold text-gray-800">Rakib Hossen</h2>
-          <p className="text-sm text-gray-500">
+          <h2 className="text-lg font-semibold dark:text-white text-gray-800">
+            Rakib Hossen
+          </h2>
+          <p className="text-sm text-gray-500 dark:text-gray-300">
             Front-End Developer | Mern Stack Developer | React js Developer
           </p>
         </div>
-        <Link href="/username/profile">
-          <Button className=" bg-[#155D8C] hover:bg-[#304655] w-full rounded-full cursor-pointer">
+        <Link href="/profile/rakibhossen">
+          <Button className=" bg-[#155D8C] hover:bg-[#304655] dark:text-white w-full rounded-full cursor-pointer">
             View Profile
           </Button>
         </Link>
       </div>
-      <div className="bg-white p-6 flex flex-col  space-y-4 border rounded-md">
+      <div className="bg-white dark:bg-zinc-900 p-6 flex flex-col  space-y-4 border rounded-md">
         <div className="flex justify-between  items-center border-b pb-3">
-          <h3 className="text-gray-700 text-lg font-semibold">
+          <h3 className="text-gray-700 dark:text-white text-lg font-semibold">
             Suggested Groups
           </h3>
-          <BsThreeDotsVertical className="text-gray-700" />
+          <BsThreeDotsVertical className="text-gray-700 dark:text-gray-300" />
         </div>
 
         {groups.map((group) => (
@@ -87,10 +89,12 @@ const LeftSidebar = () => {
               priority
             />
             <div>
-              <h3 className="text-black text-md">
+              <h3 className="text-black dark:text-white  text-md">
                 <Link href={`/group/${group.name}`}>{group.name}</Link>
               </h3>
-              <p className="text-sm text-gray-700">{group.members}</p>
+              <p className="text-sm dark:text-gray-300 text-gray-700">
+                {group.members}
+              </p>
             </div>
           </div>
         ))}

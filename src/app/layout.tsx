@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import LayoutManager from "./components/LayoutManager";
+import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -21,9 +22,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} antialiased bg-gray-200`}>
-        <LayoutManager>{children}</LayoutManager>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} antialiased bg-gray-200 dark:bg-zinc-950`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <LayoutManager>{children}</LayoutManager>
+        </ThemeProvider>
       </body>
     </html>
   );

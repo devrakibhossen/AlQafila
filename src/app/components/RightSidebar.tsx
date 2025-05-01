@@ -52,9 +52,9 @@ const RightSidebar = () => {
 
   return (
     <section className="w-full hidden lg:block">
-      <div className="bg-white p-6 flex flex-col  space-y-4 border rounded-md mb-5">
+      <div className="bg-white dark:bg-zinc-900 p-6 flex flex-col  space-y-4 border rounded-md mb-5">
         <div className="flex justify-between  items-center border-b pb-3">
-          <h3 className="text-gray-700 text-lg font-semibold">
+          <h3 className="text-gray-700 dark:text-white text-lg font-semibold">
             People you may know
           </h3>
           <BsThreeDotsVertical className="text-gray-700" />
@@ -75,10 +75,12 @@ const RightSidebar = () => {
                 priority
               />
               <div>
-                <h3 className="text-black ">
+                <h3 className="text-black dark:text-white ">
                   <Link href={`/group/${group.name}`}>{group.name}</Link>
                 </h3>
-                <p className="text-[13px] text-gray-700">{group.members}</p>
+                <p className="text-[13px] dark:text-gray-300 text-gray-700">
+                  {group.members}
+                </p>
               </div>
             </div>
             <Link href="/username/profile">
@@ -90,8 +92,8 @@ const RightSidebar = () => {
         ))}
       </div>
 
-      <div className="bg-white p-6 flex flex-col  space-y-4 border rounded-md mb-5">
-        <h2 className="text-gray-700 text-lg font-semibold border-b pb-3">
+      <div className="bg-white dark:bg-zinc-900 p-6 flex flex-col  space-y-4 border rounded-md mb-5">
+        <h2 className="text-gray-700 dark:text-white text-lg font-semibold border-b pb-3">
           Trending hashtags
         </h2>
         <div className="flex flex-wrap gap-3">

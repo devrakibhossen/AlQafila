@@ -76,7 +76,10 @@ const page = () => {
     <div className="md:w-11/12 mx-auto h-screen overflow-y-auto hide-scrollbar">
       <div className="md:mt-16">
         {videos.map((video) => (
-          <div key={video._id} className="bg-white p-5  border rounded-md mb-5">
+          <div
+            key={video._id}
+            className="bg-white dark:bg-zinc-900 md:p-5 p-2.5 border rounded-md mb-5"
+          >
             <div className="flex justify-between gap-1.5 items-center mb-3.5">
               <div className="flex gap-1.5 items-center">
                 <Image
@@ -88,10 +91,12 @@ const page = () => {
                   priority
                 />
                 <div>
-                  <h3 className="text-black font-semibold">
+                  <h3 className="text-black dark:text-white font-semibold">
                     <Link href="/">{video.username}</Link>
                   </h3>
-                  <p className="text-[13px] text-gray-700">{video.time}</p>
+                  <p className="text-[13px] dark:text-gray-300 text-gray-700">
+                    {video.time}
+                  </p>
                 </div>
               </div>
               {video.profileStatus === "follow" ? (
@@ -105,7 +110,7 @@ const page = () => {
               )}
             </div>
             <div className="space-y-3.5">
-              <p className=" text-gray-700">{video.text}</p>
+              <p className=" dark:text-gray-300 text-gray-700">{video.text}</p>
               <video
                 src={video.videolink}
                 controls
