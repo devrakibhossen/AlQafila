@@ -40,7 +40,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const { setTheme } = useTheme();
   return (
-    <div className="bg-white dark:bg-zinc-900 py-1.5 fixed w-full top-0 z-10">
+    <div className="bg-white dark:bg-zinc-900 py-1.5 fixed w-full top-0 z-10 border-b">
       <div className="w-11/12 mx-auto gap-1.5 flex justify-between items-center">
         <div className="flex gap-5 items-center">
           <Image
@@ -203,7 +203,7 @@ const Navbar = () => {
                     </DropdownMenuSubContent>
                   </DropdownMenuPortal>
                 </DropdownMenuSub>
-                <Link href="/language" passHref>
+                <Link href="/settings/languages" passHref>
                   <DropdownMenuItem asChild className="cursor-pointer">
                     <div className="flex items-center justify-between w-full">
                       <div className="flex items-center gap-2">

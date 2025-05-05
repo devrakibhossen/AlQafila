@@ -41,7 +41,7 @@ const Page = () => {
   ];
 
   return (
-    <div className="my-16">
+    <div className="my-20 w-11/12 mx-auto">
       <div className="grid md:grid-cols-4 gap-5">
         <div className="md:col-span-1 bg-white dark:bg-zinc-900 p-6  border rounded-md h-56">
           <h3 className="text-md font-semibold dark:text-white text-gray-800">

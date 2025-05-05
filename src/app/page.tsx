@@ -139,8 +139,8 @@ export default function Home() {
   ];
 
   return (
-    <div className="md:w-11/12 mx-auto  h-screen overflow-y-auto hide-scrollbar ">
-      <div className="bg-white dark:bg-zinc-900 md:p-5 p-2.5  border rounded-md mb-5 md:mt-16">
+    <div className="w-11/12 mx-auto">
+      <div className="bg-white dark:bg-zinc-900 md:p-5 p-2.5  border rounded-md mb-5 mt-20">
         <div className="flex gap-1.5 items-center">
           <Image
             className="rounded-full "

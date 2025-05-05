@@ -1,9 +1,11 @@
-import { Bookmark } from "lucide-react";
+"use client";
+import { Bookmark, BriefcaseIcon } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { FaMapMarkerAlt, FaPaperPlane, FaSearch } from "react-icons/fa";
 import { RiExternalLinkFill } from "react-icons/ri";
 
-const page = () => {
+const Page = () => {
   const jobs = [
     {
       _id: "job1",
@@ -91,12 +93,19 @@ const page = () => {
       recruiterImage: "https://randomuser.me/api/portraits/women/22.jpg",
     },
   ];
-
+  const router = useRouter();
   return (
-    <div className="mt-16">
-      <div className="flex w-full max-w-3xl mx-auto rounded-full border border-gray-300 overflow-hidden shadow-sm">
+    <div className="w-11/12 mx-auto mt-20">
+      <button
+        onClick={() => router.push("/interview")}
+        className=" flex items-center justify-center gap-2 rounded-full border dark:border-zinc-800 border-gray-300 overflow-hidden shadow-sm  bg-white dark:bg-zinc-900 text-sm  font-medium py-2 px-4 transition-all"
+      >
+        <BriefcaseIcon className="w-4 h-4" />
+        Ai Interview
+      </button>
+      <div className="flex w-full max-w-3xl mx-auto rounded-full border dark:border-zinc-800 border-gray-300 overflow-hidden shadow-sm">
         {/* Job Title Input */}
-        <div className="flex items-center gap-2 px-4 py-2 w-1/2 bg-white">
+        <div className="flex items-center gap-2 px-4 py-2 w-1/2 bg-white dark:bg-zinc-900">
           <FaSearch className="text-gray-400" />
           <input
             type="text"
@@ -109,7 +118,7 @@ const page = () => {
         <div className="w-px bg-gray-200" />
 
         {/* Location Input */}
-        <div className="flex items-center gap-2 px-4 py-2 w-1/2 bg-white">
+        <div className="flex items-center gap-2 px-4 py-2 w-1/2 bg-white dark:bg-zinc-900">
           <FaMapMarkerAlt className="text-gray-400" />
           <input
             type="text"
@@ -123,7 +132,7 @@ const page = () => {
           {jobs.map((job) => (
             <div
               key={job._id}
-              className="border rounded-xl shadow-sm p-4 w-full bg-white mb-6"
+              className="border rounded-xl shadow-sm p-4 w-full bg-white dark:bg-zinc-900 mb-6"
             >
               <div className="flex justify-between items-start">
                 <div className="flex items-center space-x-2">
@@ -135,15 +144,19 @@ const page = () => {
                     height={48}
                   />
                   <span className="text-sm font-medium">{job.company}</span>
-                  <span className="text-sm text-gray-600">3.6★</span>
+                  <span className="text-sm dark:text-gray-300 text-gray-600">
+                    3.6★
+                  </span>
                 </div>
                 <Bookmark className="w-4 h-4 text-gray-400 cursor-pointer" />
               </div>
               <div className="mt-2">
-                <h3 className="text-md font-semibold text-gray-800">
+                <h3 className="text-md dark:text-white font-semibold text-gray-800">
                   {job.title}
                 </h3>
-                <p className="text-sm text-gray-500">California</p>
+                <p className="text-sm dark:text-gray-300 text-gray-500">
+                  California
+                </p>
               </div>
               <div className="mt-3 flex justify-between items-center">
                 {job.quickApply ? (
@@ -156,12 +169,12 @@ const page = () => {
                     <RiExternalLinkFill />
                   </span>
                 )}
-                <span className="text-xs text-gray-400">{job.posted}</span>
+                <span className="text-xs  text-gray-400">{job.posted}</span>
               </div>
             </div>
           ))}
         </div>
-        <div className="md:col-span-2 bg-white p-5 border rounded-xl">
+        <div className="md:col-span-2 bg-white dark:bg-zinc-900 p-5 border rounded-xl">
           <div className="flex justify-between items-center">
             <div>
               <div className="flex justify-between items-start">
@@ -178,10 +191,12 @@ const page = () => {
                 </div>
               </div>
               <div className="mt-2">
-                <h3 className="text-lg font-semibold text-gray-800">
+                <h3 className="text-lg dark:text-white  font-semibold text-gray-800">
                   Front End developer
                 </h3>
-                <p className="text-sm text-gray-500">California</p>
+                <p className="text-sm dark:text-gray-300 text-gray-500">
+                  California
+                </p>
               </div>
             </div>
             <button className="bg-green-100 text-green-700 text-xs font-medium px-4 py-2 rounded flex items-center gap-1 cursor-pointer">
@@ -189,7 +204,7 @@ const page = () => {
             </button>
           </div>
           <hr className="my-4" />
-          <h3 className="text-lg font-semibold text-gray-800 mb-2">
+          <h3 className="text-lg font-semibold dark:text-white  text-gray-800 mb-2">
             Your Fit for This Role
           </h3>
 
@@ -198,7 +213,7 @@ const page = () => {
               (skill, idx) => (
                 <span
                   key={idx}
-                  className="text-sm border text-center text-gray-700 px-2 py-1 rounded-full "
+                  className="text-sm border text-center dark:text-gray-300 text-gray-700 px-2 py-1 rounded-full "
                 >
                   {skill}
                 </span>
@@ -206,7 +221,7 @@ const page = () => {
             )}
           </div>
           {/* Job Details */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm text-gray-700 mb-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm dark:text-gray-300 text-gray-700 mb-4">
             <p>
               <strong>Job Type:</strong> Internship
             </p>
@@ -221,7 +236,7 @@ const page = () => {
             </p>
           </div>
 
-          <p className="text-sm text-gray-700 leading-relaxed">
+          <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
             {`We are seeking a dedicated and detail-oriented Front-End Developer
             to join our team. The ideal candidate should be proficient in
             building responsive, scalable user interfaces using modern
@@ -239,8 +254,10 @@ const page = () => {
               height={48}
             />
             <div>
-              <p className="text-sm font-medium text-black">Nazia Ahmed</p>
-              <p className="text-xs text-gray-700">
+              <p className="text-sm font-medium dark:text-white  text-black">
+                Nazia Ahmed
+              </p>
+              <p className="text-xs dark:text-gray-300 text-gray-700">
                 Recruiter at Programming Hero
               </p>
             </div>
@@ -251,4 +268,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

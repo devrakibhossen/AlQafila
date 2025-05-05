@@ -6,12 +6,12 @@ import { MdOutlineEdit } from "react-icons/md";
 
 const page = () => {
   return (
-    <div className="mt-16 ">
+    <div className="mt-16 w-11/12 mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Main Profile Section */}
 
         <div className="md:col-span-2 space-y-6">
-          <div className=" bg-white rounded-t-2xl rounded-b-md shadow-lg overflow-hidden">
+          <div className=" bg-white dark:bg-zinc-900 rounded-t-2xl rounded-b-md shadow-lg overflow-hidden">
             {/* Cover Image */}
             <div className="relative w-full h-48">
               <Image
@@ -25,7 +25,7 @@ const page = () => {
             </div>
 
             {/* Profile Image */}
-            <div className="relative px-6 pb-6 bg-white">
+            <div className="relative px-6 pb-6 bg-white dark:bg-zinc-900">
               <div className="absolute -top-10 left-6">
                 <Image
                   className="rounded-full border-4 border-white object-cover w-20 h-20 shadow-md"
@@ -38,32 +38,38 @@ const page = () => {
               </div>
               <div className="pt-12 flex justify-between  items-center gap-5">
                 <div className="space-y-1">
-                  <h3 className="text-xl font-bold text-black">Rakib Hossen</h3>
-                  <p className="text-sm text-gray-700">
+                  <h3 className="text-xl font-bold text-black dark:text-white">
+                    Rakib Hossen
+                  </h3>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
                     MERN Stack developer | CEO & Founder AlQafila | Programming
                     Enthusiast
                   </p>
-                  <p className="text-sm text-gray-700">Cumilla,Bangladesh</p>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    Cumilla,Bangladesh
+                  </p>
                   <div className="flex items-center gap-2.5">
                     <p className="text-sm text-[#155D8C]">3k Follower</p>
                     <p className="text-sm text-[#155D8C]">500 Following</p>
                   </div>
                 </div>
                 <div className="flex justify-between gap-2.5">
-                  <Button className=" bg-[#155D8C] hover:bg-[#304655] w-full text-sm rounded-full cursor-pointer">
+                  <Button className=" bg-[#155D8C] dark:text-white hover:bg-[#304655] w-full text-sm rounded-full cursor-pointer">
                     Edit Profile
                   </Button>
                 </div>
               </div>
             </div>
           </div>
-          <div className=" bg-white rounded-md shadow-lg p-6">
+          <div className=" bg-white dark:bg-zinc-900 rounded-md shadow-lg p-6">
             <div className="flex justify-between items-center mb-3">
-              <h4 className="text-lg font-semibold text-gray-800">About</h4>
-              <MdOutlineEdit className="text-gray-700 text-2xl"></MdOutlineEdit>
+              <h4 className="text-lg font-semibold dark:text-white text-gray-800">
+                About
+              </h4>
+              <MdOutlineEdit className="text-gray-700 dark:text-gray-300 text-2xl"></MdOutlineEdit>
             </div>
 
-            <p className="text-sm text-gray-700 leading-relaxed">
+            <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
               Thank you for visiting my profile!, I am a passionate Front-End
               Developer with experience in creating dynamic and responsive web
               applications using React, Tailwind CSS, and Next.js.
@@ -77,12 +83,14 @@ const page = () => {
         <div className="space-y-6">
           {/* Education */}
           {/* Education Section */}
-          <div className="bg-white rounded-md shadow-lg p-6">
+          <div className="bg-white dark:bg-zinc-900 rounded-md shadow-lg p-6">
             <div className="flex justify-between items-center mb-4">
-              <h4 className="text-lg font-semibold text-gray-800">Education</h4>
+              <h4 className="text-lg font-semibold text-gray-800 dark:text-white">
+                Education
+              </h4>
               <div className="flex gap-2 items-center">
-                <GoPlus className="text-gray-700 text-2xl" />
-                <MdOutlineEdit className="text-gray-700 text-2xl" />
+                <GoPlus className="text-gray-700 dark:text-gray-300 text-2xl" />
+                <MdOutlineEdit className="text-gray-700 dark:text-gray-300  text-2xl" />
               </div>
             </div>
 
@@ -96,23 +104,25 @@ const page = () => {
                 height={48}
               />
               <div>
-                <h5 className="text-sm font-semibold text-gray-800">
+                <h5 className="text-sm font-semibold dark:text-white text-gray-800">
                   Dhaka College
                 </h5>
-                <p className="text-xs text-gray-600">HSC | 2022 - 2024</p>
+                <p className="text-xs text-gray-600 dark:text-white">
+                  HSC | 2022 - 2024
+                </p>
               </div>
             </div>
           </div>
 
           {/* Experience Section */}
-          <div className="bg-white rounded-md shadow-lg p-6">
+          <div className="bg-white dark:bg-zinc-900 rounded-md shadow-lg p-6">
             <div className="flex justify-between items-center mb-4">
-              <h4 className="text-lg font-semibold text-gray-800">
+              <h4 className="text-lg font-semibold text-gray-800 dark:text-white">
                 Experience
               </h4>
               <div className="flex gap-2 items-center">
-                <GoPlus className="text-gray-700 text-2xl" />
-                <MdOutlineEdit className="text-gray-700 text-2xl" />
+                <GoPlus className="text-gray-700 dark:text-gray-300 text-2xl" />
+                <MdOutlineEdit className="text-gray-700 dark:text-gray-300 text-2xl" />
               </div>
             </div>
 
@@ -126,10 +136,10 @@ const page = () => {
                 height={48}
               />
               <div>
-                <h5 className="text-sm font-semibold text-gray-800">
+                <h5 className="text-sm font-semibold dark:text-white text-gray-800">
                   Hero Web Agency
                 </h5>
-                <p className="text-xs text-gray-600">
+                <p className="text-xs text-gray-600 dark:text-gray-300">
                   Front-End Developer | 6 Months
                 </p>
               </div>
@@ -137,12 +147,12 @@ const page = () => {
           </div>
 
           {/* language */}
-          <div className=" bg-white rounded-md shadow-lg p-6">
+          <div className=" bg-white dark:bg-zinc-900 rounded-md shadow-lg p-6">
             <div className="flex justify-between items-center mb-3">
-              <h4 className="text-lg font-semibold text-gray-800">
+              <h4 className="text-lg font-semibold text-gray-800 dark:text-white">
                 Profile URL
               </h4>
-              <MdOutlineEdit className="text-gray-700 text-2xl"></MdOutlineEdit>
+              <MdOutlineEdit className="text-gray-700 dark:text-gray-300 text-2xl"></MdOutlineEdit>
             </div>
             <p className="text-sm text-blue-500 hover:underline leading-relaxed cursor-pointer">
               <Link href="https://alqafila.vercel.app/profile/rakibhossen">

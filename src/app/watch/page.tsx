@@ -13,7 +13,8 @@ const page = () => {
       time: "April 26 at 10:00 AM",
       text: "Learning React is super fun! 🚀",
       hashtags: ["#ReactJS", "#Coding"],
-      videolink: "/viedo1.mp4",
+      videolink:
+        "https://res.cloudinary.com/duhybktme/video/upload/v1740415101/bqzjo4yzzcr9aptnjsij.mp4",
       likes: "1.2K",
       comments: 150,
       shares: 2,
@@ -26,7 +27,8 @@ const page = () => {
       time: "April 25 at 5:50 AM",
       text: "Help out your favorite open source projects and become a better developer while doing it.",
       hashtags: ["#OpenSource", "#DeveloperLife"],
-      videolink: "/viedo1.mp4",
+      videolink:
+        "https://res.cloudinary.com/duhybktme/video/upload/v1746429167/275633_medium_enqlke.mp4",
       likes: "3.5K",
       comments: 300,
       shares: 3,
@@ -73,15 +75,15 @@ const page = () => {
     },
   ];
   return (
-    <div className="md:w-11/12 mx-auto h-screen overflow-y-auto hide-scrollbar">
-      <div className="md:mt-16">
+    <div className="w-11/12 mx-auto ">
+      <div className="mt-20">
         {videos.map((video) => (
           <div
             key={video._id}
-            className="bg-white dark:bg-zinc-900 md:p-5 p-2.5 border rounded-md mb-5"
+            className="bg-white dark:bg-zinc-900  border rounded-md mb-5"
           >
-            <div className="flex justify-between gap-1.5 items-center mb-3.5">
-              <div className="flex gap-1.5 items-center">
+            <div className="flex justify-between gap-1.5 items-center  md:p-4 p-2.5">
+              <div className="flex gap-1.5 items-center ">
                 <Image
                   className="rounded-full w-11 h-11 "
                   src={video.profilePic}
@@ -109,18 +111,19 @@ const page = () => {
                 </button>
               )}
             </div>
-            <div className="space-y-3.5">
-              <p className=" dark:text-gray-300 text-gray-700">{video.text}</p>
+            <div className="">
+              <p className=" dark:text-gray-300 text-gray-700 md:px-4 px-2.5 mb-2">
+                {video.text}
+              </p>
               <video
                 src={video.videolink}
                 controls
                 muted
-                poster="https://i.ibb.co/YFLQWG4g/image.png"
                 preload="metadata"
-                className="rounded-md w-full border max-h-[400px] shadow-lg transition-transform duration-300"
+                className=" w-full  max-h-[400px]  transition-transform duration-300"
               ></video>
 
-              <div>
+              <div className="md:p-4 p-2.5">
                 <div className="flex justify-between gap-1.5 items-center pb-1.5 ">
                   <p className="text-sm">{video.likes} Likes</p>
                   <div className="flex items-center gap-2">

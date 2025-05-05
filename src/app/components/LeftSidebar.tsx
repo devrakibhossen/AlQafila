@@ -44,8 +44,8 @@ const LeftSidebar = () => {
   ];
 
   return (
-    <div className="w-full hidden md:block">
-      <div className="bg-white dark:bg-zinc-900 p-6 flex flex-col items-center space-y-4 border rounded-md mb-5">
+    <div className="w-10/12 ml-10 lg:ml-14  hidden md:block">
+      <div className="bg-white dark:bg-zinc-900 p-4 flex flex-col items-center space-y-4 border rounded-md mb-5">
         <div className="relative group">
           <Image
             className="rounded-full border-4 border-gray-200 group-hover:scale-105 transition-transform duration-300"
@@ -70,7 +70,7 @@ const LeftSidebar = () => {
           </Button>
         </Link>
       </div>
-      <div className="bg-white dark:bg-zinc-900 p-6 flex flex-col  space-y-4 border rounded-md">
+      <div className="bg-white dark:bg-zinc-900 p-4 flex flex-col  space-y-4 border rounded-md">
         <div className="flex justify-between  items-center border-b pb-3">
           <h3 className="text-gray-700 dark:text-white text-lg font-semibold">
             Suggested Groups
