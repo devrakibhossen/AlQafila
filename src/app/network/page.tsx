@@ -1,7 +1,9 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { toast } from "sonner";
 
 const Page = () => {
   const [activeSection, setActiveSection] = useState<string>("friendRequest");
@@ -92,13 +94,20 @@ const Page = () => {
                   {friendRequest.map((req) => (
                     <div
                       key={req.id}
-                      className="flex items-center justify-between p-3 border rounded-lg hover:shadow transition"
+                      className="flex lg:flex-row flex-col items-center gap-3 justify-between p-3 border rounded-lg hover:shadow transition"
                     >
+                      <Image
+                        src={req.senderAvatar}
+                        alt={req.senderName}
+                        className="w-12 h-12 rounded-full object-cover md:hidden"
+                        width={48}
+                        height={48}
+                      />
                       <div className="flex items-center gap-3">
                         <Image
                           src={req.senderAvatar}
                           alt={req.senderName}
-                          className="w-12 h-12 rounded-full object-cover"
+                          className="w-12 h-12 rounded-full object-cover md:block hidden"
                           width={48}
                           height={48}
                         />
@@ -114,10 +123,34 @@ const Page = () => {
 
                       {req.status === "pending" && (
                         <div className="flex gap-2">
-                          <button className="text-sm bg-green-100 text-green-700 px-3 py-1 rounded hover:bg-green-200">
+                          <Button
+                            onClick={() =>
+                              toast("Friend request accepted", {
+                                description: "You and Alex are now friends",
+                                action: {
+                                  label: "Say hi",
+                                  onClick: () =>
+                                    console.log("Chat started with Alex"),
+                                },
+                              })
+                            }
+                            className="text-sm bg-green-100 text-green-700 px-3 py-1 rounded hover:bg-green-200"
+                          >
                             Accept
-                          </button>
-                          <button className="text-sm bg-red-100 text-red-700 px-3 py-1 rounded hover:bg-red-200">
+                          </Button>
+                          <button
+                            onClick={() =>
+                              toast("Friend request declined", {
+                                description: "You have rejected Alex's request",
+                                action: {
+                                  label: "request",
+                                  onClick: () =>
+                                    console.log("Chat started with Alex"),
+                                },
+                              })
+                            }
+                            className="text-sm bg-red-100 text-red-700 px-3 py-1 rounded hover:bg-red-200"
+                          >
                             Decline
                           </button>
                         </div>

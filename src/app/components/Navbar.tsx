@@ -33,32 +33,37 @@ import {
   Moon,
   Monitor,
   Languages,
+  Search,
+  X,
 } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+
   const pathname = usePathname();
   const { setTheme } = useTheme();
   return (
     <div className="bg-white dark:bg-zinc-900 py-1.5 fixed w-full top-0 z-10 border-b">
-      <div className="w-11/12 mx-auto gap-1.5 flex justify-between items-center">
+      <div className="md:w-11/12 mx-auto px-1 gap-1.5 flex justify-between items-center">
         <div className="flex gap-5 items-center">
           <Image
-            className="hidden md:block"
+            className=""
             src="/alQafila.png"
             alt="logo"
             width={150}
             height={30}
             priority
           />
-          <Image
-            className=" md:hidden"
-            src="/favicon.ico"
+          {/* <Image
+            className=" md:hidden  w-11 h-11"
+            src="https://i.ibb.co/rGfsJTwq/al-Qafila-Icon.png"
             alt="logo"
             width={48}
-            height={28}
+            height={48}
             priority
-          />
+          /> */}
         </div>
         <div className="lg:ml-36  hidden lg:block">
           <ul className="flex items-center md:gap-6 gap-2.5">
@@ -130,26 +135,53 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="flex items-center md:gap-4 gap-2">
+        <div className="flex items-center gap-4 ">
           <Input
             type="search"
-            className="rounded-full md:w-72 md:p-5 "
-            placeholder="Start typing to search..."
+            className="rounded-full md:w-72 md:p-5 hidden md:block"
+            placeholder="Search..."
           />
+          {/* Search Icon Only for Mobile */}
+          <div className="md:hidden mt-1">
+            <button onClick={() => setMobileSearchOpen(true)}>
+              <Search size={22} />
+            </button>
+          </div>
 
-          <IoNotificationsOutline className="md:text-4xl text-2xl md:border md:p-1.5 rounded-full" />
+          {/* Mobile Slide Search Bar */}
+          {mobileSearchOpen && (
+            <div className="fixed top-0 left-0 w-full h-full bg-white dark:bg-zinc-900 z-50 flex flex-col p-4">
+              <div className="flex justify-between items-center mb-4">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="w-full p-2 text-lg border-b border-gray-300 bg-transparent focus:outline-none"
+                />
+                <button
+                  onClick={() => setMobileSearchOpen(false)}
+                  className="ml-4"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+            </div>
+          )}
+
+          <Link href="/notifications">
+            <IoNotificationsOutline className="md:text-4xl text-2xl md:border md:p-1.5 rounded-full" />
+          </Link>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <div className="flex items-center gap-2 cursor-pointer">
-                <Image
-                  className="rounded-full border-2 border-gray-200 hover:border-primary transition-all"
-                  src="/images/profile.png"
-                  alt="User Avatar"
-                  width={40}
-                  height={40}
-                  priority
-                />
-              </div>
+              {/* <div className="flex items-center gap-2 cursor-pointer"> */}
+              <Image
+                className="rounded-full border-2 w-10 h-10 border-gray-200 hover:border-primary transition-all"
+                src="/images/profile.png"
+                alt="User Avatar"
+                width={50}
+                height={50}
+                priority
+              />
+              {/* </div> */}
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-52 md:w-60 lg:mr-8 md:mr-5 mr-4 md:mt-2 mt-1 rounded-none">
               <DropdownMenuGroup>

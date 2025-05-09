@@ -51,7 +51,7 @@ const RightSidebar = () => {
   ];
 
   return (
-    <section className="w-10/12 mr-10 lg:mr-14  hidden lg:block">
+    <section className="w-10/12 mr-10 lg:mr-14 hidden lg:block">
       <div className="bg-white dark:bg-zinc-900 p-4 flex flex-col  space-y-4 border rounded-md mb-5">
         <div className="flex justify-between  items-center border-b pb-3">
           <h3 className="text-gray-700 dark:text-white text-lg font-semibold">

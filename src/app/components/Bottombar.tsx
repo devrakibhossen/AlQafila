@@ -9,7 +9,7 @@ import { RiHome9Line } from "react-icons/ri";
 const Bottombar = () => {
   const pathname = usePathname();
   return (
-    <div className="lg:hidden fixed z-10 bottom-0 bg-white dark:bg-zinc-900  w-full py-2">
+    <div className="lg:hidden border-t fixed z-10 bottom-0 bg-white dark:bg-zinc-900  w-full py-2">
       <div className="w-11/12 mx-auto">
         <ul className="flex items-center justify-between">
           <li>
@@ -22,7 +22,7 @@ const Bottombar = () => {
               }`}
             >
               <RiHome9Line className="text-xl" />
-              <p className="">Home</p>
+              <p className="text-sm">Home</p>
             </Link>
           </li>
           <li>
@@ -35,7 +35,7 @@ const Bottombar = () => {
               }`}
             >
               <GoPeople className="text-xl " />
-              <p className="">Network</p>
+              <p className="text-sm">Network</p>
             </Link>
           </li>
 
@@ -49,7 +49,7 @@ const Bottombar = () => {
               }`}
             >
               <MdOutlineVideoLibrary className="text-xl" />
-              <p className="">Videos</p>
+              <p className="text-sm">Videos</p>
             </Link>
           </li>
           <li>
@@ -62,7 +62,7 @@ const Bottombar = () => {
               }`}
             >
               <MdWorkOutline className="text-xl" />
-              <p className="">Jobs</p>
+              <p className="text-sm">Jobs</p>
             </Link>
           </li>
           <li>
@@ -75,7 +75,7 @@ const Bottombar = () => {
               }`}
             >
               <BsChatDots className="text-xl" />
-              <p className="">Message</p>
+              <p className="text-sm">Message</p>
             </Link>
           </li>
         </ul>

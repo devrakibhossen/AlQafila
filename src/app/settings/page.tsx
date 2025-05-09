@@ -1,7 +1,10 @@
 import { User } from "lucide-react";
+import { Metadata } from "next";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdLockOutline, MdOutlineDeleteOutline } from "react-icons/md";
-
+export const metadata: Metadata = {
+  title: "AlQafila | Settings",
+};
 const page = () => {
   return (
     <div className="p-6">

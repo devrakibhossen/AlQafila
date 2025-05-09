@@ -1,9 +1,13 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FaRegComment } from "react-icons/fa";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { SlLike } from "react-icons/sl";
-
+import CustomVideoPlayer from "./components/CustomVideoPlayer";
+export const metadata: Metadata = {
+  title: "AlQafila | Video",
+};
 const page = () => {
   const videos = [
     {
@@ -75,12 +79,12 @@ const page = () => {
     },
   ];
   return (
-    <div className="w-11/12 mx-auto ">
+    <div className="md:w-11/12 mx-auto px-1 ">
       <div className="mt-20">
         {videos.map((video) => (
           <div
             key={video._id}
-            className="bg-white dark:bg-zinc-900  border rounded-md mb-5"
+            className="bg-white dark:bg-zinc-900  border rounded-md md:mb-5 mb-2"
           >
             <div className="flex justify-between gap-1.5 items-center  md:p-4 p-2.5">
               <div className="flex gap-1.5 items-center ">
@@ -115,13 +119,14 @@ const page = () => {
               <p className=" dark:text-gray-300 text-gray-700 md:px-4 px-2.5 mb-2">
                 {video.text}
               </p>
-              <video
+              {/* <video
                 src={video.videolink}
                 controls
                 muted
                 preload="metadata"
                 className=" w-full  max-h-[400px]  transition-transform duration-300"
-              ></video>
+              ></video> */}
+              <CustomVideoPlayer src={video.videolink} />
 
               <div className="md:p-4 p-2.5">
                 <div className="flex justify-between gap-1.5 items-center pb-1.5 ">

@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { BsThreeDotsVertical } from "react-icons/bs";
@@ -45,30 +44,68 @@ const LeftSidebar = () => {
 
   return (
     <div className="w-10/12 ml-10 lg:ml-14  hidden md:block">
-      <div className="bg-white dark:bg-zinc-900 p-4 flex flex-col items-center space-y-4 border rounded-md mb-5">
-        <div className="relative group">
+      <div className=" bg-white mb-5 dark:bg-zinc-900 border rounded-t-2xl rounded-b-md shadow-lg overflow-hidden">
+        {/* Cover Image */}
+        <div className="relative w-full h-28">
           <Image
-            className="rounded-full border-4 border-gray-200 group-hover:scale-105 transition-transform duration-300"
-            src="/images/profile.png"
-            alt="Profile Picture"
-            width={100}
-            height={100}
+            src="https://i.ibb.co/PGfp2cJ1/image.png"
+            alt="Cover"
+            fill
+            className="object-cover rounded-t-xl"
             priority
+            sizes="(max-width: 768px) 100vw, 600px"
           />
         </div>
-        <div className="text-center">
-          <h2 className="text-lg font-semibold dark:text-white text-gray-800">
-            Rakib Hossen
-          </h2>
-          <p className="text-sm text-gray-500 dark:text-gray-300">
-            Front-End Developer | Mern Stack Developer | React js Developer
-          </p>
-        </div>
-        <Link href="/profile/rakibhossen">
-          <Button className=" bg-[#155D8C] hover:bg-[#304655] dark:text-white w-full rounded-full cursor-pointer">
+
+        {/* Profile Image */}
+        <div className="relative px-6 pb-6 bg-white dark:bg-zinc-900">
+          <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 ">
+            <Image
+              className="rounded-full border border-white object-cover w-20 h-20 shadow-md "
+              src="https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
+              alt="Profile"
+              width={80}
+              height={80}
+              priority
+            />
+          </div>
+          <div className="pt-12 flex justify-center  items-center gap-5">
+            <div className="space-y-1 text-center">
+              <h3 className="text-xl font-bold text-black dark:text-white">
+                Rakib Hossen
+              </h3>
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                MERN Stack developer | CEO & Founder AlQafila | Programming
+                Enthusiast
+              </p>
+            </div>
+          </div>
+          <hr className="my-2" />
+          <div className="flex justify-between items-center gap-2.5 px-4">
+            <div className="text-center py-2">
+              <h3>3,356</h3>
+              <p className="text-sm font-semibold text-[#155D8C] ">Follower</p>
+            </div>
+            <div className="w-px h-8 bg-[#155D8C]"></div>
+            <div className="text-center py-2">
+              <h3>600</h3>
+              <p className="text-sm font-semibold text-[#155D8C] ">Following</p>
+            </div>
+          </div>
+          <hr className="my-2" />
+
+          <Link
+            href="/profile/rakibhossen"
+            className=" text-[#155D8C] mt-4 text-sm hover:underline dark:text-white  cursor-pointer flex justify-center items-center"
+          >
             View Profile
-          </Button>
-        </Link>
+          </Link>
+          {/* <div className="flex justify-between gap-2.5">
+              <Button className=" bg-[#155D8C] dark:text-white hover:bg-[#304655] w-full text-sm rounded-full cursor-pointer">
+                Edit Profile
+              </Button>
+            </div> */}
+        </div>
       </div>
       <div className="bg-white dark:bg-zinc-900 p-4 flex flex-col  space-y-4 border rounded-md">
         <div className="flex justify-between  items-center border-b pb-3">

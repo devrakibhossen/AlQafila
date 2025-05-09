@@ -4,6 +4,7 @@ import "./globals.css";
 
 import LayoutManager from "./components/LayoutManager";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -11,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "AlQafila",
+  title: "AlQafila | Feed",
   description:
     "AlQafila is a modern and professional social media web platform designed to connect individuals and communities. Share posts, engage in discussions, and build meaningful connections in a user-friendly and secure environment tailored for seamless interaction.",
 };
@@ -33,6 +34,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <LayoutManager>{children}</LayoutManager>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

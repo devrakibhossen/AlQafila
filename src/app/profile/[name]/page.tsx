@@ -6,7 +6,7 @@ import { MdOutlineEdit } from "react-icons/md";
 
 const page = () => {
   return (
-    <div className="mt-16 w-11/12 mx-auto">
+    <div className="mt-20 w-11/12 mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Main Profile Section */}
 

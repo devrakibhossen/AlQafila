@@ -352,7 +352,7 @@ const ChatUI = () => {
         </div>
 
         {/* Chat Body */}
-        <div className="flex-1 overflow-y-auto px-4 py-6 bg-[#f0f2f5] dark:bg-transparent space-y-3">
+        <div className="flex-1 overflow-y-auto px-4 py-6 bg-[#f0f2f5] dark:bg-transparent space-y-3 ">
           {chatMessages.map((msg) => (
             <div
               key={msg.id}
@@ -361,7 +361,7 @@ const ChatUI = () => {
               }`}
             >
               <div
-                className={`relative px-4 py-2 text-sm rounded-lg max-w-[75%] shadow-sm ${
+                className={`relative px-4 py-2 text-sm mb-3 rounded-lg max-w-[75%] shadow-sm ${
                   msg.incoming
                     ? "bg-white dark:bg-zinc-900 text-gray-900 dark:text-gray-300 rounded-bl-none"
                     : "bg-[#dcf8c6] text-gray-800 rounded-br-none"
