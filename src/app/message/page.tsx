@@ -181,7 +181,7 @@ const ChatUI = () => {
       {/* Main Chat */}
       <main className="flex-1 flex flex-col ml-0 md:ml-[max(20rem,theme(maxWidth.xs))]">
         {/* Chat Header */}
-        <div className="flex items-center justify-between px-4 py-3 bg-white dark:bg-zinc-900 border-b  sticky md:top-16  z-10">
+        <div className="flex  items-center justify-between px-4 py-3 bg-white dark:bg-zinc-900 border-b  sticky md:top-16  z-10">
           <div className="flex items-center gap-1.5">
             <Menu
               className="md:hidden"
@@ -269,7 +269,7 @@ const ChatUI = () => {
                 height={48}
               />
               <div>
-                <h2 className="font-semibold">Tanvir Hasan</h2>
+                <h2 className="md:font-semibold text-sm">Tanvir Hasan</h2>
                 <p className="text-xs text-gray-400">Offline</p>
               </div>
             </div>
@@ -352,7 +352,7 @@ const ChatUI = () => {
         </div>
 
         {/* Chat Body */}
-        <div className="flex-1 overflow-y-auto px-4 py-6 bg-[#f0f2f5] dark:bg-transparent space-y-3 ">
+        <div className="flex-1   overflow-y-auto px-4 py-6 bg-[#f0f2f5] dark:bg-transparent space-y-3 ">
           {chatMessages.map((msg) => (
             <div
               key={msg.id}
@@ -379,11 +379,11 @@ const ChatUI = () => {
         </div>
 
         {/* Chat Input */}
-        <div className="border-t border-b px-4 py-3 flex items-center space-x-4 bg-white dark:bg-zinc-900 sticky md:bottom-0 bottom-14">
+        <div className=" border-t border-b md:px-4 px-1 py-3 flex items-center md:space-x-4 space-x-1.5 bg-white dark:bg-zinc-900 sticky md:bottom-0 bottom-14">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button className="p-2 rounded hover:bg-gray-100 dark:hover:bg-zinc-800 transition">
-                <RiAttachment2 className="text-gray-500 dark:text-gray-300 text-xl cursor-pointer" />
+                <RiAttachment2 className="text-gray-500 dark:text-gray-300 md:text-xl cursor-pointer" />
               </button>
             </DropdownMenuTrigger>
 
@@ -404,12 +404,12 @@ const ChatUI = () => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type a message"
-            className="flex-1  rounded-full px-4 py-2 outline-none text-sm"
+            className="flex-1  rounded-full md:px-4 py-2 outline-none text-sm"
           />
-          <FaSmile className="text-gray-500 dark:text-gray-300 text-xl cursor-pointer" />
+          <FaSmile className="text-gray-500 dark:text-gray-300 md:text-xl cursor-pointer" />
 
-          <FaMicrophone className="text-gray-500 dark:text-gray-300 text-xl cursor-pointer" />
-          <IoIosSend className="text-[#155D8C] dark:text-[#4e8bd1] text-2xl cursor-pointer" />
+          <FaMicrophone className="text-gray-500 dark:text-gray-300 md:text-xl cursor-pointer" />
+          <IoIosSend className="text-[#155D8C] dark:text-[#4e8bd1] md:text-2xl cursor-pointer" />
         </div>
       </main>
     </div>

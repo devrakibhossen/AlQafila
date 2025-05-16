@@ -1,5 +1,4 @@
 "use client";
-import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -38,6 +37,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
 
 const Navbar = () => {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
@@ -136,11 +136,19 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex items-center gap-4 ">
-          <Input
+          {/* <Input
             type="search"
             className="rounded-full md:w-72 md:p-5 hidden md:block"
             placeholder="Search..."
-          />
+          /> */}
+          <div className="md:flex items-center gap-2 rounded-full px-4 py-2 md:w-72 bg-gray-100 dark:bg-zinc-900 hidden">
+            <FaSearch className="text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search"
+              className="w-full outline-none text-sm bg-transparent"
+            />
+          </div>
           {/* Search Icon Only for Mobile */}
           <div className="md:hidden mt-1">
             <button onClick={() => setMobileSearchOpen(true)}>

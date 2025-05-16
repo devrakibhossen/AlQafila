@@ -131,8 +131,12 @@ body {
 }
 
 .dark-background {
-  background-color: #09090b;
+  @apply bg-[#09090b];
 }
 .dark-card-background {
   background-color: #18181b;
+}
+
+.justify-between {
+  @apply flex  justify-between items-center;
 }

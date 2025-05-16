@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "AlQafila | Feed",
+  title: "AlQafila ",
   description:
     "AlQafila is a modern and professional social media web platform designed to connect individuals and communities. Share posts, engage in discussions, and build meaningful connections in a user-friendly and secure environment tailored for seamless interaction.",
 };

@@ -52,12 +52,12 @@ const CreatePost = () => {
               <DialogDescription>
                 <textarea
                   name="post"
-                  className="min-h-56 p-2 text-base  border-none   focus:outline-none focus:ring-0 focus:border-none "
+                  className="min-h-56 p-2 w-full text-base  border-none   focus:outline-none focus:ring-0 focus:border-none "
                   placeholder="What's on your mind? Share your thoughts..."
                 ></textarea>
               </DialogDescription>
               <hr className="my-2.5" />
-              <div className="flex justify-between items-center gap-5">
+              <div className="justify-between gap-5">
                 <div className="flex  items-center gap-2">
                   <button className="py-1 px-4 border rounded-full text-sm">
                     Photo
@@ -78,7 +78,7 @@ const CreatePost = () => {
         </Dialog>
         <ImageIcon className="text-green-500 md:hidden" />
       </div>
-      <div className="md:flex hidden justify-between gap-1.5 items-center md:w-11/12 mx-auto mt-4">
+      <div className="md:flex hidden  justify-between gap-1.5 items-center md:w-11/12 mx-auto mt-4">
         <Dialog>
           <DialogTrigger className="flex gap-1 items-center dark:text-gray-300 text-gray-700 cursor-pointer border rounded-full px-3 py-1">
             {/* <div> */}
@@ -111,7 +111,7 @@ const CreatePost = () => {
               <DialogDescription>
                 <textarea
                   name="post"
-                  className="min-h-16 p-2 text-base bg-transparent text-gray-800 dark:text-white resize-none border-none focus:outline-none focus:ring-0 focus:border-none shadow-none placeholder:text-gray-500 dark:placeholder:text-gray-400"
+                  className="min-h-16 p-2 w-full text-base bg-transparent text-gray-800 dark:text-white resize-none border-none focus:outline-none focus:ring-0 focus:border-none shadow-none placeholder:text-gray-500 dark:placeholder:text-gray-400"
                   placeholder="What's on your mind?"
                 ></textarea>
                 <label
@@ -153,7 +153,7 @@ const CreatePost = () => {
                 </label>
               </DialogDescription>
               <hr className="my-2.5" />
-              <div className="flex justify-between items-center gap-5">
+              <div className=" justify-between  gap-5">
                 <button className="p-1 border rounded-full text-sm">
                   <FaSmile className="text-gray-500 dark:text-gray-300 text-xl cursor-pointer" />
                 </button>

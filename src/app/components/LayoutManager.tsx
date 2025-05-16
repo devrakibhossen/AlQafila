@@ -64,12 +64,14 @@ const LayoutManager = ({ children }: { children: React.ReactNode }) => {
   const isMessagePage = pathname.startsWith("/message");
   const isSettingsPage = pathname.startsWith("/settings");
   const isInterviewPage = pathname.startsWith("/interview");
+  const isGroupsPage = pathname.startsWith("/groups");
   const isNoSidebar =
     isProfilePage ||
     isJobPage ||
     isMessagePage ||
     isNetworkPage ||
     isInterviewPage ||
+    isGroupsPage ||
     isSettingsPage;
 
   if (isNoLayout) {

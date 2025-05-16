@@ -127,7 +127,7 @@ const LeftSidebar = () => {
             />
             <div>
               <h3 className="text-black dark:text-white  text-md">
-                <Link href={`/group/${group.name}`}>{group.name}</Link>
+                <Link href={`/groups/${group.name}`}>{group.name}</Link>
               </h3>
               <p className="text-sm dark:text-gray-300 text-gray-700">
                 {group.members}
