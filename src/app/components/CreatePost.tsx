@@ -78,7 +78,7 @@ const CreatePost = () => {
         </Dialog>
         <ImageIcon className="text-green-500 md:hidden" />
       </div>
-      <div className="md:flex hidden  justify-between gap-1.5 items-center md:w-11/12 mx-auto mt-4">
+      <div className="hidden md:flex justify-between gap-1.5 items-center md:w-11/12 mx-auto mt-4">
         <Dialog>
           <DialogTrigger className="flex gap-1 items-center dark:text-gray-300 text-gray-700 cursor-pointer border rounded-full px-3 py-1">
             {/* <div> */}

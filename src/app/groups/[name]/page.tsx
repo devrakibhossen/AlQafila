@@ -261,7 +261,7 @@ const Page = () => {
                 key={post._id}
                 className="bg-white dark:bg-zinc-900   border rounded-sm md:rounded-md md:mb-5 mb-1"
               >
-                <div className=" justify-between gap-1.5  mb-3.5 md:px-3 pt-3 px-2.5">
+                <div className="justifyBetween gap-1.5  mb-3.5 md:px-3 pt-3 px-2.5">
                   <div className="flex gap-1.5 items-center">
                     <Image
                       placeholder="blur"
@@ -307,7 +307,7 @@ const Page = () => {
                     priority
                   />
                   <div className="mb-3.5 md:px-3  px-2.5 ">
-                    <div className="justify-between gap-1.5 pb-1.5 ">
+                    <div className="justifyBetween gap-1.5 pb-1.5 ">
                       <p className="text-sm">{post.likes} Likes</p>
                       <div className="flex items-center gap-2">
                         <p className="text-sm">{post.comments} Comments,</p>
@@ -315,7 +315,7 @@ const Page = () => {
                       </div>
                     </div>
 
-                    <div className=" justify-between gap-1.5  border-t pt-1.5">
+                    <div className=" justifyBetween gap-1.5  border-t pt-1.5">
                       <div className="flex  gap-1.5 items-center ">
                         <SlLike />
                         <p className="text-sm font-semibold">Like</p>
@@ -358,7 +358,7 @@ const Page = () => {
                         {/* </div> */}
 
                         {/* Actions: Icons and Post Button */}
-                        <div className="justify-between mt-2 px-2">
+                        <div className="justifyBetween mt-2 px-2">
                           <div className="flex items-center gap-3 text-gray-500 text-sm">
                             <button className="hover:text-[#155D8C] transition">
                               <ImageIcon size={18} />

@@ -206,7 +206,7 @@ const ProfileEngagement = () => {
                 key={post._id}
                 className="bg-white dark:bg-zinc-900   border rounded-sm md:rounded-md md:mb-5 mb-2"
               >
-                <div className=" justify-between gap-1.5  mb-3.5 md:px-3 pt-3 px-2.5">
+                <div className=" justifyBetween gap-1.5  mb-3.5 md:px-3 pt-3 px-2.5">
                   <div className="flex gap-1.5 items-center">
                     <Image
                       placeholder="blur"
@@ -252,7 +252,7 @@ const ProfileEngagement = () => {
                     priority
                   />
                   <div className="mb-3.5 md:px-3  px-2.5 ">
-                    <div className="justify-between gap-1.5 pb-1.5 ">
+                    <div className="justifyBetween gap-1.5 pb-1.5 ">
                       <p className="text-sm">{post.likes} Likes</p>
                       <div className="flex items-center gap-2">
                         <p className="text-sm">{post.comments} Comments,</p>
@@ -260,7 +260,7 @@ const ProfileEngagement = () => {
                       </div>
                     </div>
 
-                    <div className=" justify-between gap-1.5  border-t pt-1.5">
+                    <div className=" justifyBetween gap-1.5  border-t pt-1.5">
                       <div className="flex  gap-1.5 items-center ">
                         <SlLike />
                         <p className="text-sm font-semibold">Like</p>

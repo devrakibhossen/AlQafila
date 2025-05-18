@@ -1,10 +1,12 @@
-"use client";
 import { Bookmark, BriefcaseIcon } from "lucide-react";
+import { Metadata } from "next";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { FaMapMarkerAlt, FaPaperPlane, FaSearch } from "react-icons/fa";
 import { RiExternalLinkFill } from "react-icons/ri";
-
+export const metadata: Metadata = {
+  title: "AlQafila | Jobs",
+};
 const Page = () => {
   const jobs = [
     {
@@ -93,16 +95,14 @@ const Page = () => {
       recruiterImage: "https://randomuser.me/api/portraits/women/22.jpg",
     },
   ];
-  const router = useRouter();
   return (
     <div className="w-11/12 mx-auto mt-20">
-      <button
-        onClick={() => router.push("/interview")}
-        className=" flex items-center justify-center mb-3 gap-2 rounded-full border dark:border-zinc-800 border-gray-300 overflow-hidden shadow-sm  bg-white dark:bg-zinc-900 text-sm  font-medium py-2 px-4 transition-all"
-      >
-        <BriefcaseIcon className="w-4 h-4" />
-        Ai Interview
-      </button>
+      <Link href="/interview">
+        <button className=" flex items-center cursor-pointer justify-center mb-3 gap-2 rounded-full border dark:border-zinc-800 border-gray-300 overflow-hidden shadow-sm  bg-white dark:bg-zinc-900 text-sm  font-medium py-2 px-4 transition-all">
+          <BriefcaseIcon className="w-4 h-4" />
+          Ai Interview
+        </button>
+      </Link>
       <div className="flex w-full max-w-3xl mx-auto rounded-full border dark:border-zinc-800 border-gray-300 overflow-hidden shadow-sm">
         {/* Job Title Input */}
         <div className="flex items-center gap-2 px-4 py-2 w-1/2 bg-white dark:bg-zinc-900">

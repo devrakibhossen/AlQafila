@@ -49,11 +49,11 @@ const Navbar = () => {
       <div className="md:w-11/12 mx-auto px-1 gap-1.5 flex justify-between items-center">
         <div className="flex gap-5 items-center">
           <Image
-            className=""
+            className="w-36 h-[51px]"
             src="/alQafila.png"
             alt="logo"
             width={150}
-            height={30}
+            height={150}
             priority
           />
           {/* <Image
@@ -141,7 +141,7 @@ const Navbar = () => {
             className="rounded-full md:w-72 md:p-5 hidden md:block"
             placeholder="Search..."
           /> */}
-          <div className="md:flex items-center gap-2 rounded-full px-4 py-2 md:w-72 bg-gray-100 dark:bg-zinc-900 hidden">
+          <div className="md:flex items-center gap-2 rounded-full px-4 py-2.5 md:w-72 bg-gray-100 dark:bg-zinc-950 hidden">
             <FaSearch className="text-gray-400" />
             <input
               type="text"
