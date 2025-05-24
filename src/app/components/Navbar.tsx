@@ -34,6 +34,7 @@ import {
   Languages,
   Search,
   X,
+  PlusSquare,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
@@ -46,24 +47,18 @@ const Navbar = () => {
   const { setTheme } = useTheme();
   return (
     <div className="bg-white dark:bg-zinc-900 py-1.5 fixed w-full top-0 z-10 border-b">
-      <div className="md:w-11/12 mx-auto px-1 gap-1.5 flex justify-between items-center">
+      <div className="md:w-11/12 mx-auto px-1 gap-1.5 flex justify-between items-center max-w-[1600px] ">
         <div className="flex gap-5 items-center">
-          <Image
-            className="w-36 h-[51px]"
-            src="/alQafila.png"
-            alt="logo"
-            width={150}
-            height={150}
-            priority
-          />
-          {/* <Image
-            className=" md:hidden  w-11 h-11"
-            src="https://i.ibb.co/rGfsJTwq/al-Qafila-Icon.png"
-            alt="logo"
-            width={48}
-            height={48}
-            priority
-          /> */}
+          <Link href="/">
+            <Image
+              className="w-40 h-[51px]"
+              src="/alQafila.png"
+              alt="logo"
+              width={200}
+              height={150}
+              priority
+            />
+          </Link>
         </div>
         <div className="lg:ml-36  hidden lg:block">
           <ul className="flex items-center md:gap-6 gap-2.5">
@@ -72,7 +67,7 @@ const Navbar = () => {
                 href="/"
                 className={`flex flex-col items-center text-sm cursor-pointer ${
                   pathname === "/"
-                    ? "text-[#155D8C] dark:text-[#4e8bd1] font-semibold"
+                    ? "green-accent  font-semibold"
                     : "text-gray-700 dark:text-gray-300"
                 }`}
               >
@@ -85,7 +80,7 @@ const Navbar = () => {
                 href="/network"
                 className={`flex flex-col items-center text-sm cursor-pointer ${
                   pathname === "/network"
-                    ? "text-[#155D8C] dark:text-[#4e8bd1] font-semibold"
+                    ? "green-accent font-semibold"
                     : "text-gray-700 dark:text-gray-300"
                 }`}
               >
@@ -99,7 +94,7 @@ const Navbar = () => {
                 href="/watch"
                 className={`flex flex-col items-center text-sm cursor-pointer ${
                   pathname === "/watch"
-                    ? "text-[#155D8C] dark:text-[#4e8bd1] font-semibold"
+                    ? "green-accent font-semibold"
                     : "text-gray-700 dark:text-gray-300"
                 }`}
               >
@@ -112,7 +107,7 @@ const Navbar = () => {
                 href="/jobs"
                 className={`flex flex-col items-center text-sm cursor-pointer ${
                   pathname === "/jobs"
-                    ? "text-[#155D8C] dark:text-[#4e8bd1] font-semibold"
+                    ? "green-accent font-semibold"
                     : "text-gray-700 dark:text-gray-300"
                 }`}
               >
@@ -125,7 +120,7 @@ const Navbar = () => {
                 href="/message"
                 className={`flex flex-col items-center text-sm cursor-pointer ${
                   pathname === "/message"
-                    ? "text-[#155D8C] dark:text-[#4e8bd1] font-semibold"
+                    ? "green-accent font-semibold"
                     : "text-gray-700 dark:text-gray-300"
                 }`}
               >
@@ -151,7 +146,7 @@ const Navbar = () => {
           </div>
           {/* Search Icon Only for Mobile */}
           <div className="md:hidden mt-1">
-            <button onClick={() => setMobileSearchOpen(true)}>
+            <button className="green-accent" onClick={() => setMobileSearchOpen(true)}>
               <Search size={22} />
             </button>
           </div>
@@ -182,8 +177,8 @@ const Navbar = () => {
             <DropdownMenuTrigger asChild>
               {/* <div className="flex items-center gap-2 cursor-pointer"> */}
               <Image
-                className="rounded-full border-2 w-10 h-10 border-gray-200 hover:border-primary transition-all"
-                src="/images/profile.png"
+                className="rounded-full object-cover border-2 w-10 h-10 border-gray-200 hover:border-primary transition-all"
+                src="https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
                 alt="User Avatar"
                 width={50}
                 height={50}
@@ -254,11 +249,14 @@ const Navbar = () => {
                     </div>
                   </DropdownMenuItem>
                 </Link>
-                <DropdownMenuItem className="cursor-pointer">
-                  <BookMarked className=" h-4 w-4" />
-                  <span>Saved Posts</span>
-                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                </DropdownMenuItem>
+
+                <Link href="/savedPosts" passHref>
+                  <DropdownMenuItem className="cursor-pointer">
+                    <BookMarked className=" h-4 w-4" />
+                    <span>Saved Posts</span>
+                    <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                </Link>
               </DropdownMenuGroup>
 
               <DropdownMenuSeparator />
@@ -267,7 +265,12 @@ const Navbar = () => {
                 <HelpCircle className=" h-4 w-4" />
                 Help & Support
               </DropdownMenuItem>
-
+              <Link href="/createGroup" passHref>
+                <DropdownMenuItem className="cursor-pointer">
+                  <PlusSquare className=" h-4 w-4" />
+                  Create Group
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuSeparator />
 
               <DropdownMenuItem className="text-red-500 font-medium cursor-pointer">

@@ -60,7 +60,7 @@ const Sidebar = () => {
                 href={item.href}
                 className={`flex items-center gap-3 px-4 py-2 rounded-md font-medium transition ${
                   isActive
-                    ? "bg-[#155D8C] dark:bg-gray-100 dark:text-black text-white "
+                    ? "bg-green-accent dark:text-black text-white "
                     : "text-gray-700 dark:text-white dark:hover:text-black  hover:bg-gray-100"
                 }`}
               >

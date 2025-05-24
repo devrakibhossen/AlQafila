@@ -65,12 +65,14 @@ const LayoutManager = ({ children }: { children: React.ReactNode }) => {
   const isSettingsPage = pathname.startsWith("/settings");
   const isInterviewPage = pathname.startsWith("/interview");
   const isGroupsPage = pathname.startsWith("/groups");
+  const isCreateGroupPage = pathname.startsWith("/createGroup");
   const isNoSidebar =
     isProfilePage ||
     isJobPage ||
     isMessagePage ||
     isNetworkPage ||
     isInterviewPage ||
+    isCreateGroupPage ||
     isGroupsPage ||
     isSettingsPage;
 
@@ -82,11 +84,11 @@ const LayoutManager = ({ children }: { children: React.ReactNode }) => {
     <div>
       <Navbar />
 
-      <div className="grid grid-cols-11">
+      <div className="grid grid-cols-11 md:mt-20 mt-[75px]  max-w-[1600px] mx-auto">
         {/* Left Sidebar */}
         {!isNoSidebar && (
-          <div className="hidden md:block col-span-3">
-            <div className="sticky top-[82px]">
+          <div className="hidden md:block col-span-4 lg:col-span-3">
+            <div className="sticky top-14">
               <LeftSidebar />
             </div>
           </div>
@@ -97,7 +99,7 @@ const LayoutManager = ({ children }: { children: React.ReactNode }) => {
           className={`${
             isNoSidebar
               ? "col-span-12"
-              : "lg:col-span-5 md:col-span-8 col-span-12 "
+              : "lg:col-span-5 md:col-span-7 col-span-12 "
           }`}
         >
           {children}
@@ -106,7 +108,7 @@ const LayoutManager = ({ children }: { children: React.ReactNode }) => {
         {/* Right Sidebar */}
         {!isNoSidebar && (
           <div className="hidden lg:block col-span-3">
-            <div className="sticky top-[82px]">
+            <div className="sticky top-14">
               <RightSidebar />
             </div>
           </div>

@@ -228,11 +228,11 @@ const ProfileEngagement = () => {
                     </div>
                   </div>
                   {post.profileStatus === "follow" ? (
-                    <button className="py-1 text-sm px-4 border text-[#155D8C] border-[#155D8C] rounded-full cursor-pointer">
+                    <button className="py-1 text-sm px-4 border green-accent  border-green-accent rounded-full cursor-pointer">
                       Follow
                     </button>
                   ) : (
-                    <button className="py-1 text-sm px-4 border text-white bg-[#155D8C] rounded-full cursor-pointer">
+                    <button className="py-1 text-sm px-4 border text-white bg-green-accent rounded-full cursor-pointer">
                       Request
                     </button>
                   )}
@@ -303,20 +303,20 @@ const ProfileEngagement = () => {
                         {/* </div> */}
 
                         {/* Actions: Icons and Post Button */}
-                        <div className="justify-between mt-2 px-2">
+                        <div className="justifyBetween mt-2 px-2">
                           <div className="flex items-center gap-3 text-gray-500 text-sm">
-                            <button className="hover:text-[#155D8C] transition">
+                            <button className="hover-green-accent  transition">
                               <ImageIcon size={18} />
                             </button>
-                            <button className="hover:text-[#155D8C] transition">
+                            <button className="hover-green-accent  transition">
                               <Smile size={18} />
                             </button>
-                            <button className="hover:text-[#155D8C] transition">
+                            <button className="hover-green-accent transition">
                               <Paperclip size={18} />
                             </button>
                           </div>
 
-                          <button className="bg-[#155D8C]  text-white text-sm font-semibold px-4 py-1 rounded-full transition">
+                          <button className="bg-green-accent  text-white text-sm font-semibold px-4 py-1 rounded-full transition">
                             Post
                           </button>
                         </div>

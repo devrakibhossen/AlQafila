@@ -21,14 +21,14 @@ const page = () => {
           <p className="text-sm text-center mt-3">
             Already have an account?{" "}
             <Link href="/accounts/sign-in">
-              <span className="text-[#155D8C] underline cursor-pointer">
+              <span className="green-accent underline cursor-pointer">
                 Sign in
               </span>
             </Link>
           </p>
         </div>
 
-        <div className="bg-blue-50 dark:bg-zinc-950 w-full p-10 rounded-2xl lg:flex flex-col items-center text-center hidden ">
+        <div className="bg-green-50 dark:bg-zinc-950 w-full p-10 rounded-2xl lg:flex flex-col items-center text-center hidden ">
           <Image
             src="/Svg/signup.svg"
             alt="Sign Up Illustration"
@@ -36,7 +36,7 @@ const page = () => {
             height={350}
             priority
           />
-          <h2 className="text-3xl font-bold text-[#155D8C] mt-8">
+          <h2 className="text-3xl font-bold green-accent mt-8">
             Join Our Community
           </h2>
           <p className="text-gray-600 mt-4 max-w-md">

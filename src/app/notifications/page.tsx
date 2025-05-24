@@ -62,7 +62,7 @@ const page = () => {
   ];
 
   return (
-    <div className="w-11/12 mx-auto mt-20 md:min-h-[900px]">
+    <div className="w-11/12 mx-auto ">
       <div className="flex justify-between items-center gap-5 bg-white dark:bg-zinc-900 p-5 rounded-sm shadow-sm border">
         <h3 className="text-lg font-semibold">Notifications</h3>
 
@@ -107,7 +107,7 @@ const page = () => {
               </p>
             </div>
             {!notification.isRead && (
-              <div className="w-2 h-2 mt-2 bg-blue-500 rounded-full" />
+              <div className="w-2 h-2 mt-2 bg-green-accent rounded-full" />
             )}
           </div>
         ))}

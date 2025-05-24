@@ -6,7 +6,7 @@ import { IoShareSocialOutline } from "react-icons/io5";
 import { SlLike } from "react-icons/sl";
 import CustomVideoPlayer from "./components/CustomVideoPlayer";
 export const metadata: Metadata = {
-  title: "AlQafila | Video",
+  title: "AlQafila | Videos",
 };
 const page = () => {
   const videos = [
@@ -80,7 +80,7 @@ const page = () => {
   ];
   return (
     <div className="md:w-11/12 mx-auto px-1 ">
-      <div className="mt-20">
+      <div className="">
         {videos.map((video) => (
           <div
             key={video._id}
@@ -106,11 +106,11 @@ const page = () => {
                 </div>
               </div>
               {video.profileStatus === "follow" ? (
-                <button className="py-1 text-sm px-4 border text-[#155D8C] border-[#155D8C] rounded-full cursor-pointer">
+                <button className="py-1 text-sm px-4 border green-accent border-green-accent rounded-full cursor-pointer">
                   Follow
                 </button>
               ) : (
-                <button className="py-1 text-sm px-4 border text-white bg-[#155D8C] rounded-full cursor-pointer">
+                <button className="py-1 text-sm px-4 border text-white bg-green-accent rounded-full cursor-pointer">
                   Request
                 </button>
               )}

@@ -43,12 +43,12 @@ const LeftSidebar = () => {
   ];
 
   return (
-    <div className="w-10/12 ml-10 lg:ml-14  hidden md:block">
+    <div className="w-10/12 ml-10 lg:ml-15  min-w-[250px]  hidden md:block">
       <div className=" bg-white mb-5 dark:bg-zinc-900 border rounded-t-2xl rounded-b-md shadow-lg overflow-hidden">
         {/* Cover Image */}
         <div className="relative w-full h-28">
           <Image
-            src="https://i.ibb.co/PGfp2cJ1/image.png"
+            src="https://i.ibb.co/0y30WvBH/image.png"
             alt="Cover"
             fill
             className="object-cover rounded-t-xl"
@@ -71,6 +71,9 @@ const LeftSidebar = () => {
           </div>
           <div className="pt-12 flex justify-center  items-center gap-5">
             <div className="space-y-1 text-center">
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                @rakibhossen
+              </p>
               <h3 className="text-xl font-bold text-black dark:text-white">
                 Rakib Hossen
               </h3>
@@ -84,19 +87,19 @@ const LeftSidebar = () => {
           <div className="flex justify-between items-center gap-2.5 px-4">
             <div className="text-center py-2">
               <h3>3,356</h3>
-              <p className="text-sm font-semibold text-[#155D8C] ">Follower</p>
+              <p className="text-sm font-semibold green-accent ">Follower</p>
             </div>
-            <div className="w-px h-8 bg-[#155D8C]"></div>
+            <div className="w-px h-8 bg-green-accent"></div>
             <div className="text-center py-2">
               <h3>600</h3>
-              <p className="text-sm font-semibold text-[#155D8C] ">Following</p>
+              <p className="text-sm font-semibold green-accent ">Following</p>
             </div>
           </div>
           <hr className="my-2" />
 
           <Link
             href="/profile/rakibhossen"
-            className=" text-[#155D8C] mt-4 text-sm hover:underline dark:text-white  cursor-pointer flex justify-center items-center"
+            className=" green-accent mt-4 text-sm hover:underline   cursor-pointer flex justify-center items-center"
           >
             View Profile
           </Link>

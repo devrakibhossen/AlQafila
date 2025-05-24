@@ -17,7 +17,7 @@ const Bottombar = () => {
               href="/"
               className={`flex flex-col items-center text-sm cursor-pointer ${
                 pathname === "/"
-                  ? "text-[#155D8C] dark:text-[#4e8bd1] font-semibold"
+                  ? "green-accent font-semibold"
                   : "text-gray-700 dark:text-gray-300"
               }`}
             >
@@ -30,7 +30,7 @@ const Bottombar = () => {
               href="/network"
               className={`flex flex-col items-center text-sm cursor-pointer ${
                 pathname === "/network"
-                  ? "text-[#155D8C] dark:text-[#4e8bd1] font-semibold"
+                  ? "green-accent font-semibold"
                   : "text-gray-700 dark:text-gray-300"
               }`}
             >
@@ -44,7 +44,7 @@ const Bottombar = () => {
               href="/watch"
               className={`flex flex-col items-center text-sm cursor-pointer ${
                 pathname === "/watch"
-                  ? "text-[#155D8C] dark:text-[#4e8bd1] font-semibold"
+                  ? "green-accent font-semibold"
                   : "text-gray-700 dark:text-gray-300"
               }`}
             >
@@ -57,7 +57,7 @@ const Bottombar = () => {
               href="/jobs"
               className={`flex flex-col items-center text-sm cursor-pointer ${
                 pathname === "/jobs"
-                  ? "text-[#155D8C] dark:text-[#4e8bd1] font-semibold"
+                  ? "green-accent font-semibold"
                   : "text-gray-700 dark:text-gray-300"
               }`}
             >
@@ -70,7 +70,7 @@ const Bottombar = () => {
               href="/message"
               className={`flex flex-col items-center text-sm cursor-pointer ${
                 pathname === "/message"
-                  ? "text-[#155D8C] dark:text-[#4e8bd1] font-semibold"
+                  ? "green-accent font-semibold"
                   : "text-gray-700 dark:text-gray-300"
               }`}
             >

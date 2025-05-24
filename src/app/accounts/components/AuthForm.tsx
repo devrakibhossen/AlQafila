@@ -68,6 +68,7 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
             <FormFields
               control={form.control}
               name="name"
+              type="text"
               label="Name"
               placeholder="Your Name"
             />
@@ -76,17 +77,19 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
             control={form.control}
             name="email"
             label="Email"
+            type="email"
             placeholder="Your email"
           />
           <FormFields
             control={form.control}
             name="password"
+            type="password"
             label="Password"
             placeholder="Enter password"
           />
           <Button
             type="submit"
-            className=" bg-[#155D8C] hover:bg-[#304655] rounded-full w-full cursor-pointer"
+            className=" bg-green-accent text-white rounded-full w-full cursor-pointer"
           >
             {isSignIn ? "Sign In" : "Create an Account"}
           </Button>

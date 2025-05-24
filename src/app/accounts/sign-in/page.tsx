@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebook, FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+import { FaGoogle } from "react-icons/fa";
 import AuthForm from "../components/AuthForm";
 export const metadata: Metadata = {
   title: "AlQafila | Sign-In",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Create your AlQafila account to access premium features and stay connected with your community.",
   category: "Community",
 };
-const page = () => {
+const Page = () => {
   return (
     <div className=" h-screen bg-white dark:bg-zinc-900 flex flex-col justify-center items-center">
       <div className="max-w-[1000px] w-11/12 mx-auto py-5 flex gap-8 justify-between">
@@ -30,20 +30,21 @@ const page = () => {
             <div className="flex-grow h-px bg-gray-300" />
           </div>
           <div className="flex justify-center items-center gap-3 my-2">
-            <FcGoogle className="text-4xl p-1 rounded-full border"></FcGoogle>
-            <FaFacebook className="text-4xl text-blue-500 p-1 rounded-full border"></FaFacebook>
-            <FaGithub className="text-4xl p-1 text-gray-900 dark:text-white rounded-full border"></FaGithub>
+            <FaGoogle className="text-4xl p-1 green-accent rounded-full border"></FaGoogle>
+            <FaFacebook className="text-4xl green-accent p-1 rounded-full border"></FaFacebook>
+            <FaGithub className="text-4xl p-1 green-accent dark:text-white rounded-full border"></FaGithub>
           </div>
           <p className="text-sm text-center mt-3">
             {`Don't have an account?`}
             <Link href="/accounts/sign-up">
-              <span className="text-[#155D8C] underline cursor-pointer">
+              {" "}
+              <span className="green-accent underline cursor-pointer">
                 Sign up
               </span>
             </Link>
           </p>
         </div>
-        <div className="bg-blue-50 dark:bg-zinc-950 w-full p-8 rounded-xl lg:flex flex-col items-center text-center hidden ">
+        <div className="bg-green-50 dark:bg-zinc-950 w-full p-8 rounded-xl lg:flex flex-col items-center text-center hidden ">
           <Image
             src="/Svg/signin.svg"
             alt="Sign In Illustration"
@@ -61,4 +62,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

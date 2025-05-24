@@ -96,7 +96,7 @@ const Page = () => {
     },
   ];
   return (
-    <div className="w-11/12 mx-auto mt-20">
+    <div className="w-11/12 mx-auto">
       <Link href="/interview">
         <button className=" flex items-center cursor-pointer justify-center mb-3 gap-2 rounded-full border dark:border-zinc-800 border-gray-300 overflow-hidden shadow-sm  bg-white dark:bg-zinc-900 text-sm  font-medium py-2 px-4 transition-all">
           <BriefcaseIcon className="w-4 h-4" />

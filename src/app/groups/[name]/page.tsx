@@ -200,7 +200,7 @@ const Page = () => {
     // আরও ইউজার
   ];
   return (
-    <div className="md:mt-20 mt-16 p-1 md:w-11/12 max-w-[1200px] mx-auto">
+    <div className=" p-1 md:w-11/12 max-w-[1200px] mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-3 md:gap-6 gap-2 ">
         <div className="md:col-span-2">
           <div className=" bg-white dark:bg-zinc-900 rounded-md shadow-lg overflow-hidden">
@@ -241,8 +241,8 @@ const Page = () => {
                     ))}
                   </div>
                 </div>
-                <div className="flex justify-between gap-2.5 w-full md:w-auto">
-                  <button className=" bg-[#155D8C] w-full  py-1 px-3 text-white hover:bg-[#304655]  text-sm rounded-sm cursor-pointer">
+                <div className="flex justify-between gap-2.5 md:h-8 w-full md:w-auto">
+                  <button className=" bg-green-accent w-full  py-1 px-3 text-white   text-sm rounded-sm cursor-pointer">
                     Invite
                   </button>
                   <button className=" border py-1  w-full px-3 text-sm rounded-sm cursor-pointer">
@@ -283,11 +283,11 @@ const Page = () => {
                     </div>
                   </div>
                   {post.profileStatus === "follow" ? (
-                    <button className="py-1 text-sm px-4 border text-[#155D8C] border-[#155D8C] rounded-full cursor-pointer">
+                    <button className="py-1 text-sm px-4 border green-accent border-green-accent rounded-full cursor-pointer">
                       Follow
                     </button>
                   ) : (
-                    <button className="py-1 text-sm px-4 border text-white bg-[#155D8C] rounded-full cursor-pointer">
+                    <button className="py-1 text-sm px-4 border text-white bg-green-accent rounded-full cursor-pointer">
                       Request
                     </button>
                   )}
@@ -360,18 +360,18 @@ const Page = () => {
                         {/* Actions: Icons and Post Button */}
                         <div className="justifyBetween mt-2 px-2">
                           <div className="flex items-center gap-3 text-gray-500 text-sm">
-                            <button className="hover:text-[#155D8C] transition">
+                            <button className="hover:green-accent transition">
                               <ImageIcon size={18} />
                             </button>
-                            <button className="hover:text-[#155D8C] transition">
+                            <button className="hover:green-accent transition">
                               <Smile size={18} />
                             </button>
-                            <button className="hover:text-[#155D8C] transition">
+                            <button className="hover:green-accent transition">
                               <Paperclip size={18} />
                             </button>
                           </div>
 
-                          <button className="bg-[#155D8C]  text-white text-sm font-semibold px-4 py-1 rounded-full transition">
+                          <button className="bg-green-accent  text-white text-sm font-semibold px-4 py-1 rounded-full transition">
                             Post
                           </button>
                         </div>

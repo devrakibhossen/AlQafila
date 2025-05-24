@@ -115,7 +115,7 @@ const ChatUI = () => {
   ];
 
   return (
-    <div className="flex h-screen w-full  mt-16">
+    <div className="flex h-screen w-full -mt-4">
       {/* Sidebar */}
       <aside className="w-full max-w-xs border-r bg-white dark:bg-zinc-900 hidden md:flex md:flex-col fixed h-full z-20">
         <div className=" px-4 py-3 border-b">
@@ -140,7 +140,7 @@ const ChatUI = () => {
             <input
               type="text"
               placeholder="Search or start a new chat"
-              className="w-full bg-gray-100 dark:bg-transparent px-4 py-2 rounded-md outline-none text-sm"
+              className="w-full bg-gray-100 dark:bg-zinc-950 px-4 py-2 rounded-md outline-none text-sm"
             />
           </div>
         </div>
@@ -168,7 +168,7 @@ const ChatUI = () => {
               <div className="text-right text-xs text-gray-400">
                 <p>{user.time}</p>
                 {user.unread > 0 && (
-                  <span className=" mt-1 text-white text-xs ml-10 bg-[#155D8C] w-5 h-5 flex items-center justify-center rounded-full">
+                  <span className=" mt-1 text-white text-xs ml-10 bg-green-accent w-5 h-5 flex items-center justify-center rounded-full">
                     {user.unread}
                   </span>
                 )}
@@ -249,7 +249,7 @@ const ChatUI = () => {
                         <div className="text-right text-xs text-gray-400">
                           <p>{user.time}</p>
                           {user.unread > 0 && (
-                            <span className=" mt-1 text-white text-xs ml-10 dark:bg-[#4e8bd1]  bg-[#155D8C] w-5 h-5 flex items-center justify-center rounded-full">
+                            <span className=" mt-1 text-white text-xs ml-10   bg-violet-700 w-5 h-5 flex items-center justify-center rounded-full">
                               {user.unread}
                             </span>
                           )}
@@ -389,12 +389,12 @@ const ChatUI = () => {
 
             <DropdownMenuContent className="w-40 md:ml-28">
               <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
-                <ImagesIcon className="w-4 h-4 text-blue-500" />
+                <ImagesIcon className="w-4 h-4 green-accent" />
                 <span>Photo</span>
               </DropdownMenuItem>
 
               <DropdownMenuItem className="flex items-center gap-2 cursor-pointer">
-                <VideoIcon className="w-4 h-4 text-purple-500" />
+                <VideoIcon className="w-4 h-4 green-accent" />
                 <span>Video</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -409,7 +409,7 @@ const ChatUI = () => {
           <FaSmile className="text-gray-500 dark:text-gray-300 md:text-xl cursor-pointer" />
 
           <FaMicrophone className="text-gray-500 dark:text-gray-300 md:text-xl cursor-pointer" />
-          <IoIosSend className="text-[#155D8C] dark:text-[#4e8bd1] md:text-2xl cursor-pointer" />
+          <IoIosSend className="green-accent dark:text-violet-900 md:text-2xl cursor-pointer" />
         </div>
       </main>
     </div>

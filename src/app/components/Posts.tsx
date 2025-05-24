@@ -1,15 +1,24 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
-import { FaRegComment } from "react-icons/fa";
+import { FaGem, FaRegComment } from "react-icons/fa";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { SlLike } from "react-icons/sl";
 import { ImageIcon, Paperclip, Smile } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { MdOutlineBookmarkBorder } from "react-icons/md";
 import { useState } from "react";
+import EmojiPicker from "emoji-picker-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { BsGem } from "react-icons/bs";
+import PostHeader from "./PostHeader";
 
 const Posts = () => {
+  const [liked, setLiked] = useState<boolean>(false);
+  const [likeCount, setLikeCount] = useState<number>(0);
   const [commentOpen, setCommentOpen] = useState<number | null>(null);
   const posts = [
     {
@@ -189,6 +198,20 @@ const Posts = () => {
       profileStatus: "follow",
     },
   ];
+
+  const handleLike = (id: number) => {
+    const audio = new Audio("/gemsound.mp3");
+    console.log(id);
+    if (liked) {
+      setLiked(false);
+      setLikeCount((prev) => prev - 1);
+    } else {
+      audio.play();
+      setLiked(true);
+      setLikeCount((prev) => prev + 1);
+    }
+  };
+
   return (
     <div>
       {posts.map((post) => (
@@ -196,37 +219,7 @@ const Posts = () => {
           key={post._id}
           className="bg-white dark:bg-zinc-900   border rounded-sm md:rounded-md md:mb-5 mb-2"
         >
-          <div className="justifyBetween gap-1.5  mb-3.5 md:px-3 pt-3 px-2.5">
-            <div className="flex gap-1.5 items-center">
-              <Image
-                placeholder="blur"
-                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA..."
-                className="rounded-full w-11 h-11 "
-                src={post.profilePic}
-                alt="logo"
-                width={50}
-                height={28}
-                priority
-              />
-              <div>
-                <h3 className="text-black dark:text-white font-semibold">
-                  <Link href="/">{post.username}</Link>
-                </h3>
-                <p className="text-[13px] dark:text-gray-300 text-gray-700">
-                  {post.time}
-                </p>
-              </div>
-            </div>
-            {post.profileStatus === "follow" ? (
-              <button className="py-1 text-sm px-4 border text-[#155D8C] border-[#155D8C] rounded-full cursor-pointer">
-                Follow
-              </button>
-            ) : (
-              <button className="py-1 text-sm px-4 border text-white bg-[#155D8C] rounded-full cursor-pointer">
-                Request
-              </button>
-            )}
-          </div>
+          <PostHeader post={post} />
           <div className="space-y-3.5">
             <p className=" text-black dark:text-gray-300 mb-3.5 md:px-3 px-2.5">
               {post.text}
@@ -243,7 +236,7 @@ const Posts = () => {
             />
             <div className="mb-3.5 md:px-3  px-2.5 ">
               <div className="justifyBetween gap-1.5 pb-1.5 ">
-                <p className="text-sm">{post.likes} Likes</p>
+                <p className="text-sm">{likeCount} Gems</p>
                 <div className="flex items-center gap-2">
                   <p className="text-sm">{post.comments} Comments,</p>
                   <p className="text-sm">{post.shares} Shares</p>
@@ -251,24 +244,40 @@ const Posts = () => {
               </div>
 
               <div className=" justifyBetween gap-1.5  border-t pt-1.5">
-                <div className="flex  gap-1.5 items-center ">
-                  <SlLike />
-                  <p className="text-sm font-semibold">Like</p>
+                <div
+                  onClick={() => handleLike(post._id)}
+                  className="flex  gap-1.5 items-center cursor-pointer"
+                >
+                  {/* <BsGem
+                    className={` transition-transform duration-300 ${
+                      liked ? "green-accent" : " scale-110 "
+                    }`}
+                  /> */}
+                  {liked ? (
+                    <FaGem className="green-accent  transition-transform duration-300 scale-110" />
+                  ) : (
+                    <BsGem className="  hover:scale-105 transition-transform duration-300" />
+                  )}
+                  {liked ? (
+                    <p className="text-sm green-accent">Gemed</p>
+                  ) : (
+                    <p className="text-sm ">Gem</p>
+                  )}
                 </div>
                 <div
                   onClick={() => setCommentOpen(post._id)}
                   className="flex  gap-1.5 items-center cursor-pointer"
                 >
                   <FaRegComment />
-                  <p className="text-sm font-semibold">Comments</p>
+                  <p className="text-sm ">Comments</p>
                 </div>
                 <div className="flex  gap-1.5 items-center ">
                   <MdOutlineBookmarkBorder />
-                  <p className="text-sm font-semibold">Save</p>
+                  <p className="text-sm ">Save</p>
                 </div>
                 <div className="flex  gap-1.5 items-center ">
                   <IoShareSocialOutline />
-                  <p className="text-sm font-semibold">Share</p>
+                  <p className="text-sm ">Share</p>
                 </div>
               </div>
             </div>
@@ -293,20 +302,33 @@ const Posts = () => {
                   {/* </div> */}
 
                   {/* Actions: Icons and Post Button */}
-                  <div className="justify-between mt-2 px-2">
+                  <div className="justifyBetween mt-2 px-2">
                     <div className="flex items-center gap-3 text-gray-500 text-sm">
-                      <button className="hover:text-[#155D8C] transition">
+                      <button className="hover-green-accent transition">
                         <ImageIcon size={18} />
                       </button>
-                      <button className="hover:text-[#155D8C] transition">
-                        <Smile size={18} />
-                      </button>
-                      <button className="hover:text-[#155D8C] transition">
+                      {/* <button className="hover-green-accent transition"> */}
+                      {/* <Smile size={18} /> */}
+                      {/* <Picker data={data} onEmojiSelect={console.log} /> */}
+                      <DropdownMenu>
+                        <DropdownMenuTrigger>
+                          <Smile
+                            className="hover-green-accent transition"
+                            size={18}
+                          />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                          <EmojiPicker />
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+
+                      {/* </button> */}
+                      <button className="hover-green-accent transition">
                         <Paperclip size={18} />
                       </button>
                     </div>
 
-                    <button className="bg-[#155D8C]  text-white text-sm font-semibold px-4 py-1 rounded-full transition">
+                    <button className="bg-green-accent  text-white text-sm font-semibold px-4 py-1 rounded-full transition">
                       Post
                     </button>
                   </div>

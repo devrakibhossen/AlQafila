@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 const page = () => {
   return (
-    <div className="mt-20 mb-5 w-11/12 mx-auto">
+    <div className="mb-5 w-11/12 mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Main Profile Section */}
 
@@ -18,7 +18,7 @@ const page = () => {
             {/* Cover Image */}
             <div className="relative w-full h-48">
               <Image
-                src="https://i.ibb.co/PGfp2cJ1/image.png"
+                src="https://i.ibb.co/0y30WvBH/image.png"
                 alt="Cover"
                 fill
                 className="object-cover "
@@ -51,13 +51,13 @@ const page = () => {
                   <p className="text-sm text-gray-700 dark:text-gray-300">
                     Cumilla,Bangladesh
                   </p>
-                  <div className="flex items-center gap-2.5">
-                    <p className="text-sm text-[#155D8C]">3k Follower</p>
-                    <p className="text-sm text-[#155D8C]">500 Following</p>
+                  <div className="flex items-center gap-2.5 green-accent">
+                    <p className="text-sm ">3k Follower</p>
+                    <p className="text-sm ">500 Following</p>
                   </div>
                 </div>
                 <div className="flex justify-between gap-2.5">
-                  <Button className=" bg-[#155D8C] dark:text-white hover:bg-[#304655] w-full text-sm rounded-full cursor-pointer">
+                  <Button className="bg-green-accent   w-full text-sm  cursor-pointer">
                     Edit Profile
                   </Button>
                 </div>
@@ -76,7 +76,7 @@ const page = () => {
               Thank you for visiting my profile!, I am a passionate Front-End
               Developer with experience in creating dynamic and responsive web
               applications using React, Tailwind CSS, and Next.js.
-              <span className="text-sm text-[#155D8C] cursor-pointer">
+              <span className="text-sm green-accent cursor-pointer">
                 see more
               </span>
             </p>

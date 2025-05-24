@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { toast } from "sonner";
 
@@ -42,8 +42,16 @@ const Page = () => {
     },
   ];
 
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const handleRequestAccept = () => {
+    toast.success("Friend request accepted");
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  };
   return (
-    <div className="my-20 w-11/12 mx-auto">
+    <div className="mb-20 w-11/12 mx-auto">
       <div className="grid md:grid-cols-4 gap-5">
         <div className="md:col-span-1 bg-white dark:bg-zinc-900 p-6  border rounded-md h-56">
           <h3 className="text-md font-semibold dark:text-white text-gray-800">
@@ -55,8 +63,8 @@ const Page = () => {
               onClick={() => setActiveSection("friendRequest")}
               className={`w-full rounded-full cursor-pointer border py-1.5 ${
                 activeSection === "friendRequest"
-                  ? "bg-[#155D8C] text-white"
-                  : "hover:bg-[#155D8C] hover:text-white"
+                  ? "bg-green-accent text-white"
+                  : "hover-bg-green-accent hover:text-white"
               }`}
             >
               Friend Request
@@ -65,8 +73,8 @@ const Page = () => {
               onClick={() => setActiveSection("allFriends")}
               className={`w-full rounded-full cursor-pointer border py-1.5 ${
                 activeSection === "allFriends"
-                  ? "bg-[#155D8C] text-white"
-                  : "hover:bg-[#155D8C] hover:text-white"
+                  ? "bg-green-accent text-white"
+                  : "hover-bg-green-accent hover:text-white"
               }`}
             >
               All Friends
@@ -75,8 +83,8 @@ const Page = () => {
               onClick={() => setActiveSection("follow")}
               className={`w-full rounded-full cursor-pointer border py-1.5 ${
                 activeSection === "follow"
-                  ? "bg-[#155D8C] text-white"
-                  : "hover:bg-[#155D8C] hover:text-white"
+                  ? "bg-green-accent text-white"
+                  : "hover-bg-green-accent hover:text-white"
               }`}
             >
               Following & Follower
@@ -124,20 +132,15 @@ const Page = () => {
                       {req.status === "pending" && (
                         <div className="flex gap-2">
                           <Button
-                            onClick={() =>
-                              toast("Friend request accepted", {
-                                description: "You and Alex are now friends",
-                                action: {
-                                  label: "Say hi",
-                                  onClick: () =>
-                                    console.log("Chat started with Alex"),
-                                },
-                              })
-                            }
+                            onClick={() => handleRequestAccept()}
                             className="text-sm bg-green-100 text-green-700 px-3 py-1 rounded hover:bg-green-200"
                           >
                             Accept
                           </Button>
+                          <audio
+                            ref={audioRef}
+                            src="requestacceptsound.ogg"
+                          ></audio>
                           <button
                             onClick={() =>
                               toast("Friend request declined", {
@@ -210,7 +213,7 @@ const Page = () => {
                           <button className="text-sm w-full rounded-full border px-3 py-1  hover:bg-gray-200">
                             Profile
                           </button>
-                          <button className="text-sm w-full bg-[#155D8C] hover:bg-[#304655]  text-white  py-1 rounded-full ">
+                          <button className="text-sm w-full bg-green-accent text-white  py-1 rounded-full ">
                             Send Message
                           </button>
                         </div>
@@ -228,7 +231,7 @@ const Page = () => {
                   Following & Follower
                 </h3>
                 <div className=" border-b flex space-x-6 text-sm font-medium dark:text-gray-300 text-gray-700">
-                  <button className="pb-2 text-sm border-b-2 border-blue-600">
+                  <button className="pb-2 text-sm border-b-2 border-green-accent">
                     Following
                   </button>
 

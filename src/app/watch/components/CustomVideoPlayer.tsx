@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
-import { Play, Pause, Volume2, VolumeX, Maximize2 } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Maximize2, Minimize2 } from "lucide-react";
 
 interface CustomVideoPlayerProps {
   src: string;
@@ -8,27 +8,38 @@ interface CustomVideoPlayerProps {
 
 const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ src }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const controlsRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [volume, setVolume] = useState(0.5); // Default volume: 50%
+  const [volume, setVolume] = useState(0.5);
+  const [speed, setSpeed] = useState(1);
+  const [showControls, setShowControls] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
-  // Update progress bar
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     video.volume = volume;
+    video.playbackRate = speed;
 
     const handleTimeUpdate = () => {
-      const current = video.currentTime;
-      const total = video.duration;
-      setProgress((current / total) * 100);
+      setProgress((video.currentTime / video.duration) * 100);
+    };
+
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
     };
 
     video.addEventListener("timeupdate", handleTimeUpdate);
-    return () => video.removeEventListener("timeupdate", handleTimeUpdate);
-  }, [volume]);
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+
+    return () => {
+      video.removeEventListener("timeupdate", handleTimeUpdate);
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };
+  }, [volume, speed]);
 
   const togglePlay = () => {
     const video = videoRef.current;
@@ -55,15 +66,15 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ src }) => {
     const video = videoRef.current;
     if (!video) return;
 
-    if (video.requestFullscreen) {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
       video.requestFullscreen();
-    } else if (
-      (video as HTMLVideoElement & { webkitRequestFullscreen?: () => void })
-        .webkitRequestFullscreen
-    ) {
-      (video as HTMLVideoElement & { webkitRequestFullscreen?: () => void })
-        .webkitRequestFullscreen!();
     }
+  };
+
+  const changeSpeed = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSpeed(parseFloat(e.target.value));
   };
 
   const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,56 +97,122 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ src }) => {
     }
   };
 
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+  };
+
   return (
-    <div className="relative w-full max-h-[400px]  overflow-hidden group">
+    <div 
+      className="relative w-full max-h-[500px] overflow-hidden group shadow-2xl bg-black"
+      onMouseEnter={() => setShowControls(true)} 
+      onMouseLeave={() => setShowControls(false)}
+    >
       <video
         ref={videoRef}
         src={src}
-        muted
+        muted={isMuted}
         preload="metadata"
-        className="w-full max-h-[400px] object-cover cursor-pointer"
+        className="w-full h-auto max-h-[500px] object-cover cursor-pointer "
         onClick={togglePlay}
-      ></video>
-
-      {/* Progress bar */}
-      <input
-        type="range"
-        min="0"
-        max="100"
-        value={progress}
-        onChange={handleProgressChange}
-        className="absolute bottom-10 left-0 right-0 w-full h-1 bg-gray-300 appearance-none cursor-pointer group-hover:opacity-100 opacity-0 transition"
       />
 
-      {/* Controls */}
-      <div className="absolute bottom-0 left-0 right-0 bg-black/60 px-4 py-2 flex items-center justify-between opacity-0 group-hover:opacity-100 transition text-white">
-        {/* Left controls */}
-        <div className="flex items-center gap-3">
-          <button onClick={togglePlay}>
-            {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-          </button>
-
-          <button onClick={toggleMute}>
-            {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-          </button>
-
-          {/* Volume slider */}
+      {/* Progress bar */}
+      <div className="absolute bottom-10 left-0 right-0 px-4 z-20">
+        <div className={`flex items-center gap-2 text-xs text-white/80  ${showControls ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}>
+          <span>{formatTime(videoRef.current?.currentTime || 0)}</span>
           <input
             type="range"
             min="0"
-            max="1"
-            step="0.01"
-            value={volume}
-            onChange={handleVolumeChange}
-            className="w-24 h-1 cursor-pointer"
+            max="100"
+            value={progress}
+            onChange={handleProgressChange}
+            className="flex-1 h-1.5 appearance-none bg-green-accent rounded-full cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white"
           />
+          <span>{formatTime(videoRef.current?.duration || 0)}</span>
+        </div>
+      </div>
+
+      {/* Controls */}
+      <div 
+        ref={controlsRef}
+        className={`absolute bottom-0 left-0 right-0 px-6 py-1 flex items-center justify-between 
+        text-white transition-all duration-300
+        ${showControls ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}
+      >
+        {/* Left Controls */}
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={togglePlay} 
+            className="p-2 rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 transition-all duration-200 hover:scale-105 active:scale-95"
+          >
+            {isPlaying ? (
+              <Pause size={20} className="text-white" />
+            ) : (
+              <Play size={20} className="text-white" />
+            )}
+          </button>
+
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={toggleMute} 
+              className="p-2 rounded-full hover:bg-white/10 active:bg-white/20 transition-all duration-200"
+            >
+              {isMuted ? (
+                <VolumeX size={20} className="text-white" />
+              ) : (
+                <Volume2 size={20} className="text-white" />
+              )}
+            </button>
+
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={volume}
+              onChange={handleVolumeChange}
+              className="w-20 h-1 bg-green-accent rounded-full appearance-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white"
+            />
+          </div>
         </div>
 
-        {/* Fullscreen */}
-        <button onClick={toggleFullscreen}>
-          <Maximize2 size={20} />
-        </button>
+        {/* Right Controls */}
+        <div className="flex items-center gap-4">
+          <select 
+            className="bg-white/10 text-white rounded-lg px-3 py-1 text-sm border border-white/20 focus:outline-none focus:ring-2  focus:border-transparent backdrop-blur-sm"
+            value={speed} 
+            onChange={changeSpeed}
+          >
+            <option value="0.5">0.5x</option>
+            <option value="1">1x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+          </select>
+
+          <button 
+            onClick={toggleFullscreen}
+            className="p-2 rounded-full hover:bg-white/10 active:bg-white/20 transition-all duration-200 hover:scale-105 active:scale-95"
+          >
+            {isFullscreen ? (
+              <Minimize2 size={20} className="green-accent" />
+            ) : (
+              <Maximize2 size={20} className="green-accent" />
+            )}
+          </button>
+        </div>
       </div>
+
+      {/* Play/Pause center button */}
+      {!isPlaying && (
+        <button
+          onClick={togglePlay}
+          className={`absolute inset-0 m-auto w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}
+        >
+          <Play size={32} className="green-accent pl-1" />
+        </button>
+      )}
     </div>
   );
 };

@@ -66,7 +66,7 @@ const page = () => {
   ];
 
   return (
-    <div className="mt-24">
+    <div className="">
       <section className="w-11/12 mx-auto border rounded-md bg-white dark:bg-zinc-900 p-5 ">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
           {/* Left: Text Section */}

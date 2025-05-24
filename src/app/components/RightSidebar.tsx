@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 const RightSidebar = () => {
   const groups = [
@@ -52,6 +53,53 @@ const RightSidebar = () => {
 
   return (
     <section className="w-10/12 mr-10 lg:mr-14 hidden lg:block">
+      <div className="bg-white dark:bg-zinc-900 p-4 rounded-md mb-5 shadow-md border border-gray-200 dark:border-zinc-700 w-full max-w-md mx-auto">
+        <div className="flex items-center justify-between border-b border-gray-200 dark:border-zinc-700 pb-3 mb-3">
+          <div>
+            <div className=" justifyBetween">
+              <Image
+                src="https://i.ibb.co/bg1bXQMh/image.png"
+                alt="logo"
+                className="w-10 h-10"
+                width={100}
+                height={100}
+              ></Image>
+              <h3 className="text-xl font-bold text-gray-800 dark:text-white">
+                Prayer Times
+              </h3>
+            </div>
+            <p className="text-sm flex items-center gap-1 text-gray-600 dark:text-gray-400">
+              <FaMapMarkerAlt className="green-accent" /> Cumilla, Bangladesh
+            </p>
+          </div>
+          <div className="text-xs green-accent">
+            {new Date().toLocaleDateString()}
+          </div>
+        </div>
+
+        <div className="space-y-3 ">
+          {[
+            { name: "Fajr", time: "04:30 AM" },
+            { name: "Dhuhr", time: "12:10 PM" },
+            { name: "Asr", time: "04:00 PM" },
+            { name: "Maghrib", time: "06:45 PM" },
+            { name: "Isha", time: "08:00 PM" },
+          ].map((prayer, idx) => (
+            <div
+              key={idx}
+              className="flex items-center justify-between px-4 py-2 bg-gray-100 dark:bg-zinc-800 rounded-md"
+            >
+              <span className="text-gray-700 dark:text-gray-200 font-medium">
+                {prayer.name}
+              </span>
+              <span className="green-accent dark:text-gray-400">
+                {prayer.time}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="bg-white dark:bg-zinc-900 p-4 flex flex-col  space-y-4 border rounded-md mb-5">
         <div className="flex justify-between  items-center border-b pb-3">
           <h3 className="text-gray-700 dark:text-white text-lg font-semibold">
@@ -76,7 +124,7 @@ const RightSidebar = () => {
               />
               <div>
                 <h3 className="text-black dark:text-white ">
-                  <Link href={`/group/${group.name}`}>{group.name}</Link>
+                  <Link href={`/profile/${group.name}`}>{group.name}</Link>
                 </h3>
                 <p className="text-[13px] dark:text-gray-300 text-gray-700">
                   {group.members}
@@ -84,7 +132,7 @@ const RightSidebar = () => {
               </div>
             </div>
             <Link href="/username/profile">
-              <button className="py-1 text-sm text-white px-3 bg-[#155D8C] hover:bg-[#304655] w-full rounded-full cursor-pointer">
+              <button className="py-1 text-sm text-white px-3 bg-green-accent   w-full rounded-full cursor-pointer">
                 Follow
               </button>
             </Link>
@@ -101,7 +149,7 @@ const RightSidebar = () => {
             <Link
               key={index}
               href={`/hashtag/${tag.replace("#", "")}`}
-              className="px-3 py-1 bg-gray-100 hover:bg-[#155D8C] hover:text-white text-gray-700 rounded-full text-sm transition-all duration-300 cursor-pointer"
+              className="px-3 py-1 bg-gray-100 hover:bg-violet-900 hover:text-white text-gray-700 rounded-full text-sm transition-all duration-300 cursor-pointer"
             >
               {tag}
             </Link>
