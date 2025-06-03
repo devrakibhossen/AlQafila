@@ -17,10 +17,8 @@ const UserHeader: FC<UserHeaderProps> = ({ name, image }) => {
         priority
       />
       <div>
-        <h3 className="text-md font-semibold">{name}</h3>
-        <button className="py-[2px] px-4 border rounded-full text-sm">
-          Anyone
-        </button>
+        <h5 className="text-md font-semibold">{name}</h5>
+        <p className=" text-sm">Anyone</p>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { FaSmile } from "react-icons/fa";
-import { IoIosSend } from "react-icons/io";
+import { IoMdSend } from "react-icons/io";
 import { FaMicrophone } from "react-icons/fa6";
 import { IoNotificationsOutline } from "react-icons/io5";
 import Image from "next/image";
@@ -249,7 +249,7 @@ const ChatUI = () => {
                         <div className="text-right text-xs text-gray-400">
                           <p>{user.time}</p>
                           {user.unread > 0 && (
-                            <span className=" mt-1 text-white text-xs ml-10   bg-violet-700 w-5 h-5 flex items-center justify-center rounded-full">
+                            <span className=" mt-1 text-white text-xs ml-10   bg-green-accent w-5 h-5 flex items-center justify-center rounded-full">
                               {user.unread}
                             </span>
                           )}
@@ -379,7 +379,7 @@ const ChatUI = () => {
         </div>
 
         {/* Chat Input */}
-        <div className=" border-t border-b md:px-4 px-1 py-3 flex items-center md:space-x-4 space-x-1.5 bg-white dark:bg-zinc-900 sticky md:bottom-0 bottom-14">
+        <div className=" border-t border-b md:px-4 px-1 py-3 flex items-center md:space-x-4 space-x-2.5 bg-white dark:bg-zinc-900 sticky md:bottom-0 bottom-14">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button className="p-2 rounded hover:bg-gray-100 dark:hover:bg-zinc-800 transition">
@@ -406,10 +406,10 @@ const ChatUI = () => {
             placeholder="Type a message"
             className="flex-1  rounded-full md:px-4 py-2 outline-none text-sm"
           />
-          <FaSmile className="text-gray-500 dark:text-gray-300 md:text-xl cursor-pointer" />
+          <FaSmile className="text-gray-500 dark:text-gray-300 text-xl cursor-pointer" />
 
-          <FaMicrophone className="text-gray-500 dark:text-gray-300 md:text-xl cursor-pointer" />
-          <IoIosSend className="green-accent dark:text-violet-900 md:text-2xl cursor-pointer" />
+          <FaMicrophone className="text-gray-500 dark:text-gray-300 text-xl cursor-pointer" />
+          <IoMdSend  className="bg-green-accent text-white px-2 rounded-full text-3xl cursor-pointer" />
         </div>
       </main>
     </div>

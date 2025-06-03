@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import { FaGem, FaRegComment } from "react-icons/fa";
-import { IoShareSocialOutline } from "react-icons/io5";
+import { FaRegComment } from "react-icons/fa";
 import { SlLike } from "react-icons/sl";
 import { ImageIcon, Paperclip, Smile } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,12 +12,12 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { BsGem } from "react-icons/bs";
 import PostHeader from "./PostHeader";
+import Reaction from "./Reaction";
+import Share from "./Share";
+import { toast } from "sonner";
 
 const Posts = () => {
-  const [liked, setLiked] = useState<boolean>(false);
-  const [likeCount, setLikeCount] = useState<number>(0);
   const [commentOpen, setCommentOpen] = useState<number | null>(null);
   const posts = [
     {
@@ -199,19 +198,9 @@ const Posts = () => {
     },
   ];
 
-  const handleLike = (id: number) => {
-    const audio = new Audio("/gemsound.mp3");
-    console.log(id);
-    if (liked) {
-      setLiked(false);
-      setLikeCount((prev) => prev - 1);
-    } else {
-      audio.play();
-      setLiked(true);
-      setLikeCount((prev) => prev + 1);
-    }
+  const handlePostSave = () => {
+    toast.success("Post Saved Successfully!");
   };
-
   return (
     <div>
       {posts.map((post) => (
@@ -236,7 +225,7 @@ const Posts = () => {
             />
             <div className="mb-3.5 md:px-3  px-2.5 ">
               <div className="justifyBetween gap-1.5 pb-1.5 ">
-                <p className="text-sm">{likeCount} Gems</p>
+                <p className="text-sm">15 Likes</p>
                 <div className="flex items-center gap-2">
                   <p className="text-sm">{post.comments} Comments,</p>
                   <p className="text-sm">{post.shares} Shares</p>
@@ -244,26 +233,7 @@ const Posts = () => {
               </div>
 
               <div className=" justifyBetween gap-1.5  border-t pt-1.5">
-                <div
-                  onClick={() => handleLike(post._id)}
-                  className="flex  gap-1.5 items-center cursor-pointer"
-                >
-                  {/* <BsGem
-                    className={` transition-transform duration-300 ${
-                      liked ? "green-accent" : " scale-110 "
-                    }`}
-                  /> */}
-                  {liked ? (
-                    <FaGem className="green-accent  transition-transform duration-300 scale-110" />
-                  ) : (
-                    <BsGem className="  hover:scale-105 transition-transform duration-300" />
-                  )}
-                  {liked ? (
-                    <p className="text-sm green-accent">Gemed</p>
-                  ) : (
-                    <p className="text-sm ">Gem</p>
-                  )}
-                </div>
+                <Reaction />
                 <div
                   onClick={() => setCommentOpen(post._id)}
                   className="flex  gap-1.5 items-center cursor-pointer"
@@ -271,14 +241,14 @@ const Posts = () => {
                   <FaRegComment />
                   <p className="text-sm ">Comments</p>
                 </div>
-                <div className="flex  gap-1.5 items-center ">
+                <div
+                  onClick={() => handlePostSave()}
+                  className="flex  gap-1.5 items-center cursor-pointer "
+                >
                   <MdOutlineBookmarkBorder />
                   <p className="text-sm ">Save</p>
                 </div>
-                <div className="flex  gap-1.5 items-center ">
-                  <IoShareSocialOutline />
-                  <p className="text-sm ">Share</p>
-                </div>
+                <Share />
               </div>
             </div>
           </div>

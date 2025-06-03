@@ -2,6 +2,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { MdOutlineReportProblem } from "react-icons/md";
 interface PostType {
   profilePic: string;
   username: string;
@@ -34,23 +42,38 @@ const PostHeader = ({ post }: { post: PostType }) => {
           <h3 className="text-black dark:text-white font-semibold">
             <Link href="/">{post.username}</Link>
           </h3>
-          <p className="text-[13px] dark:text-gray-300 text-gray-700">
-            {post.time}
-          </p>
+          <p className="text-[13px] dark:text-gray-300 text-gray-700">15h</p>
         </div>
       </div>
-      {post.profileStatus === "follow" ? (
-        <button
-          onClick={() => handleFollowing()}
-          className="py-1 text-sm px-4  green-accent border-green-accent rounded-full cursor-pointer"
-        >
-          {following ? "following" : "Follow"}
-        </button>
-      ) : (
-        <button className="py-1 text-sm px-4  text-white bg-green-accent  rounded-full cursor-pointer">
-          Request
-        </button>
-      )}
+      <div className="justifyBetween gap-1.5">
+        {post.profileStatus === "follow" ? (
+          <button
+            onClick={() => handleFollowing()}
+            className="py-1 text-sm px-4  green-accent  cursor-pointer"
+          >
+            {following ? "following" : "Follow"}
+          </button>
+        ) : (
+          <button className="py-1 text-sm px-4  green-accent  cursor-pointer">
+            Request
+          </button>
+        )}
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <HiOutlineDotsHorizontal className="text-lg cursor-pointer" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-52  lg:mr-40 md:mr-11 mr-4  rounded-none">
+            <DropdownMenuItem className="cursor-pointer">
+              <div
+                className="flex items-center gap-2 text-red-400"
+              >
+                <MdOutlineReportProblem className="h-4 w-4" />
+                <span>Reports</span>
+              </div>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </div>
   );
 };
