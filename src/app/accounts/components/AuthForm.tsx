@@ -7,20 +7,31 @@ import { Form } from "@/components/ui/form";
 import FormFields from "./FormFields";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-
+import { signIn } from "next-auth/react";
 const signUpSchema = z.object({
-  name: z.string().min(3, "Name must be at least 3 characters"),
+  // name: z.string().min(3),
+  username: z.string().min(3),
   email: z.string().email(),
-  password: z.string().min(5),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+    .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .regex(/[0-9]/, "Password must contain at least one number")
+    .regex(
+      /[^a-zA-Z0-9]/,
+      "Password must contain at least one special character"
+    ),
 });
 
 const signInSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(5),
+  password: z.string().min(8),
 });
 
 const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
   const router = useRouter();
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const isSignIn = type === "sign-in";
   // const formSchema = authFormSchema(type);
   type SignUpSchema = z.infer<typeof signUpSchema>;
@@ -35,20 +46,47 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
           password: "",
         }
       : {
-          name: "",
+          // name: "",
+          username: "",
           email: "",
           password: "",
         },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: SignUpSchema | SignInSchema) {
+  async function onSubmit(values: SignUpSchema | SignInSchema) {
     try {
       if (type === "sign-up") {
+        const res = await fetch(`${API_BASE_URL}/api/v1/auth/sign-up`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(values),
+        });
+
+        const data = await res.json();
+        console.log(data);
+        localStorage.setItem("token", data.data.token);
+        console.log("token", data.data.token);
+        if (!res.ok) {
+          throw new Error(
+            data.message || "Something went wrong during sign up"
+          );
+        }
         toast.success("Account created successfully. Please sign in.");
         router.push("/accounts/sign-in");
-        console.log("SIGN UP", values);
+        // console.log("SIGN UP", values);
       } else {
+        await signIn("credentials", {
+          redirect: false,
+          email: values.email,
+          password: values.password,
+        });
+
+        // if (!res.ok) {
+        //   throw new Error(
+        //     data.message || "Something went wrong during sign up"
+        //   );
+        // }
         toast.success("Sign in successfully.");
         router.push("/");
 
@@ -67,10 +105,10 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
           {!isSignIn && (
             <FormFields
               control={form.control}
-              name="name"
+              name="username"
               type="text"
-              label="Name"
-              placeholder="Your Name"
+              label="Username"
+              placeholder="Your username"
             />
           )}
           <FormFields

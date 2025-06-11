@@ -1,13 +1,43 @@
-import { Button } from "@/components/ui/button";
+"use client";
 import Image from "next/image";
-import { MdOutlineEdit } from "react-icons/md";
 import ProfileSidebar from "../components/ProfileSidebar";
 import ProfileEngagement from "../components/ProfileEngagement";
-import { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "Profile | Rakib Hossen",
-};
-const page = () => {
+// import { useSession } from "next-auth/react";
+import { useUser } from "@/context/UserContext";
+import PersonalInfo from "../components/PersonalInfo";
+import About from "../components/About";
+// import { useEffect, useState } from "react";
+const ProfileContent = ({ user }) => {
+  // const [user, setUser] = useState<any>(null);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState("");
+
+  const { userInfo } = useUser();
+  // console.log("userInfo", userInfo);
+  // console.log("username", username);
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const res = await fetch(
+  //         `${API_BASE_URL}/api/v1/users/username/${username}`
+  //       );
+  //       if (!res.ok) throw new Error("User not found");
+  //       const data = await res.json();
+  //       setUser(data.data);
+  //     } catch (err: any) {
+  //       setError(err.message || "Something went wrong");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchUser();
+  // }, [username]);
+  console.log("user", user);
+
+  const isEditOption = userInfo?.email === user?.email;
+
   return (
     <div className="mb-5 w-11/12 mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -18,7 +48,7 @@ const page = () => {
             {/* Cover Image */}
             <div className="relative w-full h-48">
               <Image
-                src="https://i.ibb.co/0y30WvBH/image.png"
+                src={user?.coverImage || "https://i.ibb.co/0y30WvBH/image.png"}
                 alt="Cover"
                 fill
                 className="object-cover "
@@ -32,7 +62,9 @@ const page = () => {
               <div className="absolute -top-10 left-6">
                 <Image
                   className="rounded-full border-4 border-white object-cover w-20 h-20 shadow-md"
-                  src="https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
+                  src={
+                    user?.profileImage || "https://i.ibb.co/h5z5rWx/image.png"
+                  }
                   alt="Profile"
                   width={80}
                   height={80}
@@ -42,11 +74,10 @@ const page = () => {
               <div className="pt-12 flex justify-between  items-center gap-5">
                 <div className="space-y-1">
                   <h3 className="text-xl font-bold text-black dark:text-white">
-                    Rakib Hossen
+                    {user?.name}
                   </h3>
                   <p className="text-sm text-gray-700 dark:text-gray-300">
-                    MERN Stack developer | CEO & Founder AlQafila | Programming
-                    Enthusiast
+                    {user?.bio}
                   </p>
                   <p className="text-sm text-gray-700 dark:text-gray-300">
                     Cumilla,Bangladesh
@@ -57,30 +88,19 @@ const page = () => {
                   </div>
                 </div>
                 <div className="flex justify-between gap-2.5">
-                  <Button className="bg-green-accent   w-full text-sm  cursor-pointer">
-                    Edit Profile
-                  </Button>
+                  <PersonalInfo
+                    email={user?.email}
+                    isEditOption={isEditOption}
+                  />
                 </div>
               </div>
             </div>
           </div>
-          <div className=" bg-white dark:bg-zinc-900 rounded-md shadow-lg p-6">
-            <div className="flex justify-between items-center mb-3">
-              <h4 className="text-lg font-semibold dark:text-white text-gray-800">
-                About
-              </h4>
-              <MdOutlineEdit className="text-gray-700 dark:text-gray-300 text-2xl"></MdOutlineEdit>
-            </div>
-
-            <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-              Thank you for visiting my profile!, I am a passionate Front-End
-              Developer with experience in creating dynamic and responsive web
-              applications using React, Tailwind CSS, and Next.js.
-              <span className="text-sm green-accent cursor-pointer">
-                see more
-              </span>
-            </p>
-          </div>
+          <About
+            email={user?.email}
+            about={user?.about}
+            isEditOption={isEditOption}
+          />
           <div className="">
             <ProfileEngagement />
           </div>
@@ -88,7 +108,7 @@ const page = () => {
         {/* Side Section */}
         <div>
           <div className=" sticky top-14">
-            <ProfileSidebar />
+            <ProfileSidebar userInfo={user} isEditOption={isEditOption} />
           </div>
         </div>
       </div>
@@ -96,4 +116,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ProfileContent;

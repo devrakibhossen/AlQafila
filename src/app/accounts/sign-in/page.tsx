@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { FaFacebook, FaGithub } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa";
+
 import AuthForm from "../components/AuthForm";
+import SocialMediaSignIn from "../components/SocialMediaSignIn";
 export const metadata: Metadata = {
   title: "AlQafila | Sign-In",
   description:
@@ -29,11 +29,7 @@ const Page = () => {
             </span>
             <div className="flex-grow h-px bg-gray-300" />
           </div>
-          <div className="flex justify-center items-center gap-3 my-2">
-            <FaGoogle className="text-4xl p-1 green-accent rounded-full border"></FaGoogle>
-            <FaFacebook className="text-4xl green-accent p-1 rounded-full border"></FaFacebook>
-            <FaGithub className="text-4xl p-1 green-accent dark:text-white rounded-full border"></FaGithub>
-          </div>
+          <SocialMediaSignIn />
           <p className="text-sm text-center mt-3">
             {`Don't have an account?`}
             <Link href="/accounts/sign-up">

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import Footer from "./Footer";
 
 const LeftSidebar = () => {
   const groups = [
@@ -110,7 +111,7 @@ const LeftSidebar = () => {
             </div> */}
         </div>
       </div>
-      <div className="bg-white dark:bg-zinc-900 p-4 flex flex-col  space-y-4 border rounded-md">
+      <div className="bg-white dark:bg-zinc-900 p-4 flex flex-col  space-y-4 border rounded-md mb-5">
         <div className="flex justify-between  items-center border-b pb-3">
           <h3 className="text-gray-700 dark:text-white text-lg font-semibold">
             Suggested Groups
@@ -139,6 +140,8 @@ const LeftSidebar = () => {
           </div>
         ))}
       </div>
+
+      <Footer />
     </div>
   );
 };

@@ -1,11 +1,11 @@
-import { FaBookOpen } from "react-icons/fa";
+import { PiArticleNyTimesThin } from "react-icons/pi";
 
 const StoryModal = () => {
   return (
-    <div>
-      <div className="flex gap-1 items-center dark:text-gray-300 text-gray-700 cursor-pointer border rounded-full px-3 py-1">
-        <FaBookOpen className="green-accent" />
-        <span className="text-sm">Story</span>
+    <div className="w-full">
+      <div className="flex gap-1 justify-center  transition duration-200 items-center bg-gray-100 hover:bg-gray-100 dark:text-gray-300 text-gray-700 cursor-pointer w-full rounded-full p-2 ">
+        <PiArticleNyTimesThin  className="green-accent" />
+        <span className="text-sm">Write Article</span>
       </div>
     </div>
   );

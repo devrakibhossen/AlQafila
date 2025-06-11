@@ -61,12 +61,48 @@ const PostForm = ({ onSuccess }: { onSuccess: () => void }) => {
           <hr className="my-2.5" />
           <div className="justifyBetween gap-5">
             <div className="flex  items-center gap-4">
-              <button type="button" className=" green-accent cursor-pointer">
-                <LucideImagePlus />
-              </button>
-              <button type="button" className=" green-accent cursor-pointer">
-                <SquarePlay />
-              </button>
+              <div className="relative">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      console.log("📷 Selected Image:", file);
+                    }
+                  }}
+                  id="imageUpload"
+                  className="hidden"
+                />
+                <label
+                  htmlFor="imageUpload"
+                  className="green-accent cursor-pointer"
+                >
+                  <LucideImagePlus />
+                </label>
+              </div>
+
+              <div className="relative">
+                <input
+                  type="file"
+                  accept="video/*"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      console.log("📷 Selected video:", file);
+                    }
+                  }}
+                  id="videoUpload"
+                  className="hidden"
+                />
+                <label
+                  htmlFor="videoUpload"
+                  className="green-accent cursor-pointer"
+                >
+                  <SquarePlay />
+                </label>
+              </div>
+
               <button
                 type="button"
                 className=" text-2xl green-accent cursor-pointer"

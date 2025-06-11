@@ -5,6 +5,9 @@ import "./globals.css";
 import LayoutManager from "./components/LayoutManager";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import NextAuthProvider from "@/Providers/NextAuthProvider";
+import { UserProvider } from "@/context/UserContext";
+import StoreProvider from '@/store/StoreProvider'
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -32,8 +35,13 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-        >
-          <LayoutManager>{children}</LayoutManager>
+        > <StoreProvider>
+            <NextAuthProvider>
+          <UserProvider>
+              <LayoutManager>{children}</LayoutManager>
+          </UserProvider>
+            </NextAuthProvider>
+         </StoreProvider>
           <Toaster />
         </ThemeProvider>
       </body>

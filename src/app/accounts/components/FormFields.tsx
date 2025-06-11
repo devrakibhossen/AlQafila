@@ -27,7 +27,7 @@ const FormFields = <T extends FieldValues>({
       <Controller
         control={control}
         name={name}
-        render={({ field }) => (
+        render={({ field, fieldState }) => (
           <FormItem>
             <FormLabel>{label}</FormLabel>
             <FormControl>
@@ -38,7 +38,7 @@ const FormFields = <T extends FieldValues>({
                 {...field}
               />
             </FormControl>
-            <FormMessage />
+            <FormMessage>{fieldState.error?.message}</FormMessage>
           </FormItem>
         )}
       />

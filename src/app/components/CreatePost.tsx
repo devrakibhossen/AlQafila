@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FaCamera, FaVideo } from "react-icons/fa";
-
+import { CgPoll } from "react-icons/cg";
 import { ImageIcon } from "lucide-react";
 import PostModal from "./PostModal";
 import StoryModal from "./StoryModal";
@@ -30,22 +29,22 @@ const CreatePost = () => {
           className="text-green-500 md:hidden ml-3"
         />
       </div>
-      <div className="hidden md:flex justify-between gap-1.5 items-center md:w-11/12 mx-auto mt-4">
+      <div className="hidden md:flex justify-between gap-4 items-center md:w-11/12 mx-auto mt-4">
         <div
           onClick={() => setOpenUploadModal(true)}
-          className="flex gap-1 items-center dark:text-gray-300 text-gray-700 cursor-pointer border rounded-full px-3 py-1"
+          className="flex gap-1 items-center  justify-center transition duration-200 bg-gray-100 hover:bg-gray-200 dark:text-gray-300 text-gray-700 cursor-pointer w-full rounded-full p-2"
         >
-          <FaVideo className="green-accent" />
-          <span className="text-sm">Video</span>
+          <CgPoll className="green-accent" />
+          <span className="text-sm">Create Poll</span>
         </div>
 
-        <div
+        {/* <div
           onClick={() => setOpenUploadModal(true)}
           className="flex gap-1 items-center dark:text-gray-300 text-gray-700 cursor-pointer border rounded-full px-3 py-1"
         >
           <FaCamera className="green-accent" />
           <span className="text-sm">Photo</span>
-        </div>
+        </div> */}
         <StoryModal />
       </div>
       <UploadModal open={openUploadModal} onOpenChange={setOpenUploadModal} />
