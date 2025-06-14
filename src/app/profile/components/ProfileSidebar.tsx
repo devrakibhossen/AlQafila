@@ -21,6 +21,7 @@ import { ExperienceModal } from "./ExperienceModal";
 type ModalType = "education" | "experience" | null;
 
 type Education = {
+  _id?: string;
   institute?: string;
   degree?: string;
   gpa?: string;
@@ -29,6 +30,7 @@ type Education = {
   image?: string;
 };
 type Experience = {
+  _id?: string;
   title?: string;
   company?: string;
   duration?: string;
@@ -36,15 +38,52 @@ type Experience = {
   endYear?: string;
   image?: string;
 };
-type ModalData = Education | Experience | null;
-const ProfileSidebar = ({ userInfo, isEditOption }) => {
+type ModalData = Education | Experience;
+interface UserData {
+  _id: string;
+  name: string;
+  username: string;
+  email: string;
+  about: string;
+  bio: string;
+  education: [
+    {
+      _id: string;
+      institute: string;
+      degree: string;
+      image: string;
+      startYear: string;
+      endYear: string;
+      gpa: string;
+    }
+  ];
+  experience: [
+    {
+      _id: string;
+      title: string;
+      company: string;
+      image: string;
+      startYear: string;
+      endYear: string;
+      duration: string;
+    }
+  ];
+  location: string;
+  profileImage: string | null;
+  coverImage: string | null;
+}
+
+interface ProfileSideProps {
+  userInfo: UserData;
+  isEditOption: boolean;
+}
+const ProfileSidebar = ({ userInfo, isEditOption }: ProfileSideProps) => {
   const dispatch = useAppDispatch();
 
   const [isOpen, setIsOpen] = useState(false);
   const [modalType, setModalType] = useState<ModalType>(null);
   const [editMode, setEditMode] = useState(false);
-  const [editData, setEditData] =
-    useState<React.ChangeEvent<HTMLInputElement>>(null);
+  const [editData, setEditData] = useState<ModalData | null>(null);
 
   const handleOpenModal = (
     type: ModalType,
@@ -63,31 +102,50 @@ const ProfileSidebar = ({ userInfo, isEditOption }) => {
     setEditMode(false);
     setEditData(null);
   };
-  const handleSubmit = (data: ModalData) => {
-    console.log("data", data);
-    if (modalType === "education") {
-      if (editMode) {
-        dispatch(updateEducation({ email: userInfo?.email, data }));
-      } else {
-        dispatch(postEducation({ email: userInfo?.email, data }));
-      }
-    } else if (modalType === "experience") {
-      if (editMode) {
-        dispatch(updateExperience({ email: userInfo?.email, data }));
-      } else {
-        dispatch(postExperience({ email: userInfo?.email, data }));
-      }
-    }
+  // const handleSubmit = (data: ModalData) => {
+  //   console.log("data", data);
+  //   if (modalType === "education") {
+  //     const educationData = data as Education;
+  //     if (editMode) {
+  //       dispatch(
+  //         updateEducation({ email: userInfo?.email, data: educationData })
+  //       );
+  //     } else {
+  //       dispatch(
+  //         postEducation({ email: userInfo?.email, data: educationData })
+  //       );
+  //     }
+  //   } else if (modalType === "experience") {
+  //     const experienceData = data as Experience;
+  //     if (editMode) {
+  //       dispatch(
+  //         updateExperience({ email: userInfo?.email, data: experienceData })
+  //       );
+  //     } else {
+  //       dispatch(
+  //         postExperience({ email: userInfo?.email, data: experienceData })
+  //       );
+  //     }
+  //   }
 
-    // if (modalType === "education") {
-    //   editMode
-    //     ? dispatch(updateEducation({ email: userInfo?.email, data }))
-    //     : dispatch(postEducation({ email: userInfo?.email, data }));
-    // } else if (modalType === "experience") {
-    //   editMode
-    //     ? dispatch(updateExperience({ email: userInfo?.email, data }))
-    //     : dispatch(postExperience({ email: userInfo?.email, data }));
-    // }
+  //   handleClose();
+  // };
+
+  const handleEducationSubmit = (data: Education) => {
+    if (editMode) {
+      dispatch(updateEducation({ email: userInfo?.email, data }));
+    } else {
+      dispatch(postEducation({ email: userInfo?.email, data }));
+    }
+    handleClose();
+  };
+
+  const handleExperienceSubmit = (data: Experience) => {
+    if (editMode) {
+      dispatch(updateExperience({ email: userInfo?.email, data }));
+    } else {
+      dispatch(postExperience({ email: userInfo?.email, data }));
+    }
     handleClose();
   };
 
@@ -98,9 +156,9 @@ const ProfileSidebar = ({ userInfo, isEditOption }) => {
         <EducationModal
           open={isOpen}
           onClose={handleClose}
-          onSubmit={handleSubmit}
+          onSubmit={handleEducationSubmit}
           mode={editMode ? "edit" : "add"}
-          defaultValues={editData}
+          defaultValues={editData as Education}
         />
       )}
 
@@ -109,9 +167,9 @@ const ProfileSidebar = ({ userInfo, isEditOption }) => {
         <ExperienceModal
           open={isOpen}
           onClose={handleClose}
-          onSubmit={handleSubmit}
+          onSubmit={handleExperienceSubmit}
           mode={editMode ? "edit" : "add"}
-          defaultValues={editData}
+          defaultValues={editData as Experience}
         />
       )}
 

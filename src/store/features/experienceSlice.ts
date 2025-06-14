@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type Experience = {
-  _id: string;
-  title: string;
-  company: string;
-  duration: string;
-  startYear: string;
-  endYear: string;
-  image: string;
+  _id?: string;
+  title?: string;
+  company?: string;
+  duration?: string;
+  startYear?: string;
+  endYear?: string;
+  image?: string;
 };
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -30,8 +30,11 @@ export const postExperience = createAsyncThunk(
       );
       if (!response.ok) throw new Error("Failed to post experience");
       return await response.json();
-    } catch (error: React.ChangeEvent<HTMLInputElement>) {
-      return rejectWithValue(error.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue("An unknown error occurred");
     }
   }
 );
@@ -56,8 +59,11 @@ export const updateExperience = createAsyncThunk(
       );
       if (!response.ok) throw new Error("Failed to update experience");
       return await response.json();
-    } catch (error: React.ChangeEvent<HTMLInputElement>) {
-      return rejectWithValue(error.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue("An unknown error occurred");
     }
   }
 );

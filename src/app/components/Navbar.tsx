@@ -146,7 +146,10 @@ const Navbar = () => {
           </div>
           {/* Search Icon Only for Mobile */}
           <div className="md:hidden mt-1">
-            <button className="green-accent" onClick={() => setMobileSearchOpen(true)}>
+            <button
+              className="green-accent"
+              onClick={() => setMobileSearchOpen(true)}
+            >
               <Search size={22} />
             </button>
           </div>
@@ -186,7 +189,7 @@ const Navbar = () => {
               />
               {/* </div> */}
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-52 md:w-60 lg:mr-8 md:mr-5 mr-4 md:mt-2 mt-1 rounded-none">
+            <DropdownMenuContent className="w-52 md:w-60 lg:mr-8 md:mr-5 border-none mr-4 md:mt-2 mt-1 rounded-lg p-2">
               <DropdownMenuGroup>
                 <DropdownMenuItem asChild>
                   <Link
@@ -222,7 +225,7 @@ const Navbar = () => {
                     <span>Theme</span>
                   </DropdownMenuSubTrigger>
                   <DropdownMenuPortal>
-                    <DropdownMenuSubContent className="rounded-none">
+                    <DropdownMenuSubContent className="rounded-lg">
                       <DropdownMenuItem onClick={() => setTheme("light")}>
                         <Sun className="mr-2 h-4 w-4" />
                         Light

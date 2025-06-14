@@ -62,11 +62,9 @@ const PostHeader = ({ post }: { post: PostType }) => {
           <DropdownMenuTrigger>
             <HiOutlineDotsHorizontal className="text-lg cursor-pointer" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-52  lg:mr-40 md:mr-11 mr-4  rounded-none">
+          <DropdownMenuContent className="w-52  lg:mr-40 md:mr-11 mr-4  rounded-lg">
             <DropdownMenuItem className="cursor-pointer">
-              <div
-                className="flex items-center gap-2 text-red-400"
-              >
+              <div className="flex items-center gap-2 text-red-400">
                 <MdOutlineReportProblem className="h-4 w-4" />
                 <span>Reports</span>
               </div>

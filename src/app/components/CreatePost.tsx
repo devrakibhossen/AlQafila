@@ -32,9 +32,9 @@ const CreatePost = () => {
       <div className="flex justify-between gap-4 items-center md:w-11/12 mx-auto mt-4">
         <div
           onClick={() => setOpenUploadModal(true)}
-          className="flex gap-1 items-center  justify-center transition duration-200 bg-gray-100 hover:bg-gray-200 dark:text-gray-300 text-gray-700 cursor-pointer w-full rounded-full p-2"
+          className="flex gap-1 items-center  justify-center transition duration-200 dark:bg-zinc-950 bg-gray-100 hover:bg-gray-200 dark:text-gray-300 text-gray-700 cursor-pointer w-full rounded-full p-2"
         >
-          <CgPoll className="green-accent text-xl" />
+          <CgPoll className="green-accent md:text-xl" />
           <span className="text-sm">Create Poll</span>
         </div>
 

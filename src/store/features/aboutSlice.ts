@@ -41,7 +41,10 @@ export const updateUserAbout = createAsyncThunk(
       const result = await res.json();
       return result.data.about; // ✅ this is a string
     } catch (err: unknown) {
-      return rejectWithValue(err.message);
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue("An unknown error occurred");
     }
   }
 );

@@ -11,8 +11,31 @@ import About from "../components/About";
 interface UserData {
   _id: string;
   name: string;
+  username: string;
   email: string;
   about: string;
+  education: [
+    {
+      _id: string;
+      institute: string;
+      degree: string;
+      image: string;
+      startYear: string;
+      endYear: string;
+      gpa: string;
+    }
+  ];
+  experience: [
+    {
+      _id: string;
+      title: string;
+      company: string;
+      image: string;
+      startYear: string;
+      endYear: string;
+      duration: string;
+    }
+  ];
   bio: string;
   location: string;
   profileImage: string | null;

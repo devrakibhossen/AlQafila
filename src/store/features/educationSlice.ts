@@ -2,13 +2,13 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Type definition
 export type Education = {
-  _id: string;
-  institution: string;
-  degree: string;
-  gpa: string;
-  startYear: string;
-  endYear: string;
-  image: string;
+  _id?: string;
+  institute?: string;
+  degree?: string;
+  gpa?: string;
+  startYear?: string;
+  endYear?: string;
+  image?: string;
 };
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -38,8 +38,11 @@ export const postEducation = createAsyncThunk(
 
       const result = await response.json();
       return result as Education;
-    } catch (error: React.ChangeEvent<HTMLInputElement>) {
-      return rejectWithValue(error.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue("An unknown error occurred");
     }
   }
 );
@@ -69,8 +72,11 @@ export const updateEducation = createAsyncThunk(
 
       const result = await response.json();
       return result as Education;
-    } catch (error: React.ChangeEvent<HTMLInputElement>) {
-      return rejectWithValue(error.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        return rejectWithValue(err.message);
+      }
+      return rejectWithValue("An unknown error occurred");
     }
   }
 );
