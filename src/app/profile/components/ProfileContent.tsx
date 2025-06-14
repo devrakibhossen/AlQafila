@@ -7,33 +7,28 @@ import { useUser } from "@/context/UserContext";
 import PersonalInfo from "../components/PersonalInfo";
 import About from "../components/About";
 // import { useEffect, useState } from "react";
-const ProfileContent = ({ user }) => {
+
+interface UserData {
+  _id: string;
+  name: string;
+  email: string;
+  about: string;
+  bio: string;
+  location: string;
+  profileImage: string | null;
+  coverImage: string | null;
+}
+
+interface ProfileContentProps {
+  user: UserData;
+}
+const ProfileContent = ({ user }: ProfileContentProps) => {
   // const [user, setUser] = useState<any>(null);
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState("");
 
   const { userInfo } = useUser();
-  // console.log("userInfo", userInfo);
-  // console.log("username", username);
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const res = await fetch(
-  //         `${API_BASE_URL}/api/v1/users/username/${username}`
-  //       );
-  //       if (!res.ok) throw new Error("User not found");
-  //       const data = await res.json();
-  //       setUser(data.data);
-  //     } catch (err: any) {
-  //       setError(err.message || "Something went wrong");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
 
-  //   fetchUser();
-  // }, [username]);
   console.log("user", user);
 
   const isEditOption = userInfo?.email === user?.email;
@@ -80,7 +75,7 @@ const ProfileContent = ({ user }) => {
                     {user?.bio}
                   </p>
                   <p className="text-sm text-gray-700 dark:text-gray-300">
-                    Cumilla,Bangladesh
+                    {user?.location}
                   </p>
                   <div className="flex items-center gap-2.5 green-accent">
                     <p className="text-sm ">3k Follower</p>
@@ -88,10 +83,7 @@ const ProfileContent = ({ user }) => {
                   </div>
                 </div>
                 <div className="flex justify-between gap-2.5">
-                  <PersonalInfo
-                    email={user?.email}
-                    isEditOption={isEditOption}
-                  />
+                  <PersonalInfo user={user} isEditOption={isEditOption} />
                 </div>
               </div>
             </div>

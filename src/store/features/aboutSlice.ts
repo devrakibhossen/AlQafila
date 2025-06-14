@@ -40,7 +40,7 @@ export const updateUserAbout = createAsyncThunk(
 
       const result = await res.json();
       return result.data.about; // ✅ this is a string
-    } catch (err: any) {
+    } catch (err: unknown) {
       return rejectWithValue(err.message);
     }
   }

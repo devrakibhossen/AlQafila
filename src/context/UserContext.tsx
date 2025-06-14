@@ -34,7 +34,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
           );
           if (!res.ok) throw new Error("Failed to fetch user info");
           const data: UserInfo = await res.json();
-          setUserInfo(data.data);
+          setUserInfo(data?.data);
         } catch (error) {
           console.error("Error fetching user info:", error);
         }
@@ -42,7 +42,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
       fetchUserInfo();
     }
-  }, [session]);
+  }, [API_BASE_URL, session?.user?.email]);
 
   return (
     <UserContext.Provider value={{ userInfo }}>{children}</UserContext.Provider>

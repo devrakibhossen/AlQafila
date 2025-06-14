@@ -18,11 +18,16 @@ import { updateUserAbout } from "../../../store/features/aboutSlice";
 import { useState } from "react";
 import { AppDispatch } from "@/store/store";
 type FormData = { about: string };
-
-const About = ({ email, isEditOption, about }) => {
+interface AboutProps {
+  email: string;
+  isEditOption: boolean;
+  about: string;
+}
+const About = ({ email, isEditOption, about }: AboutProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [showFullAbout, setShowFullAbout] = useState(false);
   const { register, handleSubmit, reset } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
@@ -37,14 +42,22 @@ const About = ({ email, isEditOption, about }) => {
       setLoading(false);
     }
   };
-
+  const displayedText = showFullAbout ? about : about?.slice(0, 250);
   return (
     <div className="bg-white dark:bg-zinc-900 rounded-md shadow-lg p-6">
       <div className="flex justify-between items-center mb-3">
         <h4 className="text-lg font-semibold dark:text-white text-gray-800">
           About
         </h4>
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog
+          open={open}
+          onOpenChange={(isOpen) => {
+            setOpen(isOpen);
+            if (isOpen) {
+              reset({ about });
+            }
+          }}
+        >
           <DialogTrigger asChild>
             {isEditOption && (
               <MdOutlineEdit className="text-gray-700 dark:text-gray-300 text-2xl cursor-pointer" />
@@ -80,8 +93,26 @@ const About = ({ email, isEditOption, about }) => {
       </div>
 
       <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-        {about}
-        <span className="text-sm green-accent cursor-pointer"> see more</span>
+        {displayedText}
+        {about?.length > 200 && !showFullAbout && (
+          <>
+            ...{" "}
+            <span
+              onClick={() => setShowFullAbout(true)}
+              className="text-sm green-accent cursor-pointer font-medium"
+            >
+              See more
+            </span>
+          </>
+        )}
+        {about?.length > 200 && showFullAbout && (
+          <span
+            onClick={() => setShowFullAbout(false)}
+            className="text-sm green-accent  cursor-pointer font-medium ml-2"
+          >
+            See less
+          </span>
+        )}
       </p>
     </div>
   );

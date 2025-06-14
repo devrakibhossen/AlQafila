@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type Experience = {
-  id: string;
+  _id: string;
   title: string;
   company: string;
   duration: string;
@@ -30,7 +30,7 @@ export const postExperience = createAsyncThunk(
       );
       if (!response.ok) throw new Error("Failed to post experience");
       return await response.json();
-    } catch (error: any) {
+    } catch (error: React.ChangeEvent<HTMLInputElement>) {
       return rejectWithValue(error.message);
     }
   }
@@ -44,8 +44,10 @@ export const updateExperience = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
+      console.log("📤 Updating experience for:", email);
+      console.log("📦 Data:", data);
       const response = await fetch(
-        `${API_BASE_URL}/api/v1/users/${email}/experience/${data.id}`,
+        `${API_BASE_URL}/api/v1/users/${email}/experience/${data._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -54,7 +56,7 @@ export const updateExperience = createAsyncThunk(
       );
       if (!response.ok) throw new Error("Failed to update experience");
       return await response.json();
-    } catch (error: any) {
+    } catch (error: React.ChangeEvent<HTMLInputElement>) {
       return rejectWithValue(error.message);
     }
   }
@@ -107,7 +109,7 @@ const experienceSlice = createSlice({
         (state, action: PayloadAction<Experience>) => {
           state.loading = false;
           const index = state.experiences.findIndex(
-            (exp) => exp.id === action.payload.id
+            (exp) => exp._id === action.payload._id
           );
           if (index !== -1) {
             state.experiences[index] = action.payload;

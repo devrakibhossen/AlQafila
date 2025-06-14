@@ -18,8 +18,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useDispatch } from "react-redux";
-import { useUser } from "@/context/UserContext";
 import { updateUserProfile } from "../../../store/features/userSlice";
+import { AppDispatch } from "@/store/store";
 
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 const UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
@@ -30,13 +30,25 @@ const formSchema = z.object({
   coverImage: z.any().optional(),
   name: z.string().min(3, "Name is required"),
   bio: z.string().max(100, "Bio must be under 100 characters"),
+  location: z.string().optional(),
 });
 
+interface UserData {
+  _id: string;
+  name: string;
+  email: string;
+  bio: string;
+  location: string;
+  profileImage: string | null;
+  coverImage: string | null;
+}
+interface PersonalInfoProps {
+  user: UserData;
+  isEditOption: boolean;
+}
 type FormData = z.infer<typeof formSchema>;
 
-const PersonalInfo = ({ email, isEditOption }) => {
-  const { userInfo } = useUser();
-
+const PersonalInfo = ({ user, isEditOption }: PersonalInfoProps) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
@@ -48,6 +60,13 @@ const PersonalInfo = ({ email, isEditOption }) => {
     reset,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: user?.name || "",
+      bio: user?.bio || "",
+      profileImage: undefined,
+      coverImage: undefined,
+      location: user?.location,
+    },
   });
 
   const uploadImage = async (file: File): Promise<string | null> => {
@@ -75,8 +94,8 @@ const PersonalInfo = ({ email, isEditOption }) => {
   const onSubmit = async (data: FormData) => {
     setLoading(true);
 
-    let profileImageUrl = "";
-    let coverImageUrl = "";
+    let profileImageUrl: string | null = user?.profileImage || null;
+    let coverImageUrl: string | null = user?.coverImage || null;
 
     if (data.profileImage && data.profileImage[0]) {
       profileImageUrl = await uploadImage(data.profileImage[0]);
@@ -89,10 +108,11 @@ const PersonalInfo = ({ email, isEditOption }) => {
     const finalData = {
       name: data.name,
       bio: data.bio,
+      location: data.location,
       profileImage: profileImageUrl,
       coverImage: coverImageUrl,
     };
-    dispatch(updateUserProfile({ email: email, data: finalData }));
+    dispatch(updateUserProfile({ email: user?.email, data: finalData }));
     console.log("Final Data:", finalData);
 
     setLoading(false);
@@ -102,7 +122,21 @@ const PersonalInfo = ({ email, isEditOption }) => {
 
   return (
     <div>
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog
+        open={open}
+        onOpenChange={(isOpen) => {
+          setOpen(isOpen);
+          if (isOpen && user) {
+            reset({
+              name: user?.name || "",
+              bio: user?.bio || "",
+              profileImage: user?.profileImage || "",
+              coverImage: user?.coverImage || "",
+              location: user?.location || "",
+            });
+          }
+        }}
+      >
         <DialogTrigger asChild>
           {isEditOption && (
             <Button className="bg-green-accent w-full text-sm cursor-pointer">
@@ -142,6 +176,15 @@ const PersonalInfo = ({ email, isEditOption }) => {
               <Input id="name" {...register("name")} />
               {errors.name && (
                 <p className="text-red-500 text-xs">{errors.name.message}</p>
+              )}
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="location">Location</Label>
+              <Input id="location" {...register("location")} />
+              {errors.location && (
+                <p className="text-red-500 text-xs">
+                  {errors.location.message}
+                </p>
               )}
             </div>
 

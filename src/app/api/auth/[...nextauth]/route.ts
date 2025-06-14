@@ -1,5 +1,21 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
+
+const googleClientId = process.env.GOOGLE_CLIENT_ID;
+const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
+const githubClientId = process.env.GITHUB_ID;
+const githubClientSecret = process.env.GITHUB_SECRET;
+
+if (
+  !googleClientId ||
+  !googleClientSecret ||
+  !githubClientId ||
+  !githubClientSecret
+) {
+  throw new Error("Missing one or more OAuth environment variables.");
+}
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
@@ -31,7 +47,61 @@ const handler = NextAuth({
         return null;
       },
     }),
+    GoogleProvider({
+      clientId: googleClientId,
+      clientSecret: googleClientSecret,
+    }),
+    GitHubProvider({
+      clientId: githubClientId,
+      clientSecret: githubClientSecret,
+    }),
   ],
+  callbacks: {
+    async signIn({ user, account }) {
+      if (account) {
+        const { email: user_email, image, name } = user;
+        if (!user_email) {
+          console.error("Email is missing from social login user");
+          return false;
+        }
+        const baseUsername = user_email.split("@")[0];
+        const randomDigits = Math.floor(1000 + Math.random() * 9000);
+        const username = `${baseUsername}${randomDigits}`;
+        const userData = {
+          name: name,
+          username: username,
+          email: user_email,
+          profileImage: image,
+        };
+        // console.log(userData);
+        try {
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/socialSign-in`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(userData),
+            }
+          );
+          const result = await res.json();
+          // console.log("API response:", result);
+
+          if (!res.ok || !result.success) {
+            console.error(
+              "User registration failed:",
+              result.message || result
+            );
+            return false;
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      return true;
+    },
+  },
   pages: {
     signIn: "/accounts/sign-in",
   },

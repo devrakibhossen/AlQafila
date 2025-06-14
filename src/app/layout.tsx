@@ -29,6 +29,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} antialiased bg-gray-200 dark:bg-zinc-950`}
+        cz-shortcut-listen="true"
       >
         <ThemeProvider
           attribute="class"

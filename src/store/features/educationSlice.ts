@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Type definition
 export type Education = {
-  id: string;
+  _id: string;
   institution: string;
   degree: string;
   gpa: string;
@@ -38,7 +38,7 @@ export const postEducation = createAsyncThunk(
 
       const result = await response.json();
       return result as Education;
-    } catch (error: any) {
+    } catch (error: React.ChangeEvent<HTMLInputElement>) {
       return rejectWithValue(error.message);
     }
   }
@@ -53,7 +53,7 @@ export const updateEducation = createAsyncThunk(
   ) => {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/api/v1/users/${email}/education/${data.id}`,
+        `${API_BASE_URL}/api/v1/users/${email}/education/${data._id}`,
         {
           method: "PUT",
           headers: {
@@ -69,7 +69,7 @@ export const updateEducation = createAsyncThunk(
 
       const result = await response.json();
       return result as Education;
-    } catch (error: any) {
+    } catch (error: React.ChangeEvent<HTMLInputElement>) {
       return rejectWithValue(error.message);
     }
   }
@@ -122,7 +122,7 @@ const educationSlice = createSlice({
         (state, action: PayloadAction<Education>) => {
           state.loading = false;
           const index = state.educations.findIndex(
-            (edu) => edu.id === action.payload.id
+            (edu) => edu._id === action.payload._id
           );
           if (index !== -1) {
             state.educations[index] = action.payload;

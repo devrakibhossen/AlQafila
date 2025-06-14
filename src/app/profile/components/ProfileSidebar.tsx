@@ -20,18 +20,36 @@ import { ExperienceModal } from "./ExperienceModal";
 
 type ModalType = "education" | "experience" | null;
 
+type Education = {
+  institute?: string;
+  degree?: string;
+  gpa?: string;
+  startYear?: string;
+  endYear?: string;
+  image?: string;
+};
+type Experience = {
+  title?: string;
+  company?: string;
+  duration?: string;
+  startYear?: string;
+  endYear?: string;
+  image?: string;
+};
+type ModalData = Education | Experience | null;
 const ProfileSidebar = ({ userInfo, isEditOption }) => {
   const dispatch = useAppDispatch();
 
   const [isOpen, setIsOpen] = useState(false);
   const [modalType, setModalType] = useState<ModalType>(null);
   const [editMode, setEditMode] = useState(false);
-  const [editData, setEditData] = useState<any>(null);
+  const [editData, setEditData] =
+    useState<React.ChangeEvent<HTMLInputElement>>(null);
 
   const handleOpenModal = (
     type: ModalType,
     mode: "add" | "edit",
-    data?: any
+    data?: ModalData
   ) => {
     setModalType(type);
     setEditMode(mode === "edit");
@@ -45,16 +63,31 @@ const ProfileSidebar = ({ userInfo, isEditOption }) => {
     setEditMode(false);
     setEditData(null);
   };
-  const handleSubmit = (data: any) => {
+  const handleSubmit = (data: ModalData) => {
+    console.log("data", data);
     if (modalType === "education") {
-      editMode
-        ? dispatch(updateEducation({ id: editData._id, updatedData: data }))
-        : dispatch(postEducation({ email: userInfo?.email, data }));
+      if (editMode) {
+        dispatch(updateEducation({ email: userInfo?.email, data }));
+      } else {
+        dispatch(postEducation({ email: userInfo?.email, data }));
+      }
     } else if (modalType === "experience") {
-      editMode
-        ? dispatch(updateExperience({ id: editData._id, updatedData: data }))
-        : dispatch(postExperience({ email: userInfo?.email, data }));
+      if (editMode) {
+        dispatch(updateExperience({ email: userInfo?.email, data }));
+      } else {
+        dispatch(postExperience({ email: userInfo?.email, data }));
+      }
     }
+
+    // if (modalType === "education") {
+    //   editMode
+    //     ? dispatch(updateEducation({ email: userInfo?.email, data }))
+    //     : dispatch(postEducation({ email: userInfo?.email, data }));
+    // } else if (modalType === "experience") {
+    //   editMode
+    //     ? dispatch(updateExperience({ email: userInfo?.email, data }))
+    //     : dispatch(postExperience({ email: userInfo?.email, data }));
+    // }
     handleClose();
   };
 
@@ -147,7 +180,7 @@ const ProfileSidebar = ({ userInfo, isEditOption }) => {
             <div key={e._id} className="flex gap-3 justify-between  p-1">
               <div className="flex gap-3 items-center">
                 <Image
-                  src={e?.companyImage || "https://i.ibb.co/zWK8Y8sw/image.png"}
+                  src={e?.image || "https://i.ibb.co/zWK8Y8sw/image.png"}
                   alt="Company"
                   className="w-12 h-12 rounded-full object-cover border"
                   width={48}
