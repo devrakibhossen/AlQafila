@@ -3,7 +3,6 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import UserHeader from "./UserHeader";
@@ -19,10 +18,10 @@ const PostModal = () => {
         <DialogTrigger className="border hover:bg-gray-100 dark:hover:bg-transparent px-6 py-2 text-start text-sm dark:text-gray-300 text-gray-700 rounded-full w-full cursor-pointer">
           Create Post
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="p-2.5">
           <DialogHeader>
-            <DialogTitle className="text-center">Create a New Post</DialogTitle>
-            <hr className="my-2.5" />
+            {/* <DialogTitle className="text-center">Create a New Post</DialogTitle>
+            <hr className="my-2.5" /> */}
             <UserHeader
               name="Rakib Hossen"
               image="https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"

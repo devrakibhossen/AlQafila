@@ -204,7 +204,7 @@ const Posts = () => {
   return (
     <div>
       {posts.map((post) => (
-        <div key={post._id} className="bg-white dark:bg-zinc-900   border-b ">
+        <div key={post._id} className="bg-white dark:bg-zinc-900   border rounded-md mb-1.5 ">
           <PostHeader post={post} />
           <div className="space-y-3.5">
             <p className=" text-black dark:text-gray-300 mb-3.5 md:px-3 px-2.5">

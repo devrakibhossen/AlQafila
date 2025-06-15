@@ -23,8 +23,14 @@ const PostForm = ({ onSuccess }: { onSuccess: () => void }) => {
       const hashtags = values.text.match(/#\w+/g) || [];
       const cleanTags = hashtags.map((tag) => tag.replace("#", ""));
 
+      const removeHashtags = (text: string) => {
+        return text
+          .replace(/#[\w]+/g, "")
+          .replace(/\s{2,}/g, " ")
+          .trim();
+      };
       const postData = {
-        text: values.text,
+        text: removeHashtags(values.text),
         tags: cleanTags,
         createdAt: new Date().toISOString(),
       };
@@ -49,7 +55,7 @@ const PostForm = ({ onSuccess }: { onSuccess: () => void }) => {
                 <FormItem>
                   <FormControl>
                     <textarea
-                      className="min-h-56 p-2 w-full text-base  border-none resize-none  focus:outline-none focus:ring-0 focus:border-none overflow-y-auto"
+                      className="min-h-64 p-2 w-full text-base  border-none resize-none  focus:outline-none focus:ring-0 focus:border-none overflow-y-auto"
                       placeholder="What's on your mind? "
                       {...field}
                     ></textarea>

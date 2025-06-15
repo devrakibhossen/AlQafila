@@ -4,7 +4,6 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
-  DialogTitle,
 } from "@/components/ui/dialog";
 import UserHeader from "./UserHeader";
 import { Input } from "@/components/ui/input";
@@ -40,22 +39,26 @@ const UploadModal = ({ open, onOpenChange }: UploadModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent className="p-3.5">
         <DialogHeader>
-          <DialogTitle className="text-center">Create a Poll</DialogTitle>
-          <hr className="my-2.5" />
+          {/* <DialogTitle className="text-center">Create a Poll</DialogTitle>
+          <hr className="my-2.5" /> */}
           <UserHeader
             name="Rakib Hossen"
             image="https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
           />
           <DialogDescription>
-            <p className="mb-2">Ask a question</p>
-
+            {/* <p className="mb-2">Ask a question</p> */}
+            <textarea
+              className=" px-2 w-full text-base  border-none resize-none  focus:outline-none focus:ring-0 focus:border-none overflow-y-auto"
+              placeholder="Ask a question? "
+              // {...field}
+            ></textarea>
             {options.map((opt, index) => (
               <div key={opt.id} className="justifyBetween gap-4 mb-2">
                 <Input
                   name={`option${index + 1}`}
-                  className="rounded-sm py-6"
+                  className="rounded-md py-5"
                   placeholder={`Option ${index + 1}`}
                   onChange={(e) => handleChangeOption(opt.id, e.target.value)}
                 ></Input>
@@ -80,7 +83,7 @@ const UploadModal = ({ open, onOpenChange }: UploadModalProps) => {
           <div className=" flex justify-end items-end  gap-5">
             <button
               onClick={handleSubmit}
-              className="py-1 px-4  border rounded-full text-sm"
+              className="py-1 px-4 bg-green-accent  border rounded-full text-sm"
             >
               Poll
             </button>

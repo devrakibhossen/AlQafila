@@ -7,7 +7,7 @@ interface UserHeaderProps {
 }
 const UserHeader: FC<UserHeaderProps> = ({ name, image }) => {
   return (
-    <div className="flex items-center gap-3 mb-3">
+    <div className="flex items-center gap-1.5 mb-3">
       <Image
         className="rounded-full h-11 w-11 border-2 border-gray-200 hover:border-primary transition-all"
         src={image}
@@ -16,8 +16,8 @@ const UserHeader: FC<UserHeaderProps> = ({ name, image }) => {
         height={50}
         priority
       />
-      <div>
-        <h5 className="text-md font-semibold">{name}</h5>
+      <div className="-space-y-1">
+        <h6 className="text-md font-semibold">{name}</h6>
         <p className=" text-sm">Anyone</p>
       </div>
     </div>
