@@ -10,16 +10,21 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MdOutlineReportProblem } from "react-icons/md";
-interface PostType {
-  profilePic: string;
-  username: string;
-  time: string;
-  profileStatus: string;
-  //   _id: string;
-}
-const PostHeader = ({ post }: { post: PostType }) => {
+// interface PostType {
+//   profilePic: string;
+//   username: string;
+//   time: string;
+//   profileStatus: string;
+//   //   _id: string;
+// }
+// const PostHeader = ({ post }: { post: PostType }) => {
+const PostHeader = () => {
   const [following, setFollowing] = useState<boolean>(false);
-
+const post ={
+  profileStatus:"follow",
+  profilePic:"",
+  username:""
+}
   const handleFollowing = () => {
     // console.log(id);
     console.log("Following");
@@ -32,7 +37,9 @@ const PostHeader = ({ post }: { post: PostType }) => {
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA..."
           className="rounded-full w-11 h-11 "
-          src={post.profilePic}
+          src={
+            post?.profilePic || "https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
+          }
           alt="logo"
           width={50}
           height={28}
@@ -40,9 +47,11 @@ const PostHeader = ({ post }: { post: PostType }) => {
         />
         <div>
           <h3 className="text-black dark:text-white font-semibold">
-            <Link href="/">{post.username}</Link>
+            <Link href="/">{post?.username || "Rakib Hossen"}</Link>
           </h3>
-          <p className="text-[13px] dark:text-gray-300 text-gray-700">15h</p>
+          <p className="text-[13px] dark:text-gray-300 text-gray-700">
+            15 hours ago
+          </p>
         </div>
       </div>
       <div className="justifyBetween gap-1.5">

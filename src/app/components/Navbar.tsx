@@ -47,7 +47,7 @@ const Navbar = () => {
   const { setTheme } = useTheme();
   return (
     <div className="bg-white dark:bg-zinc-900 py-1.5 fixed w-full top-0 z-10 border-b">
-      <div className="md:w-11/12 mx-auto px-1 gap-1.5 flex justify-between items-center max-w-[1600px] ">
+      <div className="md:w-11/12 mx-auto px-1 gap-1.5 flex justify-between items-center max-w-[1300px] ">
         <div className="flex gap-5 items-center">
           <Link href="/">
             <Image

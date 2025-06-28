@@ -3,6 +3,7 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import UserHeader from "./UserHeader";
@@ -20,13 +21,13 @@ const PostModal = () => {
         </DialogTrigger>
         <DialogContent className="p-2.5">
           <DialogHeader>
-            {/* <DialogTitle className="text-center">Create a New Post</DialogTitle>
-            <hr className="my-2.5" /> */}
-            <UserHeader
-              name="Rakib Hossen"
-              image="https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
-            />
-            <PostForm onSuccess={() => setOpen(false)} />
+            <DialogTitle>
+              <UserHeader
+                name="Rakib Hossen"
+                image="https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
+              />
+            </DialogTitle>
+            <PostForm onPostSuccess={() => setOpen(false)} />
           </DialogHeader>
         </DialogContent>
       </Dialog>

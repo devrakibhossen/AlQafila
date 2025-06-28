@@ -32,7 +32,7 @@ const Share: React.FC = () => {
       <DialogTrigger asChild>
         <button className="flex items-center gap-2 ">
           <IoShareSocialOutline className="text-lg" />
-          Share
+          <p className="text-[13px]">Share</p>
         </button>
       </DialogTrigger>
 

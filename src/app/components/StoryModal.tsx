@@ -1,9 +1,14 @@
+"use client";
 import { PiArticleNyTimesThin } from "react-icons/pi";
+import { toast } from "sonner";
 
 const StoryModal = () => {
   return (
     <div className="w-full">
-      <div className="flex gap-1 dark:bg-zinc-950 justify-center  transition duration-200 items-center bg-gray-100 hover:bg-gray-200 dark:text-gray-300 text-gray-700 cursor-pointer w-full rounded-full p-2 ">
+      <div
+        onClick={() => toast.success("Coming soon")}
+        className="flex gap-1 dark:bg-zinc-950 justify-center  transition duration-200 items-center bg-gray-100 hover:bg-gray-200 dark:text-gray-300 text-gray-700 cursor-pointer w-full rounded-full p-2 "
+      >
         <PiArticleNyTimesThin className="green-accent md:text-xl" />
         <span className="text-sm">Write Article</span>
       </div>

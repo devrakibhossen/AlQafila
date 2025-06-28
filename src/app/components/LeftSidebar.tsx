@@ -45,7 +45,7 @@ const LeftSidebar = () => {
 
   return (
     <div className="w-10/12 ml-10 lg:ml-15  min-w-[250px]  hidden md:block">
-      <div className=" bg-white mb-5 dark:bg-zinc-900 border rounded-t-2xl rounded-b-md shadow-lg overflow-hidden">
+      <div className=" bg-white mb-5 dark:bg-zinc-900  rounded-t-2xl rounded-b-md shadow-lg overflow-hidden">
         {/* Cover Image */}
         <div className="relative w-full h-28">
           <Image
@@ -111,7 +111,7 @@ const LeftSidebar = () => {
             </div> */}
         </div>
       </div>
-      <div className="bg-white dark:bg-zinc-900 p-4 flex flex-col  space-y-4 border rounded-md mb-5">
+      <div className="bg-white dark:bg-zinc-900 p-4 flex flex-col  space-y-4  rounded-md mb-5">
         <div className="flex justify-between  items-center border-b pb-3">
           <h3 className="text-gray-700 dark:text-white text-lg font-semibold">
             Suggested Groups

@@ -1,7 +1,15 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-type ReactionType = "like" | "love" | "smart" | "funny" | "angry";
+import { BiLike } from "react-icons/bi";
+type ReactionType =
+  | "like"
+  | "love"
+  | "smart"
+  | "funny"
+  | "wow"
+  | "sad"
+  | "angry";
 
 const Reaction = () => {
   const [selected, setSelected] = useState<string | null>(null);
@@ -11,6 +19,8 @@ const Reaction = () => {
     love: 2,
     smart: 3,
     funny: 5,
+    wow: 5,
+    sad: 5,
     angry: 5,
   });
 
@@ -32,11 +42,12 @@ const Reaction = () => {
     { type: "love", image: "/ReactionIcon/love.png", label: "Love" },
     { type: "smart", image: "/ReactionIcon/smart.png", label: "Smart" },
     { type: "funny", image: "/ReactionIcon/funny.png", label: "Funny" },
+    { type: "wow", image: "/ReactionIcon/wow.png", label: "Wow" },
+    { type: "sad", image: "/ReactionIcon/sad.png", label: "Sad" },
     { type: "angry", image: "/ReactionIcon/angry.png", label: "Angry" },
   ];
 
-  const selectedReaction =
-    reactions.find((r) => r.type === selected) || reactions[0];
+  const selectedReaction = reactions.find((r) => r.type === selected);
 
   return (
     <div className="relative inline-block">
@@ -47,20 +58,30 @@ const Reaction = () => {
         onMouseLeave={() => setShowReactions(false)}
       >
         {/* Default selected or like button */}
-        <button className="flex items-center gap-1 ">
-          <Image
-            src={selectedReaction.image}
-            alt={selectedReaction.label}
-            width={24}
-            height={24}
-            className="w-6 h-6"
-          />
-          <span className="text-sm">{selectedReaction.label}</span>
+        {/* Default selected or like button */}
+        <button className="flex items-center gap-1 text-sm">
+          {selectedReaction ? (
+            <>
+              <Image
+                src={selectedReaction.image}
+                alt={selectedReaction.label}
+                width={22}
+                height={22}
+                className="w-5 h-5"
+              />
+              <span className="text-[13px]">{selectedReaction.label}</span>
+            </>
+          ) : (
+            <>
+              <BiLike className="text-lg " />
+              <span className="text-[13px]">Like</span>
+            </>
+          )}
         </button>
 
         {/* Reaction icons on hover */}
         {showReactions && (
-          <div className="absolute w-56 h-14 bg-white dark:bg-zinc-900 -top-14 left-0 flex gap-3 px-1.5  rounded-xl  transition-all duration-200 z-10">
+          <div className="absolute shadow-2xl w-72 h-12 bg-white dark:bg-zinc-900 -top-12 left-0 flex gap-2.5 px-1.5  rounded-full  transition-all duration-200 z-10">
             {reactions.map(({ type, image, label }) => (
               <button
                 key={type}
