@@ -20,23 +20,23 @@ import { MdOutlineReportProblem } from "react-icons/md";
 // const PostHeader = ({ post }: { post: PostType }) => {
 const PostHeader = () => {
   const [following, setFollowing] = useState<boolean>(false);
-const post ={
-  profileStatus:"follow",
-  profilePic:"",
-  username:""
-}
+  const post = {
+    profileStatus: "follow",
+    profilePic: "",
+    username: "",
+  };
   const handleFollowing = () => {
     // console.log(id);
     console.log("Following");
     setFollowing(!following);
   };
   return (
-    <div className="justifyBetween gap-1.5  mb-3.5 md:px-3 pt-3 px-2.5">
+    <div className="justifyBetween gap-1.5  mb-3.5 md:px-3 pt-3  px-2.5 ">
       <div className="flex gap-1.5 items-center">
         <Image
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA..."
-          className="rounded-full w-11 h-11 "
+          className="rounded-full w-9 h-9 "
           src={
             post?.profilePic || "https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
           }

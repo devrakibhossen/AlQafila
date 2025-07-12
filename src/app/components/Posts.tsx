@@ -74,16 +74,16 @@ const Posts = () => {
       {posts?.map((post) => (
         <div
           key={post._id}
-          className="bg-white dark:bg-zinc-900  rounded-md mb-1.5 "
+          className="bg-white dark:bg-zinc-900 border rounded-md mb-1.5 "
         >
           <PostHeader />
           {/* <PostHeader post={post} /> */}
-          <div className="space-y-3.5">
-            <p className=" text-black text-sm dark:text-gray-300 mb-3.5 md:px-3 px-2.5">
+          <div className="space-y-2">
+            <p className=" text-black text-sm dark:text-gray-300  md:px-3 px-2.5">
               {post.text}
             </p>
 
-            <div className="flex flex-wrap gap-2 mt-2 md:px-3  px-2.5">
+            <div className="flex flex-wrap gap-2  md:px-3  px-2.5">
               {post?.hashtags?.map((tag, index) => (
                 <span key={index} className="text-sm green-accent">
                   #{tag}

@@ -30,7 +30,7 @@ const formSchema = z.object({
   coverImage: z.any().optional(),
   name: z.string().min(3, "Name is required"),
   bio: z.string().max(100, "Bio must be under 100 characters"),
-  location: z.string().optional(),
+  locations: z.string().optional(),
 });
 
 interface UserData {
@@ -38,7 +38,7 @@ interface UserData {
   name: string;
   email: string;
   bio: string;
-  location: string;
+  locations: string;
   profileImage: string | null;
   coverImage: string | null;
 }
@@ -65,7 +65,7 @@ const PersonalInfo = ({ user, isEditOption }: PersonalInfoProps) => {
       bio: user?.bio || "",
       profileImage: undefined,
       coverImage: undefined,
-      location: user?.location,
+      locations: user?.locations,
     },
   });
 
@@ -108,7 +108,7 @@ const PersonalInfo = ({ user, isEditOption }: PersonalInfoProps) => {
     const finalData = {
       name: data.name,
       bio: data.bio,
-      location: data.location,
+      locations: data.locations,
       profileImage: profileImageUrl,
       coverImage: coverImageUrl,
     };
@@ -132,7 +132,7 @@ const PersonalInfo = ({ user, isEditOption }: PersonalInfoProps) => {
               bio: user?.bio || "",
               profileImage: user?.profileImage || "",
               coverImage: user?.coverImage || "",
-              location: user?.location || "",
+              locations: user?.locations || "",
             });
           }
         }}
@@ -179,11 +179,11 @@ const PersonalInfo = ({ user, isEditOption }: PersonalInfoProps) => {
               )}
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="location">Location</Label>
-              <Input id="location" {...register("location")} />
-              {errors.location && (
+              <Label htmlFor="locations">Location</Label>
+              <Input id="locations" {...register("locations")} />
+              {errors.locations && (
                 <p className="text-red-500 text-xs">
-                  {errors.location.message}
+                  {errors.locations.message}
                 </p>
               )}
             </div>

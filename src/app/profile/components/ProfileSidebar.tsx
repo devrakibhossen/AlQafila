@@ -68,7 +68,7 @@ interface UserData {
       duration: string;
     }
   ];
-  location: string;
+  locations: string;
   profileImage: string | null;
   coverImage: string | null;
 }

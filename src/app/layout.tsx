@@ -7,7 +7,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import NextAuthProvider from "@/Providers/NextAuthProvider";
 import { UserProvider } from "@/context/UserContext";
-import StoreProvider from '@/store/StoreProvider'
+import StoreProvider from "@/store/StoreProvider";
+import NextTopLoader from "nextjs-toploader";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -31,18 +32,21 @@ export default function RootLayout({
         className={`${inter.variable} antialiased bg-gray-200 dark:bg-zinc-950`}
         cz-shortcut-listen="true"
       >
+        <NextTopLoader color="#10b981" height={3} showSpinner={false} />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-        > <StoreProvider>
+        >
+          {" "}
+          <StoreProvider>
             <NextAuthProvider>
-          <UserProvider>
-              <LayoutManager>{children}</LayoutManager>
-          </UserProvider>
+              <UserProvider>
+                <LayoutManager>{children}</LayoutManager>
+              </UserProvider>
             </NextAuthProvider>
-         </StoreProvider>
+          </StoreProvider>
           <Toaster />
         </ThemeProvider>
       </body>

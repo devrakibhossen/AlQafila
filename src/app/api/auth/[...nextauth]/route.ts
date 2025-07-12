@@ -3,6 +3,20 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 
+declare module "next-auth" {
+  interface Session {
+    accessToken?: string;
+  }
+  interface User {
+    token?: string;
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    accessToken?: string;
+  }
+}
 const googleClientId = process.env.GOOGLE_CLIENT_ID;
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
 const githubClientId = process.env.GITHUB_ID;
@@ -26,6 +40,7 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        console.log("Received credentials:", credentials);
         const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
         const res = await fetch(`${API_BASE_URL}/api/v1/auth/sign-in`, {
@@ -39,9 +54,10 @@ const handler = NextAuth({
         if (res.ok && result.success && result.data?.user) {
           const user = result.data.user;
 
-          user.token = result.data.token;
-
-          return user;
+          return {
+            ...user,
+            token: result.data.token,
+          };
         }
 
         return null;
@@ -57,6 +73,16 @@ const handler = NextAuth({
     }),
   ],
   callbacks: {
+    async jwt({ token, user }) {
+      if (user?.token) {
+        token.accessToken = user.token;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.accessToken = token.accessToken;
+      return session;
+    },
     async signIn({ user, account }) {
       if (account) {
         const { email: user_email, image, name } = user;
@@ -100,6 +126,18 @@ const handler = NextAuth({
         }
       }
       return true;
+    },
+  },
+
+  cookies: {
+    sessionToken: {
+      name: "token",
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+      },
     },
   },
   pages: {

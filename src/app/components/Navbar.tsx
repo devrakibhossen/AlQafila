@@ -23,7 +23,6 @@ import {
 import {
   User,
   Settings,
-  Keyboard,
   LogOut,
   HelpCircle,
   BookMarked,
@@ -39,10 +38,10 @@ import {
 import { useTheme } from "next-themes";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-
+import { useUser } from "@/context/UserContext";
 const Navbar = () => {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
-
+  const { userInfo } = useUser();
   const pathname = usePathname();
   const { setTheme } = useTheme();
   return (
@@ -181,7 +180,9 @@ const Navbar = () => {
               {/* <div className="flex items-center gap-2 cursor-pointer"> */}
               <Image
                 className="rounded-full object-cover border-2 w-10 h-10 border-gray-200 hover:border-primary transition-all"
-                src="https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
+                src={
+                  userInfo?.profileImage || "https://i.ibb.co/h5z5rWx/image.png"
+                }
                 alt="User Avatar"
                 width={50}
                 height={50}
@@ -193,7 +194,7 @@ const Navbar = () => {
               <DropdownMenuGroup>
                 <DropdownMenuItem asChild>
                   <Link
-                    href="/profile/rakibhossen"
+                    href={`/profile/${userInfo?.username}`}
                     className="flex items-center gap-2"
                   >
                     <User className="h-4 w-4" />
@@ -209,11 +210,11 @@ const Navbar = () => {
                   <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                 </DropdownMenuItem>
 
-                <DropdownMenuItem className="cursor-pointer">
+                {/* <DropdownMenuItem className="cursor-pointer">
                   <Keyboard className=" h-4 w-4" />
                   <span>Keyboard Shortcuts</span>
                   <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-                </DropdownMenuItem>
+                </DropdownMenuItem> */}
               </DropdownMenuGroup>
 
               <DropdownMenuSeparator />

@@ -61,12 +61,13 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(values),
+          // credentials: "include",
         });
 
         const data = await res.json();
         console.log(data);
-        localStorage.setItem("token", data.data.token);
-        console.log("token", data.data.token);
+        // localStorage.setItem("token", data.data.token);
+        // console.log("token", data.data.token);
         if (!res.ok) {
           throw new Error(
             data.message || "Something went wrong during sign up"

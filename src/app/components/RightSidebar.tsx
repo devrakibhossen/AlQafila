@@ -100,7 +100,7 @@ const RightSidebar = () => {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-zinc-900 p-4 flex flex-col  space-y-4  rounded-md mb-5">
+      <div className="bg-white border dark:bg-zinc-900 p-4 flex flex-col  space-y-4  rounded-md mb-5">
         <div className="flex justify-between  items-center border-b pb-3">
           <h3 className="text-gray-700 dark:text-white text-lg font-semibold">
             People Around You
@@ -140,7 +140,7 @@ const RightSidebar = () => {
         ))}
       </div>
 
-      <div className="bg-white dark:bg-zinc-900 p-4 flex flex-col  space-y-4  rounded-md mb-5">
+      <div className="bg-white border  dark:bg-zinc-900 p-4 flex flex-col  space-y-4  rounded-md mb-5">
         <h2 className="text-gray-700 dark:text-white text-lg font-semibold border-b pb-3">
           Trending hashtags
         </h2>
@@ -149,7 +149,7 @@ const RightSidebar = () => {
             <Link
               key={index}
               href={`/hashtag/${tag.replace("#", "")}`}
-              className="px-3 py-1 bg-gray-100 hover:bg-violet-900 hover:text-white text-gray-700 rounded-full text-sm transition-all duration-300 cursor-pointer"
+              className="px-3 py-1 border backdrop-blur  hover:text-white text-gray-300 rounded-full text-sm transition-all duration-300 cursor-pointer"
             >
               {tag}
             </Link>

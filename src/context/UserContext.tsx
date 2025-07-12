@@ -69,8 +69,39 @@ import { useSession } from "next-auth/react";
 
 interface UserInfo {
   username: string;
+  name: string;
   email: string;
   role: string;
+  about: string;
+  education: [
+    {
+      _id: string;
+      institute: string;
+      degree: string;
+      image: string;
+      startYear: string;
+      endYear: string;
+      gpa: string;
+    }
+  ];
+  experience: [
+    {
+      _id: string;
+      title: string;
+      company: string;
+      image: string;
+      startYear: string;
+      endYear: string;
+      duration: string;
+    }
+  ];
+  bio: string;
+  follower: number;
+  following: number;
+  friend: number;
+  location: string;
+  profileImage: string | null;
+  coverImage: string | null;
 }
 
 interface ApiResponse {

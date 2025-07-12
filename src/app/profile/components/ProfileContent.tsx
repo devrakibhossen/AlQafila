@@ -37,7 +37,7 @@ interface UserData {
     }
   ];
   bio: string;
-  location: string;
+  locations: string;
   profileImage: string | null;
   coverImage: string | null;
 }
@@ -98,7 +98,7 @@ const ProfileContent = ({ user }: ProfileContentProps) => {
                     {user?.bio}
                   </p>
                   <p className="text-sm text-gray-700 dark:text-gray-300">
-                    {user?.location}
+                    {user?.locations}
                   </p>
                   <div className="flex items-center gap-2.5 green-accent">
                     <p className="text-sm ">3k Follower</p>

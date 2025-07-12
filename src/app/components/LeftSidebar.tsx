@@ -2,8 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Footer from "./Footer";
-
+import { useUser } from "@/context/UserContext";
 const LeftSidebar = () => {
+  const { userInfo } = useUser();
+  console.log("user info data", userInfo);
   const groups = [
     {
       id: 1,
@@ -45,11 +47,11 @@ const LeftSidebar = () => {
 
   return (
     <div className="w-10/12 ml-10 lg:ml-15  min-w-[250px]  hidden md:block">
-      <div className=" bg-white mb-5 dark:bg-zinc-900  rounded-t-2xl rounded-b-md shadow-lg overflow-hidden">
+      <div className=" bg-white mb-5 border dark:bg-zinc-900  rounded-t-2xl rounded-b-md shadow-lg overflow-hidden">
         {/* Cover Image */}
         <div className="relative w-full h-28">
           <Image
-            src="https://i.ibb.co/0y30WvBH/image.png"
+            src={userInfo?.coverImage || "https://i.ibb.co/0y30WvBH/image.png"}
             alt="Cover"
             fill
             className="object-cover rounded-t-xl"
@@ -63,7 +65,9 @@ const LeftSidebar = () => {
           <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 ">
             <Image
               className="rounded-full border border-white object-cover w-20 h-20 shadow-md "
-              src="https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
+              src={
+                userInfo?.profileImage || "https://i.ibb.co/h5z5rWx/image.png"
+              }
               alt="Profile"
               width={80}
               height={80}
@@ -73,33 +77,32 @@ const LeftSidebar = () => {
           <div className="pt-12 flex justify-center  items-center gap-5">
             <div className="space-y-1 text-center">
               <p className="text-sm text-gray-700 dark:text-gray-300">
-                @rakibhossen
+                @{userInfo?.username}
               </p>
               <h3 className="text-xl font-bold text-black dark:text-white">
-                Rakib Hossen
+                {userInfo?.name}
               </h3>
               <p className="text-sm text-gray-700 dark:text-gray-300">
-                MERN Stack developer | CEO & Founder AlQafila | Programming
-                Enthusiast
+                {userInfo?.bio}
               </p>
             </div>
           </div>
           <hr className="my-2" />
           <div className="flex justify-between items-center gap-2.5 px-4">
             <div className="text-center py-2">
-              <h3>3,356</h3>
+              <h3>{userInfo?.follower || 0}</h3>
               <p className="text-sm font-semibold green-accent ">Follower</p>
             </div>
             <div className="w-px h-8 bg-green-accent"></div>
             <div className="text-center py-2">
-              <h3>600</h3>
+              <h3>{userInfo?.following || 0}</h3>
               <p className="text-sm font-semibold green-accent ">Following</p>
             </div>
           </div>
           <hr className="my-2" />
 
           <Link
-            href="/profile/rakibhossen"
+            href={`/profile/${userInfo?.username}`}
             className=" green-accent mt-4 text-sm hover:underline   cursor-pointer flex justify-center items-center"
           >
             View Profile
@@ -111,7 +114,7 @@ const LeftSidebar = () => {
             </div> */}
         </div>
       </div>
-      <div className="bg-white dark:bg-zinc-900 p-4 flex flex-col  space-y-4  rounded-md mb-5">
+      <div className="bg-white border dark:bg-zinc-900 p-4 flex flex-col  space-y-4  rounded-md mb-5">
         <div className="flex justify-between  items-center border-b pb-3">
           <h3 className="text-gray-700 dark:text-white text-lg font-semibold">
             Suggested Groups

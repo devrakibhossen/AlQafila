@@ -11,7 +11,7 @@ import UploadModal from "./UploadModal";
 const CreatePost = () => {
   const [openUploadModal, setOpenUploadModal] = useState(false);
   return (
-    <div className="bg-white dark:bg-zinc-900 md:p-5 p-2.5   rounded-sm md:rounded-md md:mb-5 mb-2">
+    <div className="bg-white border dark:bg-zinc-900 md:p-5 p-2.5   rounded-sm md:rounded-md md:mb-5 mb-2">
       <div className="flex gap-1.5 items-center">
         <Image
           className="rounded-full w-10 h-10"

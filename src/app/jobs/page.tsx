@@ -1,9 +1,9 @@
-import { Bookmark, BriefcaseIcon } from "lucide-react";
+import { BriefcaseIcon, MapPin, Plus } from "lucide-react";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { FaMapMarkerAlt, FaPaperPlane, FaSearch } from "react-icons/fa";
-import { RiExternalLinkFill } from "react-icons/ri";
+import { FaMapMarkerAlt, FaSearch } from "react-icons/fa";
+import JobFilter from "./components/JobFilter";
 export const metadata: Metadata = {
   title: "AlQafila | Jobs",
 };
@@ -97,12 +97,21 @@ const Page = () => {
   ];
   return (
     <div className="w-11/12 mx-auto">
-      <Link href="/interview">
-        <button className=" flex items-center cursor-pointer justify-center mb-3 gap-2 rounded-full border dark:border-zinc-800 border-gray-300 overflow-hidden shadow-sm  bg-white dark:bg-zinc-900 text-sm  font-medium py-2 px-4 transition-all">
-          <BriefcaseIcon className="w-4 h-4" />
-          Ai Interview
-        </button>
-      </Link>
+      <div className="justifyBetween">
+        <Link href="/interview">
+          <button className=" flex items-center cursor-pointer justify-center mb-3 gap-2 rounded-full border dark:border-zinc-800 border-gray-300 overflow-hidden shadow-sm  bg-white dark:bg-zinc-900 text-sm  font-medium py-2 px-4 transition-all">
+            <BriefcaseIcon className="w-4 h-4" />
+            Ai Interview
+          </button>
+        </Link>
+        <Link href="/jobs/create-job">
+          <button className="green-accent flex items-center cursor-pointer justify-center mb-3 gap-1 rounded-full border dark:border-zinc-800 border-gray-300 overflow-hidden shadow-sm  bg-white dark:bg-zinc-900 text-sm  font-medium py-2 px-4 transition-all">
+            <Plus className="w-4 h-4" />
+            Create Job
+          </button>
+        </Link>
+      </div>
+
       <div className="flex w-full max-w-3xl mx-auto rounded-full border dark:border-zinc-800 border-gray-300 overflow-hidden shadow-sm">
         {/* Job Title Input */}
         <div className="flex items-center gap-2 px-4 py-2 w-1/2 bg-white dark:bg-zinc-900">
@@ -129,7 +138,7 @@ const Page = () => {
       </div>
       <div className="grid md:grid-cols-3 gap-5 mt-10">
         <div className="md:col-span-1 ">
-          {jobs.map((job) => (
+          {/* {jobs.map((job) => (
             <div
               key={job._id}
               className="border rounded-xl shadow-sm p-4 w-full bg-white dark:bg-zinc-900 mb-6"
@@ -172,10 +181,61 @@ const Page = () => {
                 <span className="text-xs  text-gray-400">{job.posted}</span>
               </div>
             </div>
-          ))}
+          ))} */}
+
+          <JobFilter />
         </div>
-        <div className="md:col-span-2 bg-white dark:bg-zinc-900 p-5 border rounded-xl">
-          <div className="flex justify-between items-center">
+        <div className="md:col-span-2">
+          {jobs.map((job) => (
+            <Link href={`/jobs/view/${141540424141}`} key={job._id}>
+              <div className="border hover:border-[#10b981] rounded-xl shadow-sm p-6 w-full bg-white dark:bg-zinc-900 mb-6">
+                <div className="flex justify-between items-start">
+                  <div className="flex items-center space-x-2">
+                    <Image
+                      src={job.companyLogo}
+                      alt="NodeFlair"
+                      className="w-14 h-14 rounded-md"
+                      width={78}
+                      height={78}
+                    />
+                    <div>
+                      <h3 className="text-md dark:text-white font-semibold text-gray-800">
+                        {job.title}
+                      </h3>
+                      <div className="flex  items-center gap-3">
+                        <p className="text-sm dark:text-gray-300 text-gray-500">
+                          Programming Hero
+                        </p>
+                        <p className="text-sm hidden lg:block dark:text-gray-300 px-2 text-gray-500 border rounded-md">
+                          Part-time
+                        </p>
+                        <p className="text-sm hidden lg:block dark:text-gray-300 text-gray-500">
+                          $10000-$50000
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    <div className="justifyBetween gap-1">
+                      <MapPin className="w-4 h-4 text-gray-400 cursor-pointer" />
+                      <p className="text-xs">Bangladesh</p>
+                    </div>
+                    <span className="text-xs text-end text-gray-400">
+                      {job.posted}
+                    </span>
+                  </div>
+                </div>
+
+                <p className="text-[14px] mt-3">
+                  A React developer designs and creates JavaScript-based
+                  applications for web or mobile environments. They typically
+                  specialize in front-end development. React is an open-source
+                  JavaScript library...
+                </p>
+              </div>
+            </Link>
+          ))}
+          {/* <div className="flex justify-between items-center">
             <div>
               <div className="flex justify-between items-start">
                 <div className="flex items-center space-x-2">
@@ -220,7 +280,7 @@ const Page = () => {
               )
             )}
           </div>
-          {/* Job Details */}
+  
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm dark:text-gray-300 text-gray-700 mb-4">
             <p>
               <strong>Job Type:</strong> Internship
@@ -261,7 +321,7 @@ const Page = () => {
                 Recruiter at Programming Hero
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

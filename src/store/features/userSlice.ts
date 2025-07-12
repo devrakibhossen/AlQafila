@@ -5,7 +5,7 @@ interface UserState {
   coverImage: string | null;
   name: string;
   bio: string;
-  location: string | null | undefined;
+  locations: string | null | undefined;
   loading: boolean;
 }
 
@@ -14,7 +14,7 @@ const initialState: UserState = {
   coverImage: null,
   name: "",
   bio: "",
-  location: undefined,
+  locations: undefined,
   loading: false,
 };
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;

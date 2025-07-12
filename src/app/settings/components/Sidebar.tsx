@@ -2,7 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { User, Lock, ShieldCheck, Bell, Languages, Moon } from "lucide-react";
+import {
+  User,
+  Lock,
+  ShieldCheck,
+  Bell,
+  Languages,
+  Moon,
+  Keyboard,
+} from "lucide-react";
 
 interface MenuItem {
   name: string;
@@ -41,6 +49,11 @@ const menuItems: MenuItem[] = [
     name: "Privacy",
     href: "/settings/privacy",
     icon: <ShieldCheck className="w-5 h-5" />,
+  },
+  {
+    name: "Keyboard Shortcuts",
+    href: "/settings/keyboardShortcuts",
+    icon: <Keyboard className="w-5 h-5" />,
   },
 ];
 
