@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
-import LayoutManager from "./components/LayoutManager";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import NextAuthProvider from "@/Providers/NextAuthProvider";
 import { UserProvider } from "@/context/UserContext";
 import StoreProvider from "@/store/StoreProvider";
 import NextTopLoader from "nextjs-toploader";
+import { Suspense, lazy } from "react";
+import Image from "next/image";
+const LayoutManager = lazy(() => import("./components/LayoutManager"));
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -43,7 +44,22 @@ export default function RootLayout({
           <StoreProvider>
             <NextAuthProvider>
               <UserProvider>
-                <LayoutManager>{children}</LayoutManager>
+                <Suspense
+                  fallback={
+                    <div className="flex flex-col gap-5 justify-center items-center h-screen">
+                      <Image
+                        className="w-40 h-[51px] animate-fade-in"
+                        src="/alQafila.png"
+                        alt="logo"
+                        width={200}
+                        height={150}
+                        priority
+                      />
+                    </div>
+                  }
+                >
+                  <LayoutManager>{children}</LayoutManager>
+                </Suspense>
               </UserProvider>
             </NextAuthProvider>
           </StoreProvider>

@@ -149,7 +149,7 @@ const RightSidebar = () => {
             <Link
               key={index}
               href={`/hashtag/${tag.replace("#", "")}`}
-              className="px-3 py-1 border backdrop-blur  hover:text-white text-gray-300 rounded-full text-sm transition-all duration-300 cursor-pointer"
+              className="px-3 py-1 border backdrop-blur  hover:text-green-600 text-gray-700 dark:text-gray-300 rounded-full text-sm transition-all  duration-300 cursor-pointer"
             >
               {tag}
             </Link>
