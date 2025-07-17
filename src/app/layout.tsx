@@ -7,9 +7,10 @@ import NextAuthProvider from "@/Providers/NextAuthProvider";
 import { UserProvider } from "@/context/UserContext";
 import StoreProvider from "@/store/StoreProvider";
 import NextTopLoader from "nextjs-toploader";
-import { Suspense, lazy } from "react";
-import Image from "next/image";
-const LayoutManager = lazy(() => import("./components/LayoutManager"));
+// import { Suspense, lazy } from "react";
+// import Image from "next/image";
+import LayoutManager from "./components/LayoutManager";
+// const LayoutManager = lazy(() => import("./components/LayoutManager"));
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -44,7 +45,7 @@ export default function RootLayout({
           <StoreProvider>
             <NextAuthProvider>
               <UserProvider>
-                <Suspense
+                {/* <Suspense
                   fallback={
                     <div className="flex flex-col gap-5 justify-center items-center h-screen">
                       <Image
@@ -57,9 +58,9 @@ export default function RootLayout({
                       />
                     </div>
                   }
-                >
+                > */}
                   <LayoutManager>{children}</LayoutManager>
-                </Suspense>
+                {/* </Suspense> */}
               </UserProvider>
             </NextAuthProvider>
           </StoreProvider>
