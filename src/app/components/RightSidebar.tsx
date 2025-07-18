@@ -35,39 +35,7 @@ const RightSidebar = () => {
   }, []);
 
   if (loading) return <p>Loading...</p>;
-  const groups = [
-    {
-      id: 1,
-      name: "Rakib Hossen",
-      members: "@rakibhossen",
-      coverImage: "https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg",
-    },
 
-    {
-      id: 2,
-      name: "Jahid Hossen",
-      members: "@jahid",
-      coverImage: "https://i.ibb.co/b5WMgQDn/self.jpg",
-    },
-    {
-      id: 3,
-      name: "Fatima islam",
-      members: "@fatima",
-      coverImage: "https://i.ibb.co/Zzg3y84q/image.png",
-    },
-    {
-      id: 4,
-      name: "Md Jahidul Islam",
-      members: "@jahidul",
-      coverImage: "https://i.ibb.co/KcDf41YL/Gibli-style.png",
-    },
-    {
-      id: 5,
-      name: "Kamal Hossen",
-      members: "@kamal",
-      coverImage: "https://i.ibb.co/YFLQWG4g/image.png",
-    },
-  ];
   const hashtags = [
     "#ReactJS",
     "#NextJS",
@@ -138,31 +106,33 @@ const RightSidebar = () => {
           <BsThreeDotsVertical className="text-gray-700" />
         </div>
 
-        {users.slice(0,6).map((user) => (
+        {users.slice(0, 6).map((user) => (
           <div
             key={user._id}
             className="flex justify-between gap-2.5 items-center"
           >
             <div className="flex gap-2.5 items-center">
               {user?.profileImage ? (
-                  <Image
-                    src={user?.profileImage}
-                    alt={user?.name || "Profile"}
-                    className="w-10 h-10 rounded-full object-cover"
-                    width={48}
-                    height={48}
-                  />
-                ) : (
-                  <div className="w-10 h-10 flex items-center justify-center rounded-full border text-[#10b981] font-semibold text-lg bg-green-200">
-                    {user?.username?.charAt(0).toUpperCase()}
-                  </div>
-                )}
+                <Image
+                  src={user?.profileImage}
+                  alt={user?.name || "Profile"}
+                  className="w-10 h-10 rounded-full object-cover"
+                  width={48}
+                  height={48}
+                />
+              ) : (
+                <div className="w-10 h-10 flex items-center justify-center rounded-full border text-[#10b981] font-semibold text-lg bg-green-200">
+                  {user?.username?.charAt(0).toUpperCase()}
+                </div>
+              )}
               <div>
                 <h3 className="text-black dark:text-white ">
-                  <Link href={`/profile/${user.username}`}>{user.name || user.username}</Link>
+                  <Link href={`/profile/${user.username}`}>
+                    {user.name || user.username}
+                  </Link>
                 </h3>
                 <p className="text-[13px] dark:text-gray-300 text-gray-700">
-                  @{user.username.slice(0,12)}
+                  @{user.username.slice(0, 12)}
                 </p>
               </div>
             </div>
@@ -170,7 +140,7 @@ const RightSidebar = () => {
               <button className="py-[2px] text-sm text-white px-2 bg-green-accent   w-full rounded-full cursor-pointer">
                 Follow
               </button>
-          </div>
+            </div>
           </div>
         ))}
       </div>
