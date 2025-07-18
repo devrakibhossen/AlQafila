@@ -1,11 +1,16 @@
+
 import Image from "next/image";
 import Link from "next/link";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Footer from "./Footer";
 import { useUser } from "@/context/UserContext";
+
+
+
 const LeftSidebar = () => {
   const { userInfo } = useUser();
   console.log("user info data", userInfo);
+   
   const groups = [
     {
       id: 1,

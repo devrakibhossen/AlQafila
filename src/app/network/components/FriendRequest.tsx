@@ -119,6 +119,7 @@ const FriendRequest = () => {
           ))}
         </div>
       </div>
+      <hr className="my-6"/>
       <SendFriendsRequst />
     </div>
   );

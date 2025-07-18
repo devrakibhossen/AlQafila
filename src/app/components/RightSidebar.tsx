@@ -1,10 +1,40 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
-
+import { useEffect, useState } from "react";
+interface userDataProps {
+  _id?: string;
+  email: string;
+  username: string;
+  name?: string;
+  profileImage?: string;
+}
 const RightSidebar = () => {
+  const [users, setUsers] = useState<userDataProps[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/users`
+        );
+        const data = await res.json();
+        setUsers(data?.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
   const groups = [
     {
       id: 1,
@@ -108,34 +138,39 @@ const RightSidebar = () => {
           <BsThreeDotsVertical className="text-gray-700" />
         </div>
 
-        {groups.map((group) => (
+        {users.slice(0,6).map((user) => (
           <div
-            key={group.id}
+            key={user._id}
             className="flex justify-between gap-2.5 items-center"
           >
             <div className="flex gap-2.5 items-center">
-              <Image
-                className="rounded-full w-10 h-10 border shadow-md"
-                src={group.coverImage}
-                alt="logo"
-                width={48}
-                height={29}
-                priority
-              />
+              {user?.profileImage ? (
+                  <Image
+                    src={user?.profileImage}
+                    alt={user?.name || "Profile"}
+                    className="w-10 h-10 rounded-full object-cover"
+                    width={48}
+                    height={48}
+                  />
+                ) : (
+                  <div className="w-10 h-10 flex items-center justify-center rounded-full border text-[#10b981] font-semibold text-lg bg-green-200">
+                    {user?.username?.charAt(0).toUpperCase()}
+                  </div>
+                )}
               <div>
                 <h3 className="text-black dark:text-white ">
-                  <Link href={`/profile/${group.name}`}>{group.name}</Link>
+                  <Link href={`/profile/${user.username}`}>{user.name || user.username}</Link>
                 </h3>
                 <p className="text-[13px] dark:text-gray-300 text-gray-700">
-                  {group.members}
+                  @{user.username.slice(0,12)}
                 </p>
               </div>
             </div>
-            <Link href="/username/profile">
+            <div>
               <button className="py-[2px] text-sm text-white px-2 bg-green-accent   w-full rounded-full cursor-pointer">
                 Follow
               </button>
-            </Link>
+          </div>
           </div>
         ))}
       </div>
