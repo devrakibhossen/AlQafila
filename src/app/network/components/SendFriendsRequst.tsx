@@ -2,11 +2,11 @@
 
 import { useUser } from "@/context/UserContext";
 import { useSocket } from "@/hooks/useSocket";
-import { RootState } from "@/store/store";
+// import { RootState } from "@/store/store";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { toast } from "sonner";
 
 interface UserDataProps {
@@ -26,10 +26,9 @@ const SendFriendsRequest = () => {
   const [users, setUsers] = useState<UserDataProps[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // ফ্রেন্ড রিকোয়েস্ট নোটিফিকেশনস (যদি UI তে দেখাতে চাও)
-  const notifications = useSelector(
-    (state: RootState) => state.socket.notifications
-  );
+  // const notifications = useSelector(
+  //   (state: RootState) => state.socket.notifications
+  // );
 
   useEffect(() => {
     const fetchUsers = async () => {
