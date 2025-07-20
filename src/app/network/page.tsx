@@ -1,7 +1,7 @@
 import Networksidebar from "./components/Networksidebar";
 import { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "AlQafila | Networks",
+  title: "AlQafila | Network",
 };
 const Page = () => {
   return (

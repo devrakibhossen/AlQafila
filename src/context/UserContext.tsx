@@ -68,6 +68,7 @@ import {
 import { useSession } from "next-auth/react";
 
 interface UserInfo {
+  _id:string;
   username: string;
   name: string;
   email: string;
