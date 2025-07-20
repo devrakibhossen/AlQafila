@@ -129,7 +129,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ src }) => {
     };
   }, [hideControlsAfterDelay]);
 
-  const togglePlay = () => {
+  const togglePlay = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
 
@@ -138,24 +138,23 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ src }) => {
     } else {
       video.pause();
     }
-    // No need to set isPlaying state here, event listeners will handle it
-  };
+  }, []);
 
-  const toggleMute = () => {
+  const toggleMute = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
 
     video.muted = !video.muted;
     setIsMuted(video.muted);
-    // If unmuting from 0 volume, set it to a default
+
     if (!video.muted && video.volume === 0) {
       video.volume = 0.5;
       setVolume(0.5);
     }
-  };
+  }, [setIsMuted, setVolume]);
 
-  const toggleFullscreen = () => {
-    const videoContainer = videoRef.current?.parentElement; // Request fullscreen on the container
+  const toggleFullscreen = useCallback(() => {
+    const videoContainer = videoRef.current?.parentElement;
     if (!videoContainer) return;
 
     if (document.fullscreenElement) {
@@ -163,7 +162,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ src }) => {
     } else {
       videoContainer.requestFullscreen();
     }
-  };
+  }, []);
 
   const changeSpeed = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSpeed(parseFloat(e.target.value));
