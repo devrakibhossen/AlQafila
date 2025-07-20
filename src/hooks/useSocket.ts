@@ -1,33 +1,41 @@
 // hooks/useSocket.ts
 import { useEffect, useRef } from "react";
-import { io, Socket } from "socket.io-client";
+import { io } from "socket.io-client";
 import { useDispatch } from "react-redux";
 import { addNotification } from "@/store/features/socketSlice";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { Socket } from "socket.io-client";
 
 export const useSocket = (userId?: string) => {
   const dispatch = useDispatch();
-  const socketRef = useRef<Socket | null>(null);
+  const socketRef = useRef<ReturnType<typeof io> | null>(null);
 
   useEffect(() => {
     if (!userId) return;
 
-    // Create socket connection only once
-    socketRef.current = io(process.env.NEXT_PUBLIC_SOCKET_URL || "");
+    // ✅ Create the socket connection
+    socketRef.current = io(process.env.NEXT_PUBLIC_SOCKET_URL || "", {
+      transports: ["websocket"],
+      withCredentials: true,
+    });
 
-    // Join the room using userId
     socketRef.current.emit("joinRoom", userId);
 
-    // Listen for friend request notification
-    socketRef.current.on("friendRequest", (data) => {
-      dispatch(addNotification(`${data.sender} ${data.message}`));
-    });
+    socketRef.current.on(
+      "friendRequest",
+      (data: { sender: string; message: string }) => {
+        dispatch(addNotification(`${data.sender} ${data.message}`));
+      }
+    );
 
-    // Listen for friend request accepted notification
-    socketRef.current.on("friendRequestAccepted", (data) => {
-      dispatch(addNotification(`${data.receiver} ${data.message}`));
-    });
+    socketRef.current.on(
+      "friendRequestAccepted",
+      (data: { receiver: string; message: string }) => {
+        dispatch(addNotification(`${data.receiver} ${data.message}`));
+      }
+    );
 
-    // Cleanup on unmount or userId change
+    // ✅ Cleanup
     return () => {
       if (socketRef.current) {
         socketRef.current.disconnect();
