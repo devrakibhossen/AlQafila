@@ -19,17 +19,17 @@ const FriendSocketListener: React.FC<Props> = ({ userId }) => {
     socket.connect();
     socket.emit("join", userId); // Join user room
 
-    socket.on("friendRequest", (data) => {
+    socket.on("friendRequest", (data: { sender: unknown }) => {
       toast.success(`🚀 New friend request from ${data.sender}`);
       dispatch(addNotification(`${data.sender} sent a friend request`));
     });
 
-    socket.on("friendRequestAccepted", (data) => {
+    socket.on("friendRequestAccepted", (data: { receiver: unknown }) => {
       toast.success(`✅ ${data.receiver} accepted your friend request`);
       dispatch(addNotification(`${data.receiver} accepted your request`));
     });
 
-    socket.on("friendRequestDeleted", (data) => {
+    socket.on("friendRequestDeleted", (data: { receiver: unknown }) => {
       toast.error(`❌ ${data.receiver} deleted your request`);
       dispatch(addNotification(`${data.receiver} deleted your request`));
     });
@@ -37,7 +37,7 @@ const FriendSocketListener: React.FC<Props> = ({ userId }) => {
     return () => {
       socket.disconnect();
     };
-  }, [userId]);
+  }, [dispatch, userId]);
 
   return null;
 };
