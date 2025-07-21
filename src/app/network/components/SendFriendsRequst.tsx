@@ -49,7 +49,10 @@ const SendFriendsRequest = () => {
     fetchUsers();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return  <div className="flex flex-col gap-5 justify-center items-center min-h-[150px]">
+
+          <div className="w-12 h-12 border-2 border-[#10b981] border-t-transparent rounded-full animate-spin"></div> 
+          </div>;
 
   const handleFriendRequest = async (receiverId: string | undefined) => {
     if (!userId || !receiverId) {
