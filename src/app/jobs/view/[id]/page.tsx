@@ -21,7 +21,7 @@ const page = () => {
               </p>
             </div>
           </div>
-          <button className="border px-3 rounded-sm text-sm p-1 dark:bg-zinc-900 ">
+          <button className="border bg-green-accent text-white px-3 rounded-sm text-sm p-1 dark:bg-zinc-900 ">
             Save
           </button>
         </div>
@@ -63,7 +63,7 @@ const page = () => {
             Please let Programming Hero you found this job on Alqafila. This
             helps us grow!
           </p>
-          <button className="py-1 px-3 w-full text-center text-sm bg-green-accent rounded-md">
+          <button className="py-1 px-3 text-white w-full text-center text-sm bg-green-accent rounded-md">
             Apply now
           </button>
         </div>

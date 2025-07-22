@@ -20,7 +20,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "AlQafila ",
   description:
-    "AlQafila is a modern and professional social media web platform designed to connect individuals and communities. Share posts, engage in discussions, and build meaningful connections in a user-friendly and secure environment tailored for seamless interaction.",
+    "Alqafila is a modern and professional social media web platform designed to connect individuals and communities. Share posts, engage in discussions, and build meaningful connections in a user-friendly and secure environment tailored for seamless interaction.",
 };
 
 export default function RootLayout({
@@ -34,7 +34,7 @@ export default function RootLayout({
         className={`${inter.variable} antialiased bg-gray-200 dark:bg-zinc-950`}
         cz-shortcut-listen="true"
       >
-        <NextTopLoader color="#10b981" height={3} showSpinner={false} />
+        <NextTopLoader color="#104e80" height={3} showSpinner={false} />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

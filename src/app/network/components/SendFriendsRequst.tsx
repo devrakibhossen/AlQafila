@@ -49,10 +49,12 @@ const SendFriendsRequest = () => {
     fetchUsers();
   }, []);
 
-  if (loading) return  <div className="flex flex-col gap-5 justify-center items-center min-h-[150px]">
-
-          <div className="w-12 h-12 border-2 border-[#10b981] border-t-transparent rounded-full animate-spin"></div> 
-          </div>;
+  if (loading)
+    return (
+      <div className="flex flex-col gap-5 justify-center items-center min-h-[150px]">
+        <div className="w-12 h-12 border-2 border-[#104e80] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
 
   const handleFriendRequest = async (receiverId: string | undefined) => {
     if (!userId || !receiverId) {
@@ -121,7 +123,7 @@ const SendFriendsRequest = () => {
                   height={48}
                 />
               ) : (
-                <div className="w-12 h-12 flex items-center justify-center rounded-full border text-[#10b981] font-semibold text-lg bg-green-200">
+                <div className="w-12 h-12 flex items-center justify-center rounded-full border text-white font-semibold text-lg bg-green-accent">
                   {user.username?.charAt(0).toUpperCase()}
                 </div>
               )}
@@ -131,7 +133,7 @@ const SendFriendsRequest = () => {
                   {user.name || user.username}
                 </p>
                 <p className="text-xs dark:text-gray-300 text-gray-500">
-                  @{user.username.slice(0,12)}.
+                  @{user.username.slice(0, 12)}
                 </p>
               </div>
             </div>

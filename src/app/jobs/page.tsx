@@ -188,7 +188,7 @@ const Page = () => {
         <div className="md:col-span-2">
           {jobs.map((job) => (
             <Link href={`/jobs/view/${141540424141}`} key={job._id}>
-              <div className="border hover:border-[#10b981] rounded-xl shadow-sm p-6 w-full bg-white dark:bg-zinc-900 mb-6">
+              <div className="border hover:border-[#104e80] rounded-xl shadow-sm p-6 w-full bg-white dark:bg-zinc-900 mb-6">
                 <div className="flex justify-between items-start">
                   <div className="flex items-center space-x-2">
                     <Image

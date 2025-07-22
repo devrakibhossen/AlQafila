@@ -79,11 +79,11 @@ const Posts = () => {
           <PostHeader />
           {/* <PostHeader post={post} /> */}
           <div className="space-y-2">
-            <p className=" text-black text-sm dark:text-gray-300  md:px-3 px-2.5">
+            <p className="whitespace-pre-line break-words text-black text-sm dark:text-gray-300  md:px-3 px-2.5">
               {post.text}
             </p>
 
-            <div className="flex flex-wrap gap-2  md:px-3  px-2.5">
+            <div className="flex flex-wrap gap-1  md:px-3  px-2.5">
               {post?.hashtags?.map((tag, index) => (
                 <span key={index} className="text-sm green-accent">
                   #{tag}

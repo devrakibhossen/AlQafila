@@ -141,20 +141,35 @@ body {
   @apply flex  justify-between items-center;
 }
 
-.green-accent {
-  color: #10b981; /* Emerald Green */
+/* .green-accent {
+  color: #10b981;
 }
 .hover-green-accent:hover {
-  color: #10b981; /* Emerald Green */
+  color: #10b981; 
+} */
+.green-accent {
+  color: #104e80; /* Emerald Green */
+}
+.hover-green-accent:hover {
+  color: #104e80; /* Emerald Green */
 }
 
-.bg-green-accent {
+/* .bg-green-accent {
   background-color: #10b981;
 }
 .hover-bg-green-accent:hover {
   background-color: #10b981;
+} */
+.bg-green-accent {
+  background-color: #104e80;
+}
+.hover-bg-green-accent:hover {
+  background-color: #104e80;
 }
 
-.border-green-accent {
+/* .border-green-accent {
   border: 1px solid #10b981;
+} */
+.border-green-accent {
+  border: 1px solid #104e80;
 }

@@ -51,7 +51,7 @@ const Navbar = () => {
           <Link href="/">
             <Image
               className="w-40 h-[51px]"
-              src="/alQafila.png"
+              src="/alQafila1.png"
               alt="logo"
               width={200}
               height={150}
