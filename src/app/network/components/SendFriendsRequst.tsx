@@ -109,7 +109,7 @@ const SendFriendsRequest = () => {
         {users.map((user) => (
           <div
             key={user._id}
-            className="flex flex-col items-center justify-between p-3 border rounded-lg hover:shadow transition"
+            className="flex flex-col items-center justify-between p-3 border  rounded-lg hover:shadow transition"
           >
             <div className="flex flex-col items-center gap-3 mb-3">
               {user.profileImage ? (
@@ -131,7 +131,7 @@ const SendFriendsRequest = () => {
                   {user.name || user.username}
                 </p>
                 <p className="text-xs dark:text-gray-300 text-gray-500">
-                  @{user.username}
+                  @{user.username.slice(0,12)}.
                 </p>
               </div>
             </div>

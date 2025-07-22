@@ -51,7 +51,7 @@ const RightSidebar = () => {
 
   return (
     <section className="w-10/12 mr-10 lg:mr-14 hidden lg:block">
-      <div className="hidden bg-white dark:bg-zinc-900 p-4 rounded-md mb-5 shadow-md border border-gray-200 dark:border-zinc-700 w-full max-w-md mx-auto">
+      <div className="hidden bg-white dark:bg-[#0B1222] p-4 rounded-md mb-5 shadow-md border border-gray-200 dark:border-zinc-700 w-full max-w-md mx-auto">
         <div className="flex items-center justify-between border-b border-gray-200 dark:border-zinc-700 pb-3 mb-3">
           <div>
             <div className=" justifyBetween">
@@ -98,7 +98,7 @@ const RightSidebar = () => {
         </div>
       </div>
 
-      <div className="bg-white border dark:bg-zinc-900 p-4 flex flex-col  space-y-4  rounded-md mb-5">
+      <div className="bg-white border dark:border-zinc-800/40 dark:bg-zinc-900 p-4 flex flex-col  space-y-4  rounded-md mb-5">
         <div className="flex justify-between  items-center border-b pb-3">
           <h3 className="text-gray-700 dark:text-white text-lg font-semibold">
             People Around You
@@ -145,7 +145,7 @@ const RightSidebar = () => {
         ))}
       </div>
 
-      <div className="bg-white border  dark:bg-zinc-900 p-4 flex flex-col  space-y-4  rounded-md mb-5">
+      <div className="bg-white border dark:border-zinc-800/40 dark:bg-zinc-900 p-4 flex flex-col  space-y-4  rounded-md mb-5">
         <h2 className="text-gray-700 dark:text-white text-lg font-semibold border-b pb-3">
           Trending hashtags
         </h2>

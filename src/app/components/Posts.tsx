@@ -74,7 +74,7 @@ const Posts = () => {
       {posts?.map((post) => (
         <div
           key={post._id}
-          className="bg-white dark:bg-zinc-900 border rounded-md mb-1.5 "
+          className="bg-white dark:bg-zinc-900 dark:border-zinc-800/40 border rounded-md mb-1.5 "
         >
           <PostHeader />
           {/* <PostHeader post={post} /> */}

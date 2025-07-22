@@ -7,8 +7,8 @@ import FollowingandFollower from "./FollowingandFollower";
 const Networksidebar = () => {
   const [activeSection, setActiveSection] = useState<string>("friendRequest");
   return (
-     <div className="grid md:grid-cols-4 gap-5">
-      <div className="md:col-span-1 bg-white dark:bg-zinc-900 p-6  border rounded-md h-56">
+    <div className="grid md:grid-cols-4 gap-5">
+      <div className="md:col-span-1 bg-white dark:bg-zinc-900 md:p-6 p-3  border dark:border-zinc-800/40 rounded-md h-56">
         <h3 className="text-md font-semibold dark:text-white text-gray-800">
           Manage my network
         </h3>
@@ -46,7 +46,7 @@ const Networksidebar = () => {
           </button>
         </div>
       </div>
-      <div className="md:col-span-3 bg-white dark:bg-zinc-900 p-6  border rounded-md ">
+      <div className="md:col-span-3 bg-white dark:bg-zinc-900 md:p-6 p-3  border dark:border-zinc-800/40 rounded-md ">
         {activeSection === "friendRequest" && (
           <>
             <FriendRequest />

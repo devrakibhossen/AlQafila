@@ -5,8 +5,8 @@ export const metadata: Metadata = {
 };
 const Page = () => {
   return (
-    <div className="mb-20 w-11/12 mx-auto">
-        <Networksidebar />
+    <div className="mb-20 md:w-11/12 md:px-0 px-1 mx-auto">
+      <Networksidebar />
     </div>
   );
 };
