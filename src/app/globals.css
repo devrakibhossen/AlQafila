@@ -148,10 +148,10 @@ body {
   color: #10b981; 
 } */
 .green-accent {
-  color: #104e80; /* Emerald Green */
+  color: #0866ff; /* Emerald Green */
 }
 .hover-green-accent:hover {
-  color: #104e80; /* Emerald Green */
+  color: #0866ff; /* Emerald Green */
 }
 
 /* .bg-green-accent {
@@ -161,15 +161,15 @@ body {
   background-color: #10b981;
 } */
 .bg-green-accent {
-  background-color: #104e80;
+  background-color: #0866ff;
 }
 .hover-bg-green-accent:hover {
-  background-color: #104e80;
+  background-color: #0866ff;
 }
 
 /* .border-green-accent {
   border: 1px solid #10b981;
 } */
 .border-green-accent {
-  border: 1px solid #104e80;
+  border: 1px solid #0866ff;
 }

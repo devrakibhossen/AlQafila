@@ -246,7 +246,9 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ src }) => {
         src={src}
         muted={isMuted}
         preload="metadata"
-        className="w-full h-auto max-h-[500px] object-contain cursor-pointer" // object-contain for better aspect ratio fitting
+        className={`w-full object-contain cursor-pointer ${
+          isFullscreen ? "h-screen" : "h-auto max-h-[500px]"
+        }`} // object-contain for better aspect ratio fitting
         onClick={togglePlay}
         aria-label="Video player"
       />
@@ -279,7 +281,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ src }) => {
 
       {/* Progress bar and time display */}
       <div
-        className={`absolute bottom-16 left-0 right-0 px-6 z-8 transition-transform transition-opacity duration-300 ${
+        className={`absolute hidden md:block bottom-16 left-0 right-0 px-6 z-8 transition-transform transition-opacity duration-300 ${
           showControls
             ? "translate-y-0 opacity-100"
             : "translate-y-full opacity-0 pointer-events-none" // pointer-events-none to prevent interaction when hidden
@@ -293,7 +295,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ src }) => {
             max="100"
             value={progress}
             onChange={handleProgressChange}
-            className="flex-1 h-1.5 appearance-none bg-gray-600 rounded-full cursor-pointer 
+            className="flex-1 h-1.5 appearance-none bg-[#0866FF] rounded-full cursor-pointer 
                        [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 
                        [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white 
                        [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:transition-all [&::-webkit-slider-thumb]:duration-150
@@ -319,7 +321,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ src }) => {
         <div className="flex items-center gap-4">
           <button
             onClick={togglePlay}
-            className="p-2 rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+            className="hidden md:block  p-2 rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
             aria-label={isPlaying ? "Pause" : "Play"}
           >
             {isPlaying ? (
@@ -349,7 +351,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ src }) => {
               step="0.01"
               value={volume}
               onChange={handleVolumeChange}
-              className="w-24 h-1.5 bg-gray-600 rounded-full appearance-none 
+              className="hidden md:block  w-24 h-1.5 bg-[#0866FF] rounded-full appearance-none 
                          [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 
                          [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white 
                          [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:transition-all [&::-webkit-slider-thumb]:duration-150
@@ -362,7 +364,7 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ src }) => {
         {/* Right Controls */}
         <div className="flex items-center gap-4">
           <select
-            className="bg-white/10 text-white rounded-lg px-2 py-1.5 text-sm border border-white/20 
+            className="hidden md:block  bg-white/10 text-white rounded-lg px-2 py-1.5 text-sm border border-white/20 
                        focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 backdrop-blur-sm cursor-pointer"
             value={speed}
             onChange={changeSpeed}

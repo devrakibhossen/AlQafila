@@ -5,7 +5,7 @@ const loading = () => {
     <div className="flex flex-col gap-5 justify-center items-center h-screen">
       <Image
         className="w-40 h-[51px] animate-fade-in"
-        src="/alQafila1.png"
+        src="/alQafila2.png"
         alt="logo"
         width={200}
         height={150}
