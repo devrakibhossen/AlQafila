@@ -4,7 +4,6 @@ import { FaRegComment } from "react-icons/fa";
 import { SlLike } from "react-icons/sl";
 import { ImageIcon, Paperclip, Smile } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
-import { MdOutlineBookmarkBorder } from "react-icons/md";
 import { useEffect, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 import {
@@ -15,7 +14,6 @@ import {
 import PostHeader from "./PostHeader";
 import Reaction from "./Reaction";
 import Share from "./Share";
-import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
 import { fetchPosts } from "@/store/features/postsSlice";
@@ -25,7 +23,7 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import CustomVideoPlayer from "../watch/components/CustomVideoPlayer";
 import Loading from "./Loading";
-
+type ReactionType = "like" | "love";
 const Posts = () => {
   const [commentOpen, setCommentOpen] = useState<string | null>(null);
   const dispatch = useDispatch<AppDispatch>();
@@ -62,9 +60,10 @@ const Posts = () => {
     },
   ];
 
-  const handlePostSave = () => {
-    toast.success("Post Saved Successfully!");
-  };
+  const reactions: { type: ReactionType; image: string; label: string }[] = [
+    { type: "like", image: "/ReactionIcon/like.png", label: "Like" },
+    { type: "love", image: "/ReactionIcon/love.png", label: "Love" },
+  ];
 
   if (loading) {
     return <Loading />;
@@ -119,31 +118,40 @@ const Posts = () => {
             {post?.video?.video && (
               <CustomVideoPlayer src={post?.video?.video} />
             )}
-            <div className="mb-3.5 md:px-3  px-2.5 ">
+            <div className="mb-2 md:px-3  px-2.5 ">
               <div className="justifyBetween gap-1.5 pb-1.5 ">
-                <p className="text-[12px]">15 Likes</p>
+                <div className="text-[12px] flex items-center gap-1">
+                  <div className="flex items-center -space-x-1  overflow-x-auto   rounded-lg">
+                    {reactions.map((reaction, index) => (
+                      <div key={index} className="min-w-fit">
+                        <Image
+                          src={reaction.image}
+                          alt={`Avatar ${index + 1}`}
+                          width={40}
+                          height={40}
+                          className="rounded-full w-5 h-5"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  2
+                </div>
                 <div className="flex items-center gap-2">
                   <p className="text-[12px]">0 Comments,</p>
                   <p className="text-[12px]">{post.shares || 0} Shares</p>
                 </div>
               </div>
 
-              <div className=" justifyBetween gap-1.5  border-t py-1.5">
+              <div className=" grid grid-cols-3 gap-2 border-t pt-1.5">
                 <Reaction />
                 <div
                   onClick={() => setCommentOpen}
-                  className="flex  gap-1.5 items-center cursor-pointer"
+                  className="flex justify-center gap-1.5 items-center cursor-pointer hover:bg-gray-200 dark:hover:bg-black p-1.5 rounded-md transition-colors duration-300"
                 >
                   <FaRegComment />
                   <p className="text-[13px] ">Comments</p>
                 </div>
-                <div
-                  onClick={() => handlePostSave()}
-                  className="flex  gap-1.5 items-center cursor-pointer "
-                >
-                  <MdOutlineBookmarkBorder />
-                  <p className="text-[13px]">Save</p>
-                </div>
+
                 <Share />
               </div>
             </div>

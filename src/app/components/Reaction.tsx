@@ -5,7 +5,6 @@ import { BiLike } from "react-icons/bi";
 type ReactionType =
   | "like"
   | "love"
-  | "smart"
   | "funny"
   | "wow"
   | "sad"
@@ -17,7 +16,6 @@ const Reaction = () => {
   const [counts, setCounts] = useState<Record<ReactionType, number>>({
     like: 3,
     love: 2,
-    smart: 3,
     funny: 5,
     wow: 5,
     sad: 5,
@@ -40,7 +38,7 @@ const Reaction = () => {
   const reactions: { type: ReactionType; image: string; label: string }[] = [
     { type: "like", image: "/ReactionIcon/like.png", label: "Like" },
     { type: "love", image: "/ReactionIcon/love.png", label: "Love" },
-    { type: "smart", image: "/ReactionIcon/smart.png", label: "Smart" },
+    // { type: "smart", image: "/ReactionIcon/smart.png", label: "Smart" },
     { type: "funny", image: "/ReactionIcon/funny.png", label: "Funny" },
     { type: "wow", image: "/ReactionIcon/wow.png", label: "Wow" },
     { type: "sad", image: "/ReactionIcon/sad.png", label: "Sad" },
@@ -51,15 +49,12 @@ const Reaction = () => {
 
   return (
     <div className="relative inline-block">
-      {/* Reaction Container */}
       <div
         className="relative"
         onMouseEnter={() => setShowReactions(true)}
         onMouseLeave={() => setShowReactions(false)}
       >
-        {/* Default selected or like button */}
-        {/* Default selected or like button */}
-        <button className="flex items-center gap-1 text-sm">
+        <button className="flex justify-center gap-1.5 items-center cursor-pointer hover:bg-gray-200 dark:hover:bg-black p-1.5 rounded-md w-full transition-colors duration-300">
           {selectedReaction ? (
             <>
               <Image
@@ -79,14 +74,13 @@ const Reaction = () => {
           )}
         </button>
 
-        {/* Reaction icons on hover */}
         {showReactions && (
-          <div className="absolute shadow-2xl w-72 h-12 bg-white dark:bg-zinc-900 -top-12 left-0 flex gap-2.5 px-1.5  rounded-full  transition-all duration-200 z-10">
+          <div className="absolute shadow-2xl w-62 h-12 bg-white dark:bg-zinc-900 -top-12 left-0 flex gap-2.5 px-1.5  rounded-full  transition-all duration-200 z-10">
             {reactions.map(({ type, image, label }) => (
               <button
                 key={type}
                 onClick={() => handleReact(type)}
-                className={`relative hover:scale-125 transition-all duration-150 ${
+                className={`relative hover:scale-150 transition-all duration-150 ${
                   selected === type ? "opacity-100" : "opacity-80"
                 }`}
                 title={label}

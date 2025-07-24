@@ -1,8 +1,10 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
 import React, { useState } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import { MdOutlineBookmarkBorder } from "react-icons/md";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,6 +32,13 @@ const PostHeader = () => {
     console.log("Following");
     setFollowing(!following);
   };
+
+  
+  const handlePostSave = () => {
+      toast.success("Post Saved Successfully!");
+  };
+
+
   return (
     <div className="justifyBetween gap-1.5  mb-3.5 md:px-3 pt-3  px-2.5 ">
       <div className="flex gap-1.5 items-center">
@@ -55,16 +64,12 @@ const PostHeader = () => {
         </div>
       </div>
       <div className="justifyBetween gap-1.5">
-        {post.profileStatus === "follow" ? (
+        {post.profileStatus === "follow" && (
           <button
             onClick={() => handleFollowing()}
             className="py-1 text-sm px-4  green-accent  cursor-pointer"
           >
             {following ? "following" : "Follow"}
-          </button>
-        ) : (
-          <button className="py-1 text-sm px-4  green-accent  cursor-pointer">
-            Request
           </button>
         )}
         <DropdownMenu>
@@ -77,6 +82,15 @@ const PostHeader = () => {
                 <MdOutlineReportProblem className="h-4 w-4" />
                 <span>Reports</span>
               </div>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+             <div
+                  onClick={() => handlePostSave()}
+                  className="flex  gap-1.5 items-center cursor-pointer "
+                >
+                  <MdOutlineBookmarkBorder />
+                  <p className="text-[13px]">Save</p>
+                </div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
