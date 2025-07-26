@@ -4,6 +4,7 @@ import {
   declineFriendRequest,
   getFriendsRequest,
   getMyFriends,
+  getSentFriendsRequest,
 } from "./friendsRequestApi";
 
 interface FriendRequestType {
@@ -26,6 +27,7 @@ interface FriendRequestType {
 type friendRequestState = {
   friendRequest: FriendRequestType[];
   myFriends: FriendRequestType[];
+  mySentRequest: FriendRequestType[];
   isLoading: boolean;
   isError: boolean;
   error: string | null;
@@ -34,6 +36,7 @@ type friendRequestState = {
 const initialState: friendRequestState = {
   friendRequest: [],
   myFriends: [],
+  mySentRequest: [],
   isLoading: false,
   isError: false,
   error: null,
@@ -44,6 +47,14 @@ export const fetchFriendRequests = createAsyncThunk(
   "friendRequest/fetch",
   async (userId: string) => {
     const data = await getFriendsRequest(userId);
+    return data;
+  }
+);
+// fetch
+export const fetchSentFriendsRequest = createAsyncThunk(
+  "friendRequest/fetchMySetFriends",
+  async (userId: string) => {
+    const data = await getSentFriendsRequest(userId);
     return data;
   }
 );
@@ -101,6 +112,25 @@ const friendRequestSlice = createSlice({
       state.isError = true;
       state.error = action.error.message || "Something went wrong";
     });
+
+    //
+    builder.addCase(fetchSentFriendsRequest.pending, (state) => {
+      state.isLoading = true;
+      state.isError = false;
+      state.error = null;
+    });
+
+    builder.addCase(fetchSentFriendsRequest.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.mySentRequest = action.payload;
+    });
+
+    builder.addCase(fetchSentFriendsRequest.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.error = action.error.message || "Something went wrong";
+    });
+    //
 
     builder.addCase(fetchMyFriends.pending, (state) => {
       state.isLoading = true;

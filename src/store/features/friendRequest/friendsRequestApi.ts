@@ -4,6 +4,12 @@ export const getFriendsRequest = async (userId: string) => {
   );
   return response.json();
 };
+export const getSentFriendsRequest = async (userId: string) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/friend/mySentRequests/${userId}`
+  );
+  return response.json();
+};
 
 export const acceptFriendRequest = async (requestId: string) => {
   const response = await fetch(

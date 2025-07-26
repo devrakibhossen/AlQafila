@@ -1,25 +1,50 @@
+import { useUser } from "@/context/UserContext";
+import { fetchSentFriendsRequest } from "@/store/features/friendRequest/friendRequestSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Image from "next/image";
+import { useEffect } from "react";
 
 const SentRequest = () => {
-  const friendRequest = [
-    {
-      id: "req1",
-      senderName: "Ahad Hossen",
-      senderAvatar: "https://i.ibb.co/LDzBmzPd/review-2.jpg",
-      mutualFriends: 5,
-      status: "pending",
-      sentAt: "2025-04-29T10:15:00Z",
-    },
-    {
-      id: "req2",
-      senderName: "Ayesha Akter",
-      senderAvatar: "https://i.ibb.co/ypkgK0X/blue-beanie.png",
-      mutualFriends: 3,
-      status: "pending",
-      sentAt: "2025-04-28T16:45:00Z",
-    },
-   
-  ];
+  const { userInfo } = useUser();
+  const userId = userInfo?._id;
+  const dispatch = useAppDispatch();
+  const { mySentRequest, isLoading } = useAppSelector(
+    (state) => state.friendRequest
+  );
+
+  useEffect(() => {
+    if (userId) {
+      dispatch(fetchSentFriendsRequest(userId));
+    }
+  }, [userId, dispatch]);
+
+  //   const friendRequest = [
+  //     {
+  //       id: "req1",
+  //       senderName: "Ahad Hossen",
+  //       senderAvatar: "https://i.ibb.co/LDzBmzPd/review-2.jpg",
+  //       mutualFriends: 5,
+  //       status: "pending",
+  //       sentAt: "2025-04-29T10:15:00Z",
+  //     },
+  //     {
+  //       id: "req2",
+  //       senderName: "Ayesha Akter",
+  //       senderAvatar: "https://i.ibb.co/ypkgK0X/blue-beanie.png",
+  //       mutualFriends: 3,
+  //       status: "pending",
+  //       sentAt: "2025-04-28T16:45:00Z",
+  //     },
+  //   ];
+
+  if (isLoading)
+    return (
+      <div className="flex flex-col gap-5 justify-center items-center min-h-[150px]">
+        <div className="w-12 h-12 border-2 border-[#0866ff] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+
+  console.log("mySentRequest", mySentRequest);
   return (
     <div>
       <div className="">
@@ -28,7 +53,7 @@ const SentRequest = () => {
         </h3>
 
         <div className="space-y-4 mt-4">
-          {friendRequest.length === 0 ? (
+          {mySentRequest.length === 0 ? (
             <div className="text-xs flex flex-col gap-2 justify-center items-center text-center min-h-[100px]">
               <Image
                 className="w-40 "
@@ -38,28 +63,28 @@ const SentRequest = () => {
                 height={300}
                 priority
               />
-              <p>There is no pending request</p>
+              <p>There is no sent request</p>
             </div>
           ) : (
-            friendRequest.map((req) => (
+            mySentRequest?.map((req) => (
               <div
-                key={req.id}
+                key={req?._id}
                 className="flex items-center justify-between p-3 border rounded-lg hover:shadow transition"
               >
                 <div className="flex items-center gap-3">
                   <Image
-                    src={req.senderAvatar}
-                    alt={req.senderName}
+                    src={req?.profileImage}
+                    alt={req?.name}
                     className="w-12 h-12 rounded-full object-cover"
                     width={48}
                     height={48}
                   />
                   <div>
                     <p className="font-medium dark:text-white text-gray-800">
-                      {req.senderName}
+                      {req?.name}
                     </p>
                     <p className="text-sm dark:text-gray-300 text-gray-500">
-                      @{req.mutualFriends} 
+                      @{req?.username}
                     </p>
                   </div>
                 </div>
