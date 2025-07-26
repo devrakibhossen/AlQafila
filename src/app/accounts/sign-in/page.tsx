@@ -40,7 +40,7 @@ const Page = () => {
             </Link>
           </p>
         </div>
-        <div className="bg-green-50 dark:bg-zinc-950 w-full p-8 rounded-xl lg:flex flex-col items-center text-center hidden ">
+        <div className="bg-green-50 dark:bg-zinc-950 w-full p-8 rounded-xl lg:flex flex-col justify-center items-center text-center hidden ">
           <Image
             src="/Svg/signin.svg"
             alt="Sign In Illustration"

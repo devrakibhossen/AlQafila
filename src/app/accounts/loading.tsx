@@ -1,7 +1,7 @@
 const loading = () => {
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="w-12 h-12 border-2 border-[#0866FF] border-t-transparent rounded-full animate-spin"></div>
+      <div className="w-12 h-12 border-2 border-[#0866ff] border-t-transparent rounded-full animate-spin"></div>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./features/userSlice";
 import postsReducer from "./features/postsSlice";
 import aboutReducer from "./features/aboutSlice";
+import friendRequestReducer from "./features/friendRequest/friendRequestSlice";
 import socketReducer from "./features/socketSlice";
 export const makeStore = () => {
   return configureStore({
@@ -9,6 +10,7 @@ export const makeStore = () => {
       user: userReducer,
       posts: postsReducer,
       about: aboutReducer,
+      friendRequest: friendRequestReducer,
       socket: socketReducer,
     },
   });

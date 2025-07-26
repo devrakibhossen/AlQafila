@@ -43,11 +43,11 @@ const FollowingandFollower = () => {
           Following & Follower
         </h3>
         <div className=" border-b flex space-x-6 text-sm font-medium dark:text-gray-300 text-gray-700">
-          <button className="pb-2 text-sm border-b-2 border-[#10b981]">
+          <button className="pb-2 text-sm border-b-2 border-[#0866ff]">
             Following
           </button>
 
-          <button className="pb-2 text-sm hover:border-b-2 border-[#10b981]">
+          <button className="pb-2 text-sm hover:border-b-2 border-[#0866ff]">
             Followers
           </button>
         </div>

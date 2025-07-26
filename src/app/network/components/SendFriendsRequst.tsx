@@ -2,11 +2,9 @@
 
 import { useUser } from "@/context/UserContext";
 import { useSocket } from "@/hooks/useSocket";
-// import { RootState } from "@/store/store";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-// import { useSelector } from "react-redux";
 import { toast } from "sonner";
 
 interface UserDataProps {
@@ -25,10 +23,6 @@ const SendFriendsRequest = () => {
 
   const [users, setUsers] = useState<UserDataProps[]>([]);
   const [loading, setLoading] = useState(true);
-
-  // const notifications = useSelector(
-  //   (state: RootState) => state.socket.notifications
-  // );
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -52,7 +46,7 @@ const SendFriendsRequest = () => {
   if (loading)
     return (
       <div className="flex flex-col gap-5 justify-center items-center min-h-[150px]">
-        <div className="w-12 h-12 border-2 border-[#104e80] border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-2 border-[#0866ff] border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
 
@@ -95,17 +89,6 @@ const SendFriendsRequest = () => {
       <h3 className="text-sm mb-2 font-semibold dark:text-white text-gray-800">
         People around you
       </h3>
-
-      {/* notifications UI দেখানোর উদাহরণ (তুমি চাইলে এক্ষেত্রে ব্যবহার করতে পারো) */}
-      {/* 
-      <div>
-        {notifications.map((note, index) => (
-          <p key={index} className="text-sm text-green-600">
-            {note}
-          </p>
-        ))}
-      </div> 
-      */}
 
       <div className="grid lg:grid-cols-4 grid-cols-2 gap-4">
         {users.map((user) => (
