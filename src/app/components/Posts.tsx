@@ -83,7 +83,10 @@ const Posts = () => {
             }}
             createdAt={post?.createdAt}
           /> */}
-          <PostHeader authorInfo={post.authorId} createdAt={post.createdAt} />
+
+          {typeof post.authorId === "object" && (
+            <PostHeader authorInfo={post.authorId} createdAt={post.createdAt} />
+          )}
 
           <div className="space-y-2">
             <p className="whitespace-pre-line break-words text-black text-sm dark:text-gray-300  md:px-3 px-2.5">
