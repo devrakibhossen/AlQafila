@@ -94,7 +94,7 @@ const SendFriendsRequest = () => {
       </h3>
 
       <div className="grid lg:grid-cols-4 grid-cols-2 gap-4">
-        {users.length === 0 ? (
+        {users?.length === 0 ? (
           <div className="text-xs flex flex-col gap-2 justify-center items-center text-center min-h-[100px]">
             <Image
               className="w-40 "

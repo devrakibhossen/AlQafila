@@ -14,6 +14,17 @@ interface FriendRequestType {
   profileImage: string;
   email?: string;
 }
+interface SentFriendRequestType {
+  _id: string;
+  receiver:{
+    _id: string;
+    name?: string;
+    username: string;
+    profileImage?: string;
+    email?: string;
+  }
+ 
+}
 
 interface FriendRequestType {
   _id: string;
@@ -27,7 +38,7 @@ interface FriendRequestType {
 type friendRequestState = {
   friendRequest: FriendRequestType[];
   myFriends: FriendRequestType[];
-  mySentRequest: FriendRequestType[];
+  mySentRequest: SentFriendRequestType[];
   isLoading: boolean;
   isError: boolean;
   error: string | null;

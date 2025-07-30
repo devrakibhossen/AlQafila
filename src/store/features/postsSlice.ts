@@ -14,9 +14,15 @@ export interface PostImage {
   type: string;
   images: string;
 }
+interface AuthorType {
+  _id: string;
+  username: string;
+  profileImage?: string;
+  name?: string;
+}
 export interface Post {
   _id?: string;
-  authorEmail: string;
+  authorId: AuthorType;
   text: string;
   hashtags?: string[];
   images?: PostImage[];

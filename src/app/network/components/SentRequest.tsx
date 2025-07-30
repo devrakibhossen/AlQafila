@@ -1,8 +1,12 @@
 import { useUser } from "@/context/UserContext";
-import { fetchSentFriendsRequest } from "@/store/features/friendRequest/friendRequestSlice";
+import {
+  declineRequest,
+  fetchSentFriendsRequest,
+} from "@/store/features/friendRequest/friendRequestSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Image from "next/image";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
 const SentRequest = () => {
   const { userInfo } = useUser();
@@ -45,6 +49,12 @@ const SentRequest = () => {
     );
 
   console.log("mySentRequest", mySentRequest);
+
+  const handleCancelRequest = (id: string) => {
+    console.log(id);
+    dispatch(declineRequest(id));
+    toast.success("Cancel friend request ");
+  };
   return (
     <div>
       <div className="">
@@ -72,25 +82,34 @@ const SentRequest = () => {
                 className="flex items-center justify-between p-3 border rounded-lg hover:shadow transition"
               >
                 <div className="flex items-center gap-3">
-                  <Image
-                    src={req?.profileImage}
-                    alt={req?.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                    width={48}
-                    height={48}
-                  />
+                  {req?.receiver?.profileImage ? (
+                    <Image
+                      src={req?.receiver?.profileImage}
+                      alt={req?.receiver?.username || "Profile"}
+                      className="w-12 h-12 rounded-full object-cover"
+                      width={48}
+                      height={48}
+                    />
+                  ) : (
+                    <div className="w-12 h-12 flex items-center justify-center rounded-full border text-white font-semibold text-lg bg-green-accent">
+                      {req.receiver?.username?.charAt(0).toUpperCase()}
+                    </div>
+                  )}
                   <div>
                     <p className="font-medium dark:text-white text-gray-800">
-                      {req?.name}
+                      {req?.receiver?.name || req?.receiver?.username}
                     </p>
                     <p className="text-sm dark:text-gray-300 text-gray-500">
-                      @{req?.username}
+                      @{req?.receiver?.username.slice(0, 12)}
                     </p>
                   </div>
                 </div>
 
                 <div className="">
-                  <button className="md:text-md text-xs w-full rounded-full border px-3 py-1  hover:bg-gray-200 dark:hover:bg-black">
+                  <button
+                    onClick={() => handleCancelRequest(req?._id)}
+                    className="md:text-md text-xs w-full rounded-full border px-3 py-1  hover:bg-gray-200 dark:hover:bg-black"
+                  >
                     Cancel Request
                   </button>
                 </div>

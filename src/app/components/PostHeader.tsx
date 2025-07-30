@@ -12,32 +12,40 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MdOutlineReportProblem } from "react-icons/md";
-// interface PostType {
-//   profilePic: string;
-//   username: string;
-//   time: string;
-//   profileStatus: string;
-//   //   _id: string;
-// }
-// const PostHeader = ({ post }: { post: PostType }) => {
-const PostHeader = () => {
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+interface AuthorType {
+  _id: string;
+  profileImage?: string;
+  username: string;
+  name?: string;
+}
+
+const PostHeader = ({
+  authorInfo,
+  createdAt,
+}: {
+  authorInfo: AuthorType;
+  createdAt: string | undefined;
+}) => {
+  const { username, name, profileImage } = authorInfo;
   const [following, setFollowing] = useState<boolean>(false);
   const post = {
     profileStatus: "follow",
     profilePic: "",
     username: "",
   };
+
   const handleFollowing = () => {
-    // console.log(id);
     console.log("Following");
     setFollowing(!following);
   };
 
-  
   const handlePostSave = () => {
-      toast.success("Post Saved Successfully!");
+    toast.success("Post Saved Successfully!");
   };
 
+  dayjs.extend(relativeTime);
 
   return (
     <div className="justifyBetween gap-1.5  mb-3.5 md:px-3 pt-3  px-2.5 ">
@@ -46,20 +54,18 @@ const PostHeader = () => {
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA..."
           className="rounded-full w-9 h-9 "
-          src={
-            post?.profilePic || "https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
-          }
+          src={profileImage || "https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"}
           alt="logo"
           width={50}
           height={28}
           priority
         />
         <div>
-          <h3 className="text-black dark:text-white font-semibold">
-            <Link href="/">{post?.username || "Rakib Hossen"}</Link>
+          <h3 className="text-black text-md dark:text-white font-semibold">
+            <Link href="/">{name || username.slice(0, 11)}</Link>
           </h3>
-          <p className="text-[13px] dark:text-gray-300 text-gray-700">
-            15 hours ago
+          <p className="text-xs dark:text-gray-300 text-gray-700">
+            {dayjs(createdAt).fromNow()}
           </p>
         </div>
       </div>
@@ -84,13 +90,13 @@ const PostHeader = () => {
               </div>
             </DropdownMenuItem>
             <DropdownMenuItem className="cursor-pointer">
-             <div
-                  onClick={() => handlePostSave()}
-                  className="flex  gap-1.5 items-center cursor-pointer "
-                >
-                  <MdOutlineBookmarkBorder />
-                  <p className="text-[13px]">Save</p>
-                </div>
+              <div
+                onClick={() => handlePostSave()}
+                className="flex  gap-1.5 items-center cursor-pointer "
+              >
+                <MdOutlineBookmarkBorder />
+                <p className="text-[13px]">Save</p>
+              </div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

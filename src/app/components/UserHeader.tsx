@@ -2,15 +2,15 @@ import Image from "next/image";
 import React, { FC } from "react";
 
 interface UserHeaderProps {
-  name: string;
-  image: string;
+  name: string ;
+  image: string | undefined;
 }
 const UserHeader: FC<UserHeaderProps> = ({ name, image }) => {
   return (
     <div className="flex items-center gap-1.5 mb-3">
       <Image
         className="rounded-full h-11 w-11 border-2 border-gray-200 hover:border-primary transition-all"
-        src={image}
+        src={image || ""}
         alt="User Avatar"
         width={50}
         height={50}

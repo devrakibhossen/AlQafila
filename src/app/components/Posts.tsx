@@ -75,8 +75,16 @@ const Posts = () => {
           key={post._id}
           className="bg-white dark:bg-zinc-900 dark:border-zinc-800/40 border rounded-md mb-1.5 "
         >
-          <PostHeader />
-          {/* <PostHeader post={post} /> */}
+          {/* <PostHeader
+            authorInfo={{
+              profileImage: post?.authorId?.profileImage || "",
+              username: post?.authorId?.username || "",
+              name: post?.authorId?.name || "",
+            }}
+            createdAt={post?.createdAt}
+          /> */}
+          <PostHeader authorInfo={post.authorId} createdAt={post.createdAt} />
+
           <div className="space-y-2">
             <p className="whitespace-pre-line break-words text-black text-sm dark:text-gray-300  md:px-3 px-2.5">
               {post.text}

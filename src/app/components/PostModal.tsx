@@ -10,9 +10,11 @@ import UserHeader from "./UserHeader";
 
 import PostForm from "./PostForm";
 import { useState } from "react";
+import { useUser } from "@/context/UserContext";
 
 const PostModal = () => {
   const [open, setOpen] = useState(false);
+    const { userInfo } = useUser();
   return (
     <div className="w-full">
       <Dialog open={open} onOpenChange={setOpen}>
@@ -23,8 +25,8 @@ const PostModal = () => {
           <DialogHeader>
             <DialogTitle>
               <UserHeader
-                name="Rakib Hossen"
-                image="https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
+                name={userInfo?.name || "User"}
+                image={userInfo?.profileImage || ""}
               />
             </DialogTitle>
             <PostForm onPostSuccess={() => setOpen(false)} />

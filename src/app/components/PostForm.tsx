@@ -146,7 +146,7 @@ const PostForm = ({ onPostSuccess }: PostFormProps) => {
       }
       if (!userInfo?.email) return;
       const postData = {
-        authorEmail: userInfo?.email,
+        authorId: userInfo?._id,
         text: removeHashtags(values.text),
         hashtags: cleanTags,
         video: videoUrl
