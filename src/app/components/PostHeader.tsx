@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { MdOutlineBookmarkBorder } from "react-icons/md";
 import {
@@ -14,6 +14,7 @@ import {
 import { MdOutlineReportProblem } from "react-icons/md";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { UserPlus } from "lucide-react";
 interface AuthorType {
   _id: string;
   profileImage?: string;
@@ -29,17 +30,17 @@ const PostHeader = ({
   createdAt: string | undefined;
 }) => {
   const { username, name, profileImage } = authorInfo;
-  const [following, setFollowing] = useState<boolean>(false);
-  const post = {
-    profileStatus: "follow",
-    profilePic: "",
-    username: "",
-  };
+  // const [following, setFollowing] = useState<boolean>(false);
+  // const post = {
+  //   profileStatus: "follow",
+  //   profilePic: "",
+  //   username: "",
+  // };
 
-  const handleFollowing = () => {
-    console.log("Following");
-    setFollowing(!following);
-  };
+  // const handleFollowing = () => {
+  //   console.log("Following");
+  //   setFollowing(!following);
+  // };
 
   const handlePostSave = () => {
     toast.success("Post Saved Successfully!");
@@ -69,37 +70,44 @@ const PostHeader = ({
           </p>
         </div>
       </div>
-      <div className="justifyBetween gap-1.5">
-        {post.profileStatus === "follow" && (
+      <div className="justifyBetween gap-3.5">
+        {/* {post.profileStatus === "follow" && (
           <button
             onClick={() => handleFollowing()}
             className="py-1 text-sm px-4  green-accent  cursor-pointer"
           >
             {following ? "following" : "Follow"}
           </button>
-        )}
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <HiOutlineDotsHorizontal className="text-lg cursor-pointer" />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-52  lg:mr-40 md:mr-11 mr-4  rounded-lg">
-            <DropdownMenuItem className="cursor-pointer">
-              <div className="flex items-center gap-2 text-red-400">
-                <MdOutlineReportProblem className="h-4 w-4" />
-                <span>Reports</span>
-              </div>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              <div
-                onClick={() => handlePostSave()}
-                className="flex  gap-1.5 items-center cursor-pointer "
-              >
-                <MdOutlineBookmarkBorder />
-                <p className="text-[13px]">Save</p>
-              </div>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        )} */}
+        <div className="mb-2 flex items-center gap-1 text-sm dark:text-muted-foreground hover:text-primary cursor-pointer">
+          <UserPlus className="w-4 h-4" />
+          <span>Request</span>
+        </div>
+
+        <div>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <HiOutlineDotsHorizontal className="text-lg cursor-pointer" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-48  lg:mr-40 md:mr-11 mr-4 dark:bg-zinc-900  rounded-md">
+              <DropdownMenuItem className="cursor-pointer border-b rounded-none">
+                <div className="flex items-center gap-2 ">
+                  <MdOutlineReportProblem className="h-4 w-4" />
+                  <span>Reports</span>
+                </div>
+              </DropdownMenuItem>
+              <DropdownMenuItem className="cursor-pointer rounded-none">
+                <div
+                  onClick={() => handlePostSave()}
+                  className="flex  gap-1.5 items-center cursor-pointer "
+                >
+                  <MdOutlineBookmarkBorder />
+                  <p className="text-[13px]">Save</p>
+                </div>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
     </div>
   );
