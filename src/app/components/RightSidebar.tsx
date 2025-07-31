@@ -5,6 +5,7 @@ import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { Skeleton } from "@/components/ui/skeleton"
 interface userDataProps {
   _id?: string;
   email: string;
@@ -34,7 +35,45 @@ const RightSidebar = () => {
     fetchUsers();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  // if (loading) return <p>Loading...</p>;
+  
+    if (loading) {
+  return (
+    <section className="w-10/12 mr-10 lg:mr-14 hidden lg:block">
+      {/* People Around You Skeleton */}
+      <div className="bg-white dark:bg-zinc-900 p-4 space-y-4 rounded-md border dark:border-zinc-800/40 mb-5">
+        <div className="flex justify-between items-center border-b pb-3">
+          <Skeleton className="w-32 h-5 rounded" />
+          <Skeleton className="w-5 h-5 rounded-full" />
+        </div>
+
+        {[...Array(6)].map((_, i) => (
+          <div key={i} className="flex justify-between items-center gap-3">
+            <div className="flex gap-3 items-center">
+              <Skeleton className="w-10 h-10 rounded-full" />
+              <div className="space-y-1">
+                <Skeleton className="w-28 h-3 rounded" />
+                <Skeleton className="w-20 h-2 rounded" />
+              </div>
+            </div>
+            <Skeleton className="w-16 h-6 rounded-full" />
+          </div>
+        ))}
+      </div>
+
+      {/* Optional: Hashtag section skeleton */}
+      <div className="bg-white dark:bg-zinc-900 p-4 space-y-3 rounded-md border dark:border-zinc-800/40 mb-5">
+        <Skeleton className="w-40 h-5 rounded" />
+        <div className="flex flex-wrap gap-2">
+          {[...Array(6)].map((_, i) => (
+            <Skeleton key={i} className="w-24 h-6 rounded-full" />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
   const hashtags = [
     "#ReactJS",
