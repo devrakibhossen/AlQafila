@@ -14,7 +14,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { MdOutlineEdit } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { updateUserAbout } from "../../../store/features/aboutSlice";
 import { useState } from "react";
 import { AppDispatch } from "@/store/store";
 import { updateAboutInfo } from "@/store/features/userProfile/userProfileSlice";

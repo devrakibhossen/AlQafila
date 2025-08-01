@@ -37,60 +37,63 @@ const ProfileContent = ({ username }: ProfileContentProps) => {
 
   if (isLoading) {
     return (
-      <div className="space-y-6 w-11/12 mx-auto">
-        {/* Cover Image */}
-        <Skeleton className="w-full h-52 rounded-md" />
+      <div className="grid grid-cols-3 gap-5 w-11/12 mx-auto">
+        <div className="col-span-2  space-y-6">
+          {/* Cover Image */}
+          <Skeleton className="w-full h-52 rounded-md" />
 
-        {/* Profile Picture and Info */}
-        <div className="flex items-center gap-4 -mt-12 px-4">
-          <Skeleton className="w-24 h-24 rounded-full border-4 border-white shadow-md" />
-          <div className="space-y-2">
-            <Skeleton className="h-6 w-40 rounded-md" />
-            <Skeleton className="h-4 w-60 rounded-md" />
-            <Skeleton className="h-4 w-32 rounded-md" />
+          {/* Profile Picture and Info */}
+          <div className="flex items-center gap-4 -mt-12 px-4">
+            <Skeleton className="w-24 h-24 rounded-full border-4 border-white shadow-md" />
+            <div className="space-y-2">
+              <Skeleton className="h-6 w-40 rounded-md" />
+              <Skeleton className="h-4 w-60 rounded-md" />
+              <Skeleton className="h-4 w-32 rounded-md" />
+            </div>
+          </div>
+
+          {/* Follower / Following */}
+          <div className="flex gap-4 px-4">
+            <Skeleton className="h-4 w-24 rounded-md" />
+            <Skeleton className="h-4 w-24 rounded-md" />
+          </div>
+
+          {/* About Section */}
+          <div className="px-4">
+            <Skeleton className="h-6 w-24 mb-2 rounded-md" />
+            <Skeleton className="h-4 w-full mb-1 rounded-md" />
+            <Skeleton className="h-4 w-5/6 mb-1 rounded-md" />
+            <Skeleton className="h-4 w-4/6 mb-1 rounded-md" />
           </div>
         </div>
+        <div className="col-span-1  space-y-6">
+          {/* Education */}
+          <div className="px-4 space-y-4">
+            <Skeleton className="h-6 w-24 mb-1 rounded-md" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-1/2 rounded-md" />
+              <Skeleton className="h-4 w-2/3 rounded-md" />
+            </div>
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-1/2 rounded-md" />
+              <Skeleton className="h-4 w-2/3 rounded-md" />
+            </div>
+          </div>
 
-        {/* Follower / Following */}
-        <div className="flex gap-4 px-4">
-          <Skeleton className="h-4 w-24 rounded-md" />
-          <Skeleton className="h-4 w-24 rounded-md" />
-        </div>
+          {/* Experience */}
+          <div className="px-4 space-y-4">
+            <Skeleton className="h-6 w-24 mb-1 rounded-md" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-1/2 rounded-md" />
+              <Skeleton className="h-4 w-2/3 rounded-md" />
+            </div>
+          </div>
 
-        {/* About Section */}
-        <div className="px-4">
-          <Skeleton className="h-6 w-24 mb-2 rounded-md" />
-          <Skeleton className="h-4 w-full mb-1 rounded-md" />
-          <Skeleton className="h-4 w-5/6 mb-1 rounded-md" />
-          <Skeleton className="h-4 w-4/6 mb-1 rounded-md" />
-        </div>
-
-        {/* Education */}
-        <div className="px-4 space-y-4">
-          <Skeleton className="h-6 w-24 mb-1 rounded-md" />
-          <div className="space-y-2">
-            <Skeleton className="h-4 w-1/2 rounded-md" />
+          {/* Profile URL */}
+          <div className="px-4">
+            <Skeleton className="h-6 w-32 mb-2 rounded-md" />
             <Skeleton className="h-4 w-2/3 rounded-md" />
           </div>
-          <div className="space-y-2">
-            <Skeleton className="h-4 w-1/2 rounded-md" />
-            <Skeleton className="h-4 w-2/3 rounded-md" />
-          </div>
-        </div>
-
-        {/* Experience */}
-        <div className="px-4 space-y-4">
-          <Skeleton className="h-6 w-24 mb-1 rounded-md" />
-          <div className="space-y-2">
-            <Skeleton className="h-4 w-1/2 rounded-md" />
-            <Skeleton className="h-4 w-2/3 rounded-md" />
-          </div>
-        </div>
-
-        {/* Profile URL */}
-        <div className="px-4">
-          <Skeleton className="h-6 w-32 mb-2 rounded-md" />
-          <Skeleton className="h-4 w-2/3 rounded-md" />
         </div>
       </div>
     );
