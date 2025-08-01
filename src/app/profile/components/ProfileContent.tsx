@@ -6,55 +6,95 @@ import ProfileEngagement from "../components/ProfileEngagement";
 import { useUser } from "@/context/UserContext";
 import PersonalInfo from "../components/PersonalInfo";
 import About from "../components/About";
-// import { useEffect, useState } from "react";
-
-interface UserData {
-  _id: string;
-  name: string;
-  username: string;
-  email: string;
-  about: string;
-  education: [
-    {
-      _id: string;
-      institute: string;
-      degree: string;
-      image: string;
-      startYear: string;
-      endYear: string;
-      gpa: string;
-    }
-  ];
-  experience: [
-    {
-      _id: string;
-      title: string;
-      company: string;
-      image: string;
-      startYear: string;
-      endYear: string;
-      duration: string;
-    }
-  ];
-  bio: string;
-  locations: string;
-  profileImage: string | null;
-  coverImage: string | null;
-}
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchUserProfile } from "@/store/features/userProfile/userProfileSlice";
+import { AppDispatch, RootState } from "@/store/store";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface ProfileContentProps {
-  user: UserData;
+  username: string;
 }
-const ProfileContent = ({ user }: ProfileContentProps) => {
-  // const [user, setUser] = useState<any>(null);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState("");
-
+const ProfileContent = ({ username }: ProfileContentProps) => {
   const { userInfo } = useUser();
 
-  console.log("user", user);
+  const dispatch = useDispatch<AppDispatch>();
+  const { userProfile, isLoading } = useSelector(
+    (state: RootState) => state.userProfile
+  );
 
-  const isEditOption = userInfo?.email === user?.email;
+  useEffect(() => {
+    if (username) {
+      dispatch(fetchUserProfile(username));
+    }
+  }, [dispatch, username]);
+
+  console.log("User form redux ", userProfile);
+
+  // console.log("user", user);
+
+  const isEditOption = userInfo?.email === userProfile?.email;
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6 w-11/12 mx-auto">
+        {/* Cover Image */}
+        <Skeleton className="w-full h-52 rounded-md" />
+
+        {/* Profile Picture and Info */}
+        <div className="flex items-center gap-4 -mt-12 px-4">
+          <Skeleton className="w-24 h-24 rounded-full border-4 border-white shadow-md" />
+          <div className="space-y-2">
+            <Skeleton className="h-6 w-40 rounded-md" />
+            <Skeleton className="h-4 w-60 rounded-md" />
+            <Skeleton className="h-4 w-32 rounded-md" />
+          </div>
+        </div>
+
+        {/* Follower / Following */}
+        <div className="flex gap-4 px-4">
+          <Skeleton className="h-4 w-24 rounded-md" />
+          <Skeleton className="h-4 w-24 rounded-md" />
+        </div>
+
+        {/* About Section */}
+        <div className="px-4">
+          <Skeleton className="h-6 w-24 mb-2 rounded-md" />
+          <Skeleton className="h-4 w-full mb-1 rounded-md" />
+          <Skeleton className="h-4 w-5/6 mb-1 rounded-md" />
+          <Skeleton className="h-4 w-4/6 mb-1 rounded-md" />
+        </div>
+
+        {/* Education */}
+        <div className="px-4 space-y-4">
+          <Skeleton className="h-6 w-24 mb-1 rounded-md" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-1/2 rounded-md" />
+            <Skeleton className="h-4 w-2/3 rounded-md" />
+          </div>
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-1/2 rounded-md" />
+            <Skeleton className="h-4 w-2/3 rounded-md" />
+          </div>
+        </div>
+
+        {/* Experience */}
+        <div className="px-4 space-y-4">
+          <Skeleton className="h-6 w-24 mb-1 rounded-md" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-1/2 rounded-md" />
+            <Skeleton className="h-4 w-2/3 rounded-md" />
+          </div>
+        </div>
+
+        {/* Profile URL */}
+        <div className="px-4">
+          <Skeleton className="h-6 w-32 mb-2 rounded-md" />
+          <Skeleton className="h-4 w-2/3 rounded-md" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="mb-5 w-11/12 mx-auto">
@@ -66,7 +106,10 @@ const ProfileContent = ({ user }: ProfileContentProps) => {
             {/* Cover Image */}
             <div className="relative w-full h-48">
               <Image
-                src={user?.coverImage || "https://i.ibb.co/0y30WvBH/image.png"}
+                src={
+                  userProfile?.coverImage ||
+                  "https://i.ibb.co/0y30WvBH/image.png"
+                }
                 alt="Cover"
                 fill
                 className="object-cover "
@@ -81,7 +124,8 @@ const ProfileContent = ({ user }: ProfileContentProps) => {
                 <Image
                   className="rounded-full border-4 border-white object-cover w-20 h-20 shadow-md"
                   src={
-                    user?.profileImage || "https://i.ibb.co/h5z5rWx/image.png"
+                    userProfile?.profileImage ||
+                    "https://i.ibb.co/h5z5rWx/image.png"
                   }
                   alt="Profile"
                   width={80}
@@ -92,13 +136,13 @@ const ProfileContent = ({ user }: ProfileContentProps) => {
               <div className="pt-12 flex justify-between  items-center gap-5">
                 <div className="space-y-1">
                   <h3 className="text-xl font-bold text-black dark:text-white">
-                    {user?.name}
+                    {userProfile?.name}
                   </h3>
                   <p className="text-sm text-gray-700 dark:text-gray-300">
-                    {user?.bio}
+                    {userProfile?.bio}
                   </p>
                   <p className="text-sm text-gray-700 dark:text-gray-300">
-                    {user?.locations}
+                    {userProfile?.locations}
                   </p>
                   <div className="flex items-center gap-2.5 green-accent">
                     <p className="text-sm ">3k Follower</p>
@@ -106,16 +150,28 @@ const ProfileContent = ({ user }: ProfileContentProps) => {
                   </div>
                 </div>
                 <div className="flex justify-between gap-2.5">
-                  <PersonalInfo user={user} isEditOption={isEditOption} />
+                  {/* <PersonalInfo
+                    user={userProfile}
+                    isEditOption={isEditOption}
+                  /> */}
+                  {userProfile && (
+                    <PersonalInfo
+                      user={userProfile}
+                      isEditOption={isEditOption}
+                    />
+                  )}
                 </div>
               </div>
             </div>
           </div>
-          <About
-            email={user?.email}
-            about={user?.about}
-            isEditOption={isEditOption}
-          />
+          {userProfile && (
+            <About
+              email={userProfile?.email}
+              about={userProfile?.about}
+              isEditOption={isEditOption}
+            />
+          )}
+
           <div className="">
             <ProfileEngagement />
           </div>
@@ -123,7 +179,12 @@ const ProfileContent = ({ user }: ProfileContentProps) => {
         {/* Side Section */}
         <div>
           <div className=" sticky top-14">
-            <ProfileSidebar userInfo={user} isEditOption={isEditOption} />
+            {userProfile && (
+              <ProfileSidebar
+                userInfo={userProfile}
+                isEditOption={isEditOption}
+              />
+            )}
           </div>
         </div>
       </div>

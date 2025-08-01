@@ -5,18 +5,15 @@ import { GoPlus } from "react-icons/go";
 import { MdOutlineEdit } from "react-icons/md";
 import { useState } from "react";
 import { useAppDispatch } from "@/store/hooks";
-
-import {
-  postEducation,
-  updateEducation,
-} from "../../../store/features/educationSlice";
-import {
-  postExperience,
-  updateExperience,
-} from "../../../store/features/experienceSlice";
-
 import { EducationModal } from "./EducationModal";
 import { ExperienceModal } from "./ExperienceModal";
+import {
+  createEducation,
+  createExperience,
+  editEducation,
+  editExperience,
+  fetchUserProfile,
+} from "@/store/features/userProfile/userProfileSlice";
 
 type ModalType = "education" | "experience" | null;
 
@@ -46,28 +43,8 @@ interface UserData {
   email: string;
   about: string;
   bio: string;
-  education: [
-    {
-      _id: string;
-      institute: string;
-      degree: string;
-      image: string;
-      startYear: string;
-      endYear: string;
-      gpa: string;
-    }
-  ];
-  experience: [
-    {
-      _id: string;
-      title: string;
-      company: string;
-      image: string;
-      startYear: string;
-      endYear: string;
-      duration: string;
-    }
-  ];
+  education: Education[];
+  experience: Experience[];
   locations: string;
   profileImage: string | null;
   coverImage: string | null;
@@ -133,18 +110,26 @@ const ProfileSidebar = ({ userInfo, isEditOption }: ProfileSideProps) => {
 
   const handleEducationSubmit = (data: Education) => {
     if (editMode) {
-      dispatch(updateEducation({ email: userInfo?.email, data }));
+      dispatch(editEducation({ email: userInfo?.email, data })).then(() => {
+        dispatch(fetchUserProfile(userInfo?.username));
+      });
     } else {
-      dispatch(postEducation({ email: userInfo?.email, data }));
+      dispatch(createEducation({ email: userInfo?.email, data })).then(() => {
+        dispatch(fetchUserProfile(userInfo?.username));
+      });
     }
     handleClose();
   };
 
   const handleExperienceSubmit = (data: Experience) => {
     if (editMode) {
-      dispatch(updateExperience({ email: userInfo?.email, data }));
+      dispatch(editExperience({ email: userInfo?.email, data })).then(() => {
+        dispatch(fetchUserProfile(userInfo?.username));
+      });
     } else {
-      dispatch(postExperience({ email: userInfo?.email, data }));
+      dispatch(createExperience({ email: userInfo?.email, data })).then(() => {
+        dispatch(fetchUserProfile(userInfo?.username));
+      });
     }
     handleClose();
   };
@@ -187,8 +172,8 @@ const ProfileSidebar = ({ userInfo, isEditOption }: ProfileSideProps) => {
           )}
         </div>
 
-        {userInfo?.education?.map((e) => (
-          <div key={e?._id} className="flex gap-4 justify-between mb-4 p-1">
+        {userInfo?.education?.map((e, idx) => (
+          <div key={idx} className="flex gap-4 justify-between mb-4 p-1">
             <div className="flex gap-3 items-center">
               <Image
                 src={e?.image || "https://i.ibb.co/Jw3CLX4J/image.png"}
@@ -202,7 +187,7 @@ const ProfileSidebar = ({ userInfo, isEditOption }: ProfileSideProps) => {
                   {e?.institute}
                 </h5>
                 <p className="text-xs text-gray-600 dark:text-white">
-                  {e?.degree} | {e.startYear}-{e.endYear}
+                  {e?.degree} | {e?.startYear}-{e?.endYear}
                 </p>
                 <p className="text-xs text-gray-600 dark:text-white">
                   GPA - {e?.gpa}
@@ -234,8 +219,8 @@ const ProfileSidebar = ({ userInfo, isEditOption }: ProfileSideProps) => {
         </div>
 
         <div className="flex flex-col gap-4 justify-between mb-4 ">
-          {userInfo?.experience?.map((e) => (
-            <div key={e._id} className="flex gap-3 justify-between  p-1">
+          {userInfo?.experience?.map((e, idx) => (
+            <div key={idx} className="flex gap-3 justify-between  p-1">
               <div className="flex gap-3 items-center">
                 <Image
                   src={e?.image || "https://i.ibb.co/zWK8Y8sw/image.png"}

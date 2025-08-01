@@ -18,8 +18,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useDispatch } from "react-redux";
-import { updateUserProfile } from "../../../store/features/userSlice";
+// import { updateUserProfile } from "../../../store/features/userSlice";
 import { AppDispatch } from "@/store/store";
+import {
+  updatePersonalInfo,
+} from "@/store/features/userProfile/userProfileSlice";
 
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 const UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
@@ -112,7 +115,9 @@ const PersonalInfo = ({ user, isEditOption }: PersonalInfoProps) => {
       profileImage: profileImageUrl,
       coverImage: coverImageUrl,
     };
-    dispatch(updateUserProfile({ email: user?.email, data: finalData }));
+    dispatch(updatePersonalInfo({ email: user?.email, data: finalData }));
+    
+
     console.log("Final Data:", finalData);
 
     setLoading(false);

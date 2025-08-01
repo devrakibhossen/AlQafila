@@ -77,11 +77,11 @@ export const ExperienceModal = ({
           </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <Input {...register("title")} placeholder="Title" />
-          <Input {...register("company")} placeholder="Company" />
-          <Input {...register("duration")} placeholder="Duration" />
-          <Input {...register("startYear")} placeholder="Start Date" />
-          <Input {...register("endYear")} placeholder="End Date" />
+          <Input {...register("title" ,{ required: "All is required" })} placeholder="Title" />
+          <Input {...register("company",{ required: "All is required" })} placeholder="Company" />
+          <Input {...register("duration",{ required: "All is required" })} placeholder="Duration" />
+          <Input {...register("startYear",{ required: "All is required" })} placeholder="Start Date" />
+          <Input {...register("endYear",{ required: "All is required" })} placeholder="End Date" />
           <Input type="file" onChange={handleImageUpload} />
           <Button type="submit" disabled={uploading} className="w-full">
             {uploading ? "Uploading..." : mode === "add" ? "Add Experience" : "Update Experience"}

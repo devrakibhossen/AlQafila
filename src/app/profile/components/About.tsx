@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { updateUserAbout } from "../../../store/features/aboutSlice";
 import { useState } from "react";
 import { AppDispatch } from "@/store/store";
+import { updateAboutInfo } from "@/store/features/userProfile/userProfileSlice";
 type FormData = { about: string };
 interface AboutProps {
   email: string;
@@ -33,7 +34,7 @@ const About = ({ email, isEditOption, about }: AboutProps) => {
   const onSubmit = async (data: FormData) => {
     try {
       setLoading(true);
-      await dispatch(updateUserAbout({ email, data }));
+      await dispatch(updateAboutInfo({ email, data }));
       reset(data);
       setOpen(false);
     } catch (err) {

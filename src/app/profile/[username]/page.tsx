@@ -51,7 +51,6 @@ interface Params {
   username: string;
 }
 
-// Props ইন্টারফেসে params কে Promise<Params> হিসেবে ডিফাইন করুন
 interface Props {
   params: Promise<Params>;
 }
@@ -69,9 +68,8 @@ async function getUserData(username: string) {
   return res.json();
 }
 
-// generateMetadata ফাংশনে params কে await করুন
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const awaitedParams = await params; // params কে await করে প্রকৃত অবজেক্টটি নিন
+  const awaitedParams = await params; 
   const username = awaitedParams?.username || "guest";
   const user = await getUserData(username);
 
@@ -82,15 +80,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// Page কম্পোনেন্টে params কে await করুন
 const Page = async ({ params }: Props) => {
-  const awaitedParams = await params; // params কে await করে প্রকৃত অবজেক্টটি নিন
+  const awaitedParams = await params; 
   const username = awaitedParams?.username || "guest";
-  const user = await getUserData(username);
+  // const user = await getUserData(username);
 
   return (
     <div>
-      <ProfileContent user={user?.data} />
+      <ProfileContent username={username} />
     </div>
   );
 };
