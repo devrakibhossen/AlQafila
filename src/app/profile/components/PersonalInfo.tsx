@@ -144,7 +144,7 @@ const PersonalInfo = ({ user, isEditOption }: PersonalInfoProps) => {
       >
         <DialogTrigger asChild>
           {isEditOption && (
-            <Button className="bg-green-accent w-full text-sm cursor-pointer">
+            <Button className="bg-green-accent w-full text-white text-sm cursor-pointer">
               Edit Profile
             </Button>
           )}

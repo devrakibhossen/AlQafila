@@ -43,7 +43,7 @@ const ProfileContent = ({ username }: ProfileContentProps) => {
           <Skeleton className="w-full h-52 rounded-md" />
 
           {/* Profile Picture and Info */}
-          <div className="flex items-center gap-4 -mt-12 px-4">
+          <div className="flex items-center gap-4 -mt-12 bg-white dark:bg-zinc-900 dark:border-zinc-800/40 border rounded-md p-4">
             <Skeleton className="w-24 h-24 rounded-full border-4 border-white shadow-md" />
             <div className="space-y-2">
               <Skeleton className="h-6 w-40 rounded-md" />
@@ -59,7 +59,7 @@ const ProfileContent = ({ username }: ProfileContentProps) => {
           </div>
 
           {/* About Section */}
-          <div className="px-4">
+          <div className="bg-white dark:bg-zinc-900 dark:border-zinc-800/40 border rounded-md p-4">
             <Skeleton className="h-6 w-24 mb-2 rounded-md" />
             <Skeleton className="h-4 w-full mb-1 rounded-md" />
             <Skeleton className="h-4 w-5/6 mb-1 rounded-md" />
@@ -68,31 +68,51 @@ const ProfileContent = ({ username }: ProfileContentProps) => {
         </div>
         <div className="col-span-1  space-y-6">
           {/* Education */}
-          <div className="px-4 space-y-4">
-            <Skeleton className="h-6 w-24 mb-1 rounded-md" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-1/2 rounded-md" />
-              <Skeleton className="h-4 w-2/3 rounded-md" />
-            </div>
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-1/2 rounded-md" />
-              <Skeleton className="h-4 w-2/3 rounded-md" />
-            </div>
+          <div className="bg-white dark:bg-zinc-900 dark:border-zinc-800/40 border rounded-md p-4 space-y-4">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="flex justify-between items-center gap-3">
+                <div className="flex gap-3 items-center">
+                  <Skeleton className="w-10 h-10 rounded-full" />
+                  <div className="space-y-1">
+                    <Skeleton className="w-28 h-3 rounded" />
+                    <Skeleton className="w-20 h-2 rounded" />
+                  </div>
+                </div>
+                <Skeleton className="w-16 h-6 rounded-full" />
+              </div>
+            ))}
           </div>
 
           {/* Experience */}
-          <div className="px-4 space-y-4">
-            <Skeleton className="h-6 w-24 mb-1 rounded-md" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-1/2 rounded-md" />
-              <Skeleton className="h-4 w-2/3 rounded-md" />
-            </div>
+          <div className="bg-white dark:bg-zinc-900 dark:border-zinc-800/40 border rounded-md p-4 space-y-4">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="flex justify-between items-center gap-3">
+                <div className="flex gap-3 items-center">
+                  <Skeleton className="w-10 h-10 rounded-full" />
+                  <div className="space-y-1">
+                    <Skeleton className="w-28 h-3 rounded" />
+                    <Skeleton className="w-20 h-2 rounded" />
+                  </div>
+                </div>
+                <Skeleton className="w-16 h-6 rounded-full" />
+              </div>
+            ))}
           </div>
 
           {/* Profile URL */}
-          <div className="px-4">
-            <Skeleton className="h-6 w-32 mb-2 rounded-md" />
-            <Skeleton className="h-4 w-2/3 rounded-md" />
+          <div className="bg-white dark:bg-zinc-900 dark:border-zinc-800/40 border rounded-md p-4">
+            {[...Array(1)].map((_, i) => (
+              <div key={i} className="flex justify-between items-center gap-3">
+                <div className="flex gap-3 items-center">
+                  <Skeleton className="w-10 h-10 rounded-full" />
+                  <div className="space-y-1">
+                    <Skeleton className="w-28 h-3 rounded" />
+                    <Skeleton className="w-20 h-2 rounded" />
+                  </div>
+                </div>
+                <Skeleton className="w-16 h-6 rounded-full" />
+              </div>
+            ))}
           </div>
         </div>
       </div>

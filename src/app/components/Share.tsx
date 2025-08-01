@@ -36,7 +36,7 @@ const Share: React.FC = () => {
         </button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-sm rounded-xl shadow-lg">
+      <DialogContent className="max-w-sm rounded-md shadow-lg ">
         <DialogHeader>
           <DialogTitle className="text-lg font-semibold text-center">
             Share this post
@@ -46,17 +46,18 @@ const Share: React.FC = () => {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="flex justify-center gap-5 mt-4">
+        <div className="flex flex-col justify-center items-center gap-2.5 mt-4">
           <a
             href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
               currentUrl
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-blue-600 transition"
+            className="flex gap-1.5 justify-center items-center hover:text-blue-600 transition border rounded-md py-2 px-1 w-full text-sm"
             title="Share on Facebook"
           >
-            <FaFacebook size={24} />
+            <FaFacebook size={15} />
+            <p>Facebook</p>
           </a>
           <a
             href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
@@ -64,10 +65,11 @@ const Share: React.FC = () => {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-blue-400 transition"
+             className="flex gap-1.5 justify-center items-center hover:text-blue-600 transition border rounded-md py-2 px-1 w-full text-sm"
             title="Share on Twitter"
           >
-            <FaTwitter size={24} />
+            <FaTwitter size={15} />
+             <p>X</p>
           </a>
           <a
             href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
@@ -75,17 +77,19 @@ const Share: React.FC = () => {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-blue-700 transition"
+             className="flex gap-1.5 justify-center items-center hover:text-blue-600 transition border rounded-md py-2 px-1 w-full text-sm"
             title="Share on LinkedIn"
           >
-            <FaLinkedin size={24} />
+            <FaLinkedin size={15} />
+             <p>Linkedin</p>
           </a>
           <button
             onClick={handleCopy}
-            className="hover:text-green-600 transition"
+            className="flex gap-1.5 justify-center items-center hover:text-blue-600 transition border rounded-md py-2 px-1 w-full text-sm"
             title="Copy Link"
           >
-            <FaLink size={22} />
+            <FaLink size={15} />
+             <p>Coppy Link</p>
           </button>
         </div>
       </DialogContent>
