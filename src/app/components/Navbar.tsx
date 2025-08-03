@@ -39,11 +39,36 @@ import { useTheme } from "next-themes";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useUser } from "@/context/UserContext";
+import { signOut } from "next-auth/react";
 const Navbar = () => {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const { userInfo } = useUser();
   const pathname = usePathname();
   const { setTheme } = useTheme();
+
+const handleLogOut = async () => {
+  signOut({ callbackUrl: "/accounts/sign-in" })
+  // try {
+  //   const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/auth/sign-out`, {
+  //     method: "POST",
+  //     credentials: "include", 
+  //   });
+
+  //   const result = await res.json();
+
+  //   if (res.ok) {
+  //     console.log("Logged out:", result.message);
+  //     document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  //     window.location.href = "/accounts/sign-in"; 
+  //   } else {
+  //     console.error("Logout failed:", result.message);
+  //   }
+  // } catch (error) {
+  //   console.error("Error logging out:", error);
+  // }
+};
+
+
   return (
     <div className="bg-white dark:bg-zinc-900 py-1.5 fixed w-full top-0 z-10 border-b">
       <div className="md:w-11/12 mx-auto px-1 gap-1.5 flex justify-between items-center max-w-[1300px] ">
@@ -277,7 +302,7 @@ const Navbar = () => {
               </Link>
               <DropdownMenuSeparator />
 
-              <DropdownMenuItem className="text-red-500 font-medium cursor-pointer">
+              <DropdownMenuItem onClick={handleLogOut} className="text-red-500 font-medium cursor-pointer">
                 <LogOut className=" h-4 w-4" />
                 Log out
                 <DropdownMenuShortcut>⇧⌘L</DropdownMenuShortcut>
