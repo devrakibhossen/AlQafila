@@ -115,12 +115,48 @@ const Reaction = () => {
     <div className="relative inline-block group">
       {/* Tooltip-like Reactions */}
       <div className="w-62 flex justify-center items-center border  gap-2 bg-white dark:bg-zinc-950 px-1 py-1.5 absolute -top-12 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-md rounded-full z-10">
-        <Image src="/ReactionIcon/like.png" alt="like" width={40} height={40} className="w-8 h-8 cursor-pointer" />
-        <Image src="/ReactionIcon/love.png" alt="love" width={40} height={40} className="w-8 h-8 cursor-pointer" />
-        <Image src="/ReactionIcon/funny.png" alt="funny" width={40} height={40} className="w-8 h-8 cursor-pointer" />
-        <Image src="/ReactionIcon/wow.png" alt="wow" width={40} height={40} className="w-8 h-8 cursor-pointer" />
-        <Image src="/ReactionIcon/sad.png" alt="sad" width={40} height={40} className="w-8 h-8 cursor-pointer" />
-        <Image src="/ReactionIcon/angry.png" alt="angry" width={40} height={40} className="w-8 h-8 cursor-pointer" />
+        <Image
+          src="/ReactionIcon/like.png"
+          alt="like"
+          width={40}
+          height={40}
+          className="w-8 h-8 cursor-pointer"
+        />
+        <Image
+          src="/ReactionIcon/love.png"
+          alt="love"
+          width={40}
+          height={40}
+          className="w-8 h-8 cursor-pointer"
+        />
+        <Image
+          src="/ReactionIcon/funny.png"
+          alt="funny"
+          width={40}
+          height={40}
+          className="w-8 h-8 cursor-pointer"
+        />
+        <Image
+          src="/ReactionIcon/wow.png"
+          alt="wow"
+          width={40}
+          height={40}
+          className="w-8 h-8 cursor-pointer"
+        />
+        <Image
+          src="/ReactionIcon/sad.png"
+          alt="sad"
+          width={40}
+          height={40}
+          className="w-8 h-8 cursor-pointer"
+        />
+        <Image
+          src="/ReactionIcon/angry.png"
+          alt="angry"
+          width={40}
+          height={40}
+          className="w-8 h-8 cursor-pointer"
+        />
       </div>
 
       {/* Main Like Button */}
@@ -133,4 +169,3 @@ const Reaction = () => {
 };
 
 export default Reaction;
-

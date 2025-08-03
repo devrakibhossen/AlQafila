@@ -4,12 +4,12 @@
 
 ## 🚀 Live Demo
 
-🔗 [Visit Alqafila](https://alqafila.vercel.app) 
+🔗 [Visit Alqafila](https://alqafila.onrender.com/)
 
 ## 🖼️ Screenshots
 
-| Home Feed | Profile Page |
-|-----------|--------------|
+| Home Feed                       | Profile Page                          |
+| ------------------------------- | ------------------------------------- |
 | ![Home](./screenshots/home.png) | ![Profile](./screenshots/profile.png) |
 
 ## ✨ Features
@@ -27,25 +27,27 @@
 ## 🛠️ Tech Stack
 
 ### Frontend:
+
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [TypeScript](https://www.typescriptlang.org/) *(optional)*
+- [TypeScript](https://www.typescriptlang.org/) _(optional)_
 - [Axios](https://axios-http.com/)
 - [React Icons](https://react-icons.github.io/react-icons/)
-- [Zustand / Context API](https://zustand-demo.pmnd.rs/) *(state management)*
+- [Redux / Context API](https://Redux-demo.pmnd.rs/) _(state management)_
 
 ### Backend:
+
 - [Node.js](https://nodejs.org/)
 - [Express.js](https://expressjs.com/)
 - [MongoDB + Mongoose](https://mongoosejs.com/)
 - [JWT / NextAuth](https://next-auth.js.org/)
-- [Cloudinary](https://cloudinary.com/) *(for image hosting)*
+- [Cloudinary](https://cloudinary.com/) _(for image hosting)_
 
 ## 📦 Getting Started
 
 ```bash
 # Clone the project
-git clone https://github.com/your-username/alqafila.git
+git clone https://github.com/devrakibhossen/alqafila.git
 
 # Go to the project directory
 cd alqafila
@@ -55,3 +57,4 @@ npm install
 
 # Run the development server
 npm run dev
+```
