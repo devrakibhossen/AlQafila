@@ -29,6 +29,13 @@ const page = () => {
       video:
         "https://res.cloudinary.com/duhybktme/video/upload/v1753975703/hjouui6ookds2vxm2f13.mp4",
     },
+    images: [
+        {
+          "type": "image",
+          "images": "https://res.cloudinary.com/duhybktme/image/upload/v1753840848/q8qc7keyq44uvekvacoj.jpg",
+          "_id": "68897cd2448b1c2fcdc18c86"
+        }
+      ],
     _id: "688b8b99172047b83d2105c6",
     authorId: {
       _id: "68454525fe0b96bec5bee9d0",
@@ -41,7 +48,6 @@ const page = () => {
     text: "প্রতিদিনের ছোট ছোট আমলই আখিরাতে বড় সফলতার কারণ হতে পারে।",
     hashtags: [],
     shares: 0,
-    images: [],
     reportedBy: [],
     reactionsBy: [],
     profileStatus: "request",
@@ -94,8 +100,7 @@ const page = () => {
             >
               {post?.images?.map((imgObj, idx) => (
                 <SwiperSlide key={idx}>
-                    {
-                        imgObj?.images &&  <Image
+                  <Image
                     placeholder="blur"
                     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA..."
                     className="w-full max-h-[400px] object-contain "
@@ -105,7 +110,6 @@ const page = () => {
                     height={300}
                     priority
                   />
-                    }
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -147,7 +151,9 @@ const page = () => {
             </div>
           </div>
 
-          <div className="min-h-[500px]">Hello </div>
+          <div className="min-h-[150px] flex justify-center items-center">
+           <p className="text-sm ">No comments found</p>
+            </div>
         </div>
       </div>
     </div>
