@@ -29,9 +29,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning >
       <body
-        className={`${inter.variable} antialiased bg-gray-200 dark:bg-zinc-950`}
+        className={`${inter.variable} antialiased bg-gray-200 dark:bg-zinc-950 `}
         cz-shortcut-listen="true"
       >
         <NextTopLoader color="#104e80" height={3} showSpinner={false} />

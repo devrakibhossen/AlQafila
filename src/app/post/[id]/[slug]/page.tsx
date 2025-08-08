@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import CustomVideoPlayer from "@/app/watch/components/CustomVideoPlayer";
 import Reaction from "@/app/components/Reaction";
+import { Input } from "@/components/ui/input";
 
 type ReactionType = "like" | "love" | "funny";
 
@@ -30,12 +31,13 @@ const page = () => {
         "https://res.cloudinary.com/duhybktme/video/upload/v1753975703/hjouui6ookds2vxm2f13.mp4",
     },
     images: [
-        {
-          "type": "image",
-          "images": "https://res.cloudinary.com/duhybktme/image/upload/v1753840848/q8qc7keyq44uvekvacoj.jpg",
-          "_id": "68897cd2448b1c2fcdc18c86"
-        }
-      ],
+      // {
+      //   type: "image",
+      //   images:
+      //     "https://res.cloudinary.com/duhybktme/image/upload/v1753840848/q8qc7keyq44uvekvacoj.jpg",
+      //   _id: "68897cd2448b1c2fcdc18c86",
+      // },
+    ],
     _id: "688b8b99172047b83d2105c6",
     authorId: {
       _id: "68454525fe0b96bec5bee9d0",
@@ -71,7 +73,7 @@ const page = () => {
       </button>
       <div
         key={post._id}
-        className="bg-white dark:bg-zinc-900 dark:border-zinc-800/40 border rounded-md mb-1.5 "
+        className="bg-white dark:bg-zinc-900 dark:border-zinc-800/40 border rounded-md pb-3 mb-1.5 "
       >
         {typeof post.authorId === "object" && (
           <PostHeader authorInfo={post.authorId} createdAt={post.createdAt} />
@@ -150,10 +152,24 @@ const page = () => {
               <Share />
             </div>
           </div>
-
-          <div className="min-h-[150px] flex justify-center items-center">
-           <p className="text-sm ">No comments found</p>
+          <div className=" flex  items-center gap-2 w-full px-3">
+            <Image
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA..."
+              className="rounded-full w-9 h-9 "
+              src="https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
+              alt="logo"
+              width={50}
+              height={28}
+              priority
+            />
+            <div className="w-full">
+              <Input placeholder="Write a comment!" className="rounded-full text-sm"/>
             </div>
+          </div>
+          {/* <div className="min-h-[150px] flex justify-center items-center">
+            <p className="text-sm ">No comments found</p>
+          </div> */}
         </div>
       </div>
     </div>

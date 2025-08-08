@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 export default function Home() {
   return (
-    <div className="md:w-11/12 mx-auto  md:px-0 px-1">
+    <div className="md:w-11/12 mx-auto  md:px-0 px-1 ">
       <CreatePost></CreatePost>
       <Posts />
     </div>

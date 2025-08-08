@@ -10,14 +10,17 @@ import UploadModal from "./UploadModal";
 import { useUser } from "@/context/UserContext";
 
 const CreatePost = () => {
-   const { userInfo } = useUser();
+  const { userInfo } = useUser();
   const [openUploadModal, setOpenUploadModal] = useState(false);
   return (
-    <div className="bg-white border dark:border-zinc-800/40 dark:bg-zinc-900 md:p-5 p-2.5   rounded-sm md:rounded-md md:mb-5 mb-2">
+    <div className="bg-white border dark:border-zinc-800/40 dark:bg-zinc-900 md:p-5 p-2.5   md:rounded-sm md:rounded-md md:mb-5 mb-2 ">
       <div className="flex gap-1.5 items-center">
         <Image
           className="rounded-full w-10 h-10"
-          src={userInfo?.profileImage ||"https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"}
+          src={
+            userInfo?.profileImage ||
+            "https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
+          }
           alt="logo"
           width={50}
           height={50}

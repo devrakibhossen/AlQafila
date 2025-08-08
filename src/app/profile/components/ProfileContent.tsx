@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { fetchUserProfile } from "@/store/features/userProfile/userProfileSlice";
 import { AppDispatch, RootState } from "@/store/store";
 import { Skeleton } from "@/components/ui/skeleton";
+import CreatePost from "@/app/components/CreatePost";
 
 interface ProfileContentProps {
   username: string;
@@ -194,6 +195,8 @@ const ProfileContent = ({ username }: ProfileContentProps) => {
               isEditOption={isEditOption}
             />
           )}
+
+          <CreatePost></CreatePost>
 
           <div className="">
             <ProfileEngagement />
