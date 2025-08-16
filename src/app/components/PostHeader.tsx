@@ -79,7 +79,7 @@ const PostHeader = ({
             {following ? "following" : "Follow"}
           </button>
         )} */}
-        <div className="mb-2 flex items-center gap-1 text-sm dark:text-muted-foreground hover:text-primary cursor-pointer">
+        <div className="mb-2 green-accent flex items-center gap-1 text-sm dark:text-muted-foreground hover:text-primary cursor-pointer">
           <UserPlus className="w-4 h-4" />
           <span>Request</span>
         </div>

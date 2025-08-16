@@ -31,12 +31,12 @@ const page = () => {
         "https://res.cloudinary.com/duhybktme/video/upload/v1753975703/hjouui6ookds2vxm2f13.mp4",
     },
     images: [
-      {
-        type: "image",
-        images:
-          "https://res.cloudinary.com/duhybktme/image/upload/v1753840848/q8qc7keyq44uvekvacoj.jpg",
-        _id: "68897cd2448b1c2fcdc18c86",
-      },
+      // {
+      //   type: "image",
+      //   images:
+      //     "https://res.cloudinary.com/duhybktme/image/upload/v1753840848/q8qc7keyq44uvekvacoj.jpg",
+      //   _id: "68897cd2448b1c2fcdc18c86",
+      // },
     ],
     _id: "688b8b99172047b83d2105c6",
     authorId: {
@@ -63,6 +63,29 @@ const page = () => {
     { type: "like", image: "/ReactionIcon/like.png", label: "Like" },
     { type: "love", image: "/ReactionIcon/love.png", label: "Love" },
     { type: "funny", image: "/ReactionIcon/funny.png", label: "Funny" },
+  ];
+  const commentData = [
+    {
+      username: "Mim Rahman",
+      userProfile: "https://i.ibb.co/ynVcSDS0/image.png",
+      text: "রিয়াক্ট শেখা আমারও প্রিয়! তোমার এই জার্নি আরও মজাদার হোক। 🚀",
+      time: "April 26 at 11:00 AM",
+      like: 34,
+    },
+    {
+      username: "CoderBoy",
+      userProfile: "https://i.ibb.co/NnK6V5c5/image.png",
+      text: "Practice করলে প্রতিদিন উন্নতি হবেই। Keep going!",
+      time: "April 26 at 11:30 AM",
+      like: 19,
+    },
+    {
+      username: "Shuvo Dev",
+      userProfile: "https://i.ibb.co/tPcgbdmB/image.png",
+      text: "একদম ঠিক বলছো ভাই! আমি প্রতিদিন রিয়াক্টে নতুন কিছু শিখছি।",
+      time: "April 26 at 12:00 PM",
+      like: 27,
+    },
   ];
 
   return (
@@ -169,6 +192,53 @@ const page = () => {
                 className="rounded-full text-sm"
               />
             </div>
+          </div>
+          <div className="w-full max-w-xl mx-auto space-y-2.5 px-3 mt-5">
+            {commentData.map((comment, i) => (
+              <div
+                key={i}
+                className=""
+              >
+                {/* User Info */}
+                <div className="flex  gap-3">
+                  <Image
+                    src={comment.userProfile}
+                    alt={comment.username}
+                    className="w-9 h-9 rounded-full object-cover border"
+                    width={50}
+                    height={50}
+                  />
+                  <div>
+                  <div className="bg-gray-200 dark:bg-black rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                    <h4 className="font-semibold text-gray-800 dark:text-white">
+                      {comment.username}
+                    </h4>
+                    <span className="text-sm text-gray-500">
+                      {comment.time}
+                    </span>
+                     {/* Comment Text */}
+                <p className="mt-3 text-sm text-gray-700 dark:text-gray-300">
+                  {comment.text}
+                </p>
+                  </div>
+                 {/* Like & Actions */}
+                <div className="flex items-center gap-5 mt-3 text-sm text-gray-500">
+                  <button className="flex items-center gap-1 hover:text-red-500 transition-colors">
+                    ❤️ {comment.like}
+                  </button>
+                  <button className="hover:text-blue-500 transition-colors">
+                    Reply
+                  </button>
+                </div>
+                
+                </div>
+                </div>
+
+               
+
+               
+              </div>
+            ))}
           </div>
           {/* <div className="min-h-[150px] flex justify-center items-center">
             <p className="text-sm ">No comments found</p>

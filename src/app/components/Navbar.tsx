@@ -34,6 +34,7 @@ import {
   Search,
   X,
   PlusSquare,
+  SquarePlay,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
@@ -122,8 +123,8 @@ const handleLogOut = async () => {
                     : "text-gray-700 dark:text-gray-300"
                 }`}
               >
-                <MdOutlineVideoLibrary className="text-xl" />
-                <p className="hidden lg:block">Videos</p>
+                <SquarePlay className="w-5 h-5" />
+                <p className="hidden lg:block">Video</p>
               </Link>
             </li>
             <li>

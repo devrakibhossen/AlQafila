@@ -1,39 +1,22 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-
-export interface IReactions {
-  like: number;
-  love: number;
-  smart: number;
-  funny: number;
-  wow: number;
-  sad: number;
-  angry: number;
-  total: number;
-}
+import { addReactions, getReaction } from "./postApi";
 export interface PostImage {
   type: string;
   images: string;
 }
-// interface AuthorType {
-//   _id: string;
-//   username: string;
-//   profileImage?: string;
-//   name?: string;
-// }
+
 export interface Post {
   _id?: string;
   authorId: string;
   text: string;
   hashtags?: string[];
   images?: PostImage[];
-  reactions?: IReactions;
   shares?: number;
   video?: {
     type: string;
     video: string;
   };
   reportedBy?: string[];
-  reactionsBy?: string[];
   profileStatus?: string;
   views?: number;
   createdAt?: string;
@@ -57,6 +40,7 @@ const initialState: PostState = {
 };
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 // GET: Fetch all posts
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   const res = await fetch(`${API_BASE_URL}/api/v1/posts`);
@@ -81,6 +65,30 @@ export const createPost = createAsyncThunk(
     const data = await res.json();
     // return data as Post;
     return data.post as Post;
+  }
+);
+
+export const addReaction = createAsyncThunk(
+  "posts/addReaction",
+  async ({ data }: { data: any }, { rejectWithValue }) => {
+    try {
+      const res = await addReactions(data);
+      return res;
+    } catch (error) {
+      return rejectWithValue(error.message || "Failed to add reaction");
+    }
+  }
+);
+
+export const fetchReaction = createAsyncThunk(
+  "posts/fetchReaction",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const res = await getReaction(id);
+      return res;
+    } catch (error) {
+      return rejectWithValue(error.message || "Failed to fetch reactions");
+    }
   }
 );
 
@@ -112,7 +120,8 @@ const postsSlice = createSlice({
       })
       .addCase(createPost.rejected, (state) => {
         state.loading = false;
-      });
+      })
+      .addCase(addReaction.fulfilled, (state, action) => {});
   },
 });
 

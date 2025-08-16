@@ -5,6 +5,7 @@ import { BsChatDots } from "react-icons/bs";
 import { GoPeople } from "react-icons/go";
 import { MdOutlineVideoLibrary, MdWorkOutline } from "react-icons/md";
 import { RiHome9Line } from "react-icons/ri";
+import {  SquarePlay} from "lucide-react";
 
 const Bottombar = () => {
   const pathname = usePathname();
@@ -22,7 +23,7 @@ const Bottombar = () => {
               }`}
             >
               <RiHome9Line className="text-xl" />
-              <p className="text-sm">Home</p>
+              <p className="text-xs">Home</p>
             </Link>
           </li>
           <li>
@@ -35,7 +36,7 @@ const Bottombar = () => {
               }`}
             >
               <GoPeople className="text-xl " />
-              <p className="text-sm">Network</p>
+              <p className="text-xs">Network</p>
             </Link>
           </li>
 
@@ -48,8 +49,8 @@ const Bottombar = () => {
                   : "text-gray-700 dark:text-gray-300"
               }`}
             >
-              <MdOutlineVideoLibrary className="text-xl" />
-              <p className="text-sm">Videos</p>
+              <SquarePlay className="w-5 h-5" />
+              <p className="text-xs">Video</p>
             </Link>
           </li>
           <li>
@@ -62,7 +63,7 @@ const Bottombar = () => {
               }`}
             >
               <MdWorkOutline className="text-xl" />
-              <p className="text-sm">Jobs</p>
+              <p className="text-xs">Jobs</p>
             </Link>
           </li>
           <li>
@@ -75,7 +76,7 @@ const Bottombar = () => {
               }`}
             >
               <BsChatDots className="text-xl" />
-              <p className="text-sm">Message</p>
+              <p className="text-xs">Message</p>
             </Link>
           </li>
         </ul>

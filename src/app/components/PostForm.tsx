@@ -19,7 +19,7 @@ import { EmojiClickData } from "emoji-picker-react";
 import { useUser } from "@/context/UserContext";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/store/store";
-import { createPost } from "../../store/features/postsSlice";
+import { createPost } from "../../store/features/posts/postsSlice";
 // import { DropdownMenu } from "@/components/ui/dropdown-menu";
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 const UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
@@ -272,7 +272,7 @@ const PostForm = ({ onPostSuccess }: PostFormProps) => {
           </div>
           <button
             type="submit"
-            className="py-1 px-4 border bg-green-accent rounded-full text-sm"
+            className="py-1 text-white px-4 border bg-green-accent rounded-full text-sm"
           >
             {isLoading ? "Posting..." : "Post"}
           </button>

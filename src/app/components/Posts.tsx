@@ -16,13 +16,13 @@ import Reaction from "./Reaction";
 import Share from "./Share";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import { fetchPosts } from "@/store/features/postsSlice";
+import { fetchPosts } from "@/store/features/posts/postsSlice";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import CustomVideoPlayer from "../watch/components/CustomVideoPlayer";
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from "@/components/ui/skeleton";
 type ReactionType = "like" | "love";
 const Posts = () => {
   const [commentOpen, setCommentOpen] = useState<string | null>(null);
@@ -66,40 +66,35 @@ const Posts = () => {
   ];
 
   if (loading) {
-  return (
-    <div className="space-y-4">
-      {[...Array(3)].map((_, i) => (
-        <div
-          key={i}
-          className="bg-white dark:bg-zinc-900 dark:border-zinc-800/40 border rounded-md p-4 space-y-3"
-        >
-          <div className="flex items-center gap-3">
-            <Skeleton className="w-10 h-10 rounded-full" />
-            <div className="space-y-2">
-              <Skeleton className="w-32 h-3 rounded" />
-              <Skeleton className="w-20 h-2 rounded" />
+    return (
+      <div className="space-y-4">
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={i}
+            className="bg-white dark:bg-zinc-900 dark:border-zinc-800/40 border rounded-md p-4 space-y-3"
+          >
+            <div className="flex items-center gap-3">
+              <Skeleton className="w-10 h-10 rounded-full" />
+              <div className="space-y-2">
+                <Skeleton className="w-32 h-3 rounded" />
+                <Skeleton className="w-20 h-2 rounded" />
+              </div>
+            </div>
+
+            <Skeleton className="w-full h-4 rounded" />
+            <Skeleton className="w-3/4 h-4 rounded" />
+            <Skeleton className="w-full h-64 rounded" />
+
+            <div className="grid grid-cols-3 gap-2 pt-2">
+              <Skeleton className="h-8 rounded" />
+              <Skeleton className="h-8 rounded" />
+              <Skeleton className="h-8 rounded" />
             </div>
           </div>
-
-          <Skeleton className="w-full h-4 rounded" />
-          <Skeleton className="w-3/4 h-4 rounded" />
-          <Skeleton className="w-full h-64 rounded" />
-
-          <div className="grid grid-cols-3 gap-2 pt-2">
-            <Skeleton className="h-8 rounded" />
-            <Skeleton className="h-8 rounded" />
-            <Skeleton className="h-8 rounded" />
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-
-
-
-
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -187,7 +182,7 @@ const Posts = () => {
               </div>
 
               <div className=" grid grid-cols-3 gap-2 border-t pt-1.5">
-                <Reaction />
+                <Reaction postId={post?._id} />
                 <div
                   onClick={() => setCommentOpen}
                   className="flex justify-center gap-1.5 items-center cursor-pointer hover:bg-gray-200 dark:hover:bg-black p-1.5 rounded-md transition-colors duration-300"
