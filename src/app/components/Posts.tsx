@@ -159,7 +159,7 @@ const Posts = () => {
               <div className="flex justify-between gap-1.5 pb-1.5 w-full">
                 <div className="min-w-[100px]">
 
-                <UserReaction postId={post?._id}/>
+                <UserReaction postId={post?._id || ""}/>
                 </div>
 
                 <div className="flex text-end items-center gap-2">
@@ -169,7 +169,7 @@ const Posts = () => {
               </div>
 
               <div className=" grid grid-cols-3 gap-2 border-t pt-1.5">
-                <Reaction postId={post?._id} />
+                <Reaction postId={post?._id || ""} />
                 <div
                   onClick={() => setCommentOpen}
                   className="flex justify-center gap-1.5 items-center cursor-pointer hover:bg-gray-200 dark:hover:bg-black p-1.5 rounded-md transition-colors duration-300"
