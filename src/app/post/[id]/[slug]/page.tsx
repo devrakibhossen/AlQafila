@@ -31,12 +31,12 @@ const page = () => {
         "https://res.cloudinary.com/duhybktme/video/upload/v1753975703/hjouui6ookds2vxm2f13.mp4",
     },
     images: [
-      // {
-      //   type: "image",
-      //   images:
-      //     "https://res.cloudinary.com/duhybktme/image/upload/v1753840848/q8qc7keyq44uvekvacoj.jpg",
-      //   _id: "68897cd2448b1c2fcdc18c86",
-      // },
+      {
+        type: "image",
+        images:
+          "https://res.cloudinary.com/duhybktme/image/upload/v1753840848/q8qc7keyq44uvekvacoj.jpg",
+        _id: "68897cd2448b1c2fcdc18c86",
+      },
     ],
     _id: "688b8b99172047b83d2105c6",
     authorId: {
