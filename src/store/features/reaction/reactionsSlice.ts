@@ -15,6 +15,10 @@ export interface Reaction {
   createdAt?: string;
   updatedAt?: string;
 }
+export interface ReactionId {
+  _id?: string;
+}
+
 
 interface ReactionsState {
   items: Record<string, Reaction[]>;
@@ -52,7 +56,7 @@ export const fetchReactions = createAsyncThunk(
   "reactions/fetchReactions",
   async (postId: string, { rejectWithValue }) => {
     try {
-      const res = await getReaction(postId);
+      const res = await getReaction(postId as ReactionId);
       // Extract reactions array from API response
       const reactions = res.reactions || [];
       return { postId, reactions: reactions as Reaction[] };
