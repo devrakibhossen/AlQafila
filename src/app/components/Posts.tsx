@@ -23,7 +23,8 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import CustomVideoPlayer from "../watch/components/CustomVideoPlayer";
 import { Skeleton } from "@/components/ui/skeleton";
-type ReactionType = "like" | "love";
+import UserReaction from "./UserReaction";
+
 const Posts = () => {
   const [commentOpen, setCommentOpen] = useState<string | null>(null);
   const dispatch = useDispatch<AppDispatch>();
@@ -60,10 +61,7 @@ const Posts = () => {
     },
   ];
 
-  const reactions: { type: ReactionType; image: string; label: string }[] = [
-    { type: "like", image: "/ReactionIcon/like.png", label: "Like" },
-    { type: "love", image: "/ReactionIcon/love.png", label: "Love" },
-  ];
+  
 
   if (loading) {
     return (
@@ -158,24 +156,13 @@ const Posts = () => {
               <CustomVideoPlayer src={post?.video?.video} />
             )}
             <div className="mb-2 md:px-3  px-2.5 ">
-              <div className="justifyBetween gap-1.5 pb-1.5 ">
-                <div className="text-[12px] flex items-center gap-1">
-                  <div className="flex items-center -space-x-1  overflow-x-auto   rounded-lg">
-                    {reactions.map((reaction, index) => (
-                      <div key={index} className="min-w-fit">
-                        <Image
-                          src={reaction.image}
-                          alt={`Avatar ${index + 1}`}
-                          width={40}
-                          height={40}
-                          className="rounded-full w-5 h-5"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  2
+              <div className="flex justify-between gap-1.5 pb-1.5 w-full">
+                <div className="min-w-[100px]">
+
+                <UserReaction postId={post?._id}/>
                 </div>
-                <div className="flex items-center gap-2">
+
+                <div className="flex text-end items-center gap-2">
                   <p className="text-[12px]">0 Comments,</p>
                   <p className="text-[12px]">{post.shares || 0} Shares</p>
                 </div>

@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { BsChatDots } from "react-icons/bs";
 import { GoPeople } from "react-icons/go";
-import { MdOutlineVideoLibrary, MdWorkOutline } from "react-icons/md";
+import { MdWorkOutline } from "react-icons/md";
 import { RiHome9Line } from "react-icons/ri";
 import {  SquarePlay} from "lucide-react";
 

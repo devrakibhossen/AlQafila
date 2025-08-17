@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { BsChatDots } from "react-icons/bs";
 import { GoPeople } from "react-icons/go";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { MdOutlineVideoLibrary, MdWorkOutline } from "react-icons/md";
+import { MdWorkOutline } from "react-icons/md";
 import { RiHome9Line } from "react-icons/ri";
 import {
   DropdownMenu,

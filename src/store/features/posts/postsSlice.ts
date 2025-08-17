@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { addReactions, getReaction } from "./postApi";
 export interface PostImage {
   type: string;
   images: string;
@@ -68,29 +67,9 @@ export const createPost = createAsyncThunk(
   }
 );
 
-export const addReaction = createAsyncThunk(
-  "posts/addReaction",
-  async ({ data }: { data: any }, { rejectWithValue }) => {
-    try {
-      const res = await addReactions(data);
-      return res;
-    } catch (error) {
-      return rejectWithValue(error.message || "Failed to add reaction");
-    }
-  }
-);
 
-export const fetchReaction = createAsyncThunk(
-  "posts/fetchReaction",
-  async (id: string, { rejectWithValue }) => {
-    try {
-      const res = await getReaction(id);
-      return res;
-    } catch (error) {
-      return rejectWithValue(error.message || "Failed to fetch reactions");
-    }
-  }
-);
+
+
 
 const postsSlice = createSlice({
   name: "posts",
@@ -121,7 +100,6 @@ const postsSlice = createSlice({
       .addCase(createPost.rejected, (state) => {
         state.loading = false;
       })
-      .addCase(addReaction.fulfilled, (state, action) => {});
   },
 });
 

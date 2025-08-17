@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { addReactions, getReaction } from "./reactionsApi";
 
+
 export interface Reaction {
   _id?: string;
   postId: string;
@@ -43,7 +44,6 @@ export const addReaction = createAsyncThunk(
   }
   return rejectWithValue("Failed to add reaction");
 }
-
   }
 );
 
