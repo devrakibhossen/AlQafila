@@ -166,7 +166,7 @@ const page = () => {
             </div>
 
             <div className=" grid grid-cols-3 gap-2 border-t pt-1.5">
-              <Reaction />
+              {/* <Reaction /> */}
               <div className="flex justify-center gap-1.5 items-center cursor-pointer hover:bg-gray-200 dark:hover:bg-black p-1.5 rounded-md transition-colors duration-300">
                 <FaRegComment />
                 <p className="text-[13px] ">Comments</p>
