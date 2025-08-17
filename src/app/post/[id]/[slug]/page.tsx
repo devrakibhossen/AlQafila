@@ -8,7 +8,7 @@ import PostHeader from "@/app/components/PostHeader";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import CustomVideoPlayer from "@/app/watch/components/CustomVideoPlayer";
-import Reaction from "@/app/components/Reaction";
+// import Reaction from "@/app/components/Reaction";
 import { Input } from "@/components/ui/input";
 
 type ReactionType = "like" | "love" | "funny";
@@ -195,10 +195,7 @@ const page = () => {
           </div>
           <div className="w-full max-w-xl mx-auto space-y-2.5 px-3 mt-5">
             {commentData.map((comment, i) => (
-              <div
-                key={i}
-                className=""
-              >
+              <div key={i} className="">
                 {/* User Info */}
                 <div className="flex  gap-3">
                   <Image
@@ -209,34 +206,29 @@ const page = () => {
                     height={50}
                   />
                   <div>
-                  <div className="bg-gray-200 dark:bg-black rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
-                    <h4 className="font-semibold text-gray-800 dark:text-white">
-                      {comment.username}
-                    </h4>
-                    <span className="text-sm text-gray-500">
-                      {comment.time}
-                    </span>
-                     {/* Comment Text */}
-                <p className="mt-3 text-sm text-gray-700 dark:text-gray-300">
-                  {comment.text}
-                </p>
+                    <div className="bg-gray-200 dark:bg-black rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                      <h4 className="font-semibold text-gray-800 dark:text-white">
+                        {comment.username}
+                      </h4>
+                      <span className="text-sm text-gray-500">
+                        {comment.time}
+                      </span>
+                      {/* Comment Text */}
+                      <p className="mt-3 text-sm text-gray-700 dark:text-gray-300">
+                        {comment.text}
+                      </p>
+                    </div>
+                    {/* Like & Actions */}
+                    <div className="flex items-center gap-5 mt-3 text-sm text-gray-500">
+                      <button className="flex items-center gap-1 hover:text-red-500 transition-colors">
+                        ❤️ {comment.like}
+                      </button>
+                      <button className="hover:text-blue-500 transition-colors">
+                        Reply
+                      </button>
+                    </div>
                   </div>
-                 {/* Like & Actions */}
-                <div className="flex items-center gap-5 mt-3 text-sm text-gray-500">
-                  <button className="flex items-center gap-1 hover:text-red-500 transition-colors">
-                    ❤️ {comment.like}
-                  </button>
-                  <button className="hover:text-blue-500 transition-colors">
-                    Reply
-                  </button>
                 </div>
-                
-                </div>
-                </div>
-
-               
-
-               
               </div>
             ))}
           </div>
