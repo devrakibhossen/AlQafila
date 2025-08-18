@@ -136,7 +136,7 @@ const Reaction = ({ postId }: PostIdProps) => {
       console.log("reactionData", reactionData);
 
       // Optional: Success হওয়ার পর আবার fetch করা latest data এর জন্য
-      // dispatch(fetchReactions(postId));
+      dispatch(fetchReactions(postId));
     } catch (error) {
       setSelectedReaction(selectedReaction);
       console.error("Error adding reaction:", error);

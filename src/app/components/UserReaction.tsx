@@ -10,8 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAppSelector } from "@/store/hooks";
-
-
+import Link from "next/link";
 
 interface PostIdProps {
   postId: string;
@@ -82,24 +81,26 @@ const UserReaction = ({ postId }: PostIdProps) => {
         <DialogTrigger>
           <div className="text-[12px] flex items-center gap-1 hover:underline cursor-pointer">
             <div className="flex items-center -space-x-1 overflow-x-auto rounded-lg">
-              {userReactions.slice(0, 3).map((reaction, index) => (
-                <div key={index} className="min-w-fit">
-                  <Image
-                    src={
-                      reactionIconMap[
-                        reaction?.type as keyof typeof reactionIconMap
-                      ] || "/ReactionIcon/like.png"
-                    }
-                    alt={reaction?.type as keyof typeof reactionIconMap}
-                    width={20}
-                    height={20}
-                    className="rounded-full w-5 h-5"
-                  />
-                </div>
-              ))}
-              {userReactions.length > 3 && (
+              {[
+                ...new Set(
+                  userReactions.map((reaction) => reaction.type || "like")
+                ),
+              ]
+                .slice(0, 3)
+                .map((type, index) => (
+                  <div key={index} className="min-w-fit">
+                    <Image
+                      src={reactionIconMap[type] || "/ReactionIcon/like.png"}
+                      alt={type}
+                      width={20}
+                      height={20}
+                      className="rounded-full w-5 h-5"
+                    />
+                  </div>
+                ))}
+              {new Set(userReactions.map((r) => r.type)).size > 3 && (
                 <div className="min-w-fit text-xs font-semibold ml-1">
-                  +{userReactions.length - 3}
+                  +{new Set(userReactions.map((r) => r.type)).size - 3}
                 </div>
               )}
             </div>
@@ -114,7 +115,7 @@ const UserReaction = ({ postId }: PostIdProps) => {
           <DialogDescription className="h-80 md:h-94 overflow-auto ">
             <Tabs defaultValue="all" className="w-full ">
               {/* Tab List */}
-              <TabsList className="flex gap-2 justify-between rounded-xl bg-transparent p-1 mb-3">
+              <TabsList className="flex md:gap-2 justify-between rounded-xl bg-transparent p-1 mb-3">
                 {reactionsConfig.map(({ value, label, icon, color }) => (
                   <TabsTrigger
                     key={value}
@@ -146,46 +147,57 @@ const UserReaction = ({ postId }: PostIdProps) => {
               {reactionsConfig.map(({ value }) => (
                 <TabsContent key={value} value={value}>
                   <div className="flex flex-col gap-3 rounded-md">
-                   {userReactions
-  ?.filter((reaction) => value === "all" || reaction.type === value)
-  .map((reaction, index) => {
-    // Type Guard: check if userId is object
-    const user =
-      typeof reaction.userId === "object" ? reaction.userId : null;
+                    {userReactions
+                      ?.filter(
+                        (reaction) => value === "all" || reaction.type === value
+                      )
+                      .map((reaction, index) => {
+                        // Type Guard: check if userId is object
+                        const user =
+                          typeof reaction.userId === "object"
+                            ? reaction.userId
+                            : null;
 
-    return (
-      <div key={index} className="flex gap-2 items-center">
-        <div className="relative">
-          <Image
-            src={user?.profileImage || "/default-avatar.png"}
-            alt={user?.name || "User"}
-            width={36}
-            height={36}
-            className="rounded-full border"
-          />
-          <div className="absolute bottom-0 -right-1">
-            <Image
-              src={
-                reactionIconMap[
-                  reaction.type as keyof typeof reactionIconMap
-                ] || "/ReactionIcon/like.png"
-              }
-              alt={reaction.type as string}
-              width={20}
-              height={20}
-              className="rounded-full w-5 h-5 border"
-            />
-          </div>
-        </div>
+                        return (
+                          <div key={index} className="flex gap-2 items-center">
+                            <div className="relative">
+                              <Link href={`/profile/${user?.username}`}>
+                              <Image
+                                src={
+                                  user?.profileImage || "/default-avatar.png"
+                                }
+                                alt={user?.name || "User"}
+                                width={36}
+                                height={36}
+                                className="rounded-full border"
+                                />
+                                </Link>
+                              <div className="absolute bottom-0 -right-1">
+                                <Image
+                                  src={
+                                    reactionIconMap[
+                                      reaction.type as keyof typeof reactionIconMap
+                                    ] || "/ReactionIcon/like.png"
+                                  }
+                                  alt={reaction.type as string}
+                                  width={20}
+                                  height={20}
+                                  className="rounded-full w-5 h-5 border"
+                                />
+                              </div>
+                            </div>
 
-        <div className="-space-y-1">
-          <h3 className="text-md font-bold">{user?.name || "Unknown"}</h3>
-          <p className="text-xs">@{user?.username || "unknown"}</p>
-        </div>
-      </div>
-    );
-  })}
-
+                            <div className="-space-y-1">
+                              <h3 className="text-md font-bold">
+                                {user?.name || "Unknown"}
+                              </h3>
+                              <p className="text-xs">
+                                @{user?.username || "unknown"}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      })}
                   </div>
                 </TabsContent>
               ))}
