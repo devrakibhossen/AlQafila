@@ -581,7 +581,7 @@
 // };
 
 // export default CustomVideoPlayer;
-
+"use client";
 import React, { useRef } from "react";
 import VideoJS from "./video";
 import type { VideoJsPlayer } from "video.js";
