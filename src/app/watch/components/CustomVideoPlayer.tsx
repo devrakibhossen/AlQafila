@@ -17,6 +17,7 @@ interface HTMLVideoElementWithWebkit extends HTMLVideoElement {
 }
 
 
+
 const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({ 
   src = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" 
 }) => {
@@ -216,13 +217,12 @@ const CustomVideoPlayer: React.FC<CustomVideoPlayerProps> = ({
     if (document.fullscreenElement) {
       document.exitFullscreen();
     } else {
-      videoContainer.requestFullscreen().catch(() => {
-        // Fallback for iOS Safari
-        if (videoRef.current && (videoRef.current as HTMLVideoElementWithWebkit).webkitEnterFullscreen) {
-          (videoRef.current as HTMLVideoElementWithWebkit).webkitEnterFullscreen();
-        }
-      });
-    }
+    videoContainer.requestFullscreen().catch(() => {
+      // Fallback for iOS Safari
+      const video = videoRef.current as HTMLVideoElementWithWebkit | null;
+      video?.webkitEnterFullscreen?.();
+    });
+  }
   }, []);
 
   const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
