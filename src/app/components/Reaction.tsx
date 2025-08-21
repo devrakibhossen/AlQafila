@@ -323,15 +323,6 @@ const Reaction = ({ postId }: PostIdProps) => {
   }, [dispatch, postId]);
 
   useEffect(() => {
-    console.log(
-      "reactionsState:",
-      reactionsState,
-      "Type:",
-      typeof reactionsState,
-      "Is Array:",
-      Array.isArray(reactionsState)
-    );
-
     if (
       userInfo?._id &&
       Array.isArray(reactionsState) &&
@@ -348,6 +339,13 @@ const Reaction = ({ postId }: PostIdProps) => {
       setSelectedReaction(null);
     }
   }, [reactionsState, userInfo]);
+
+//   useEffect(() => {
+//   if (!userInfo?._id || !Array.isArray(reactionsState)) return;
+//   const myReaction = reactionsState.find(r => getUserId(r) === userInfo._id);
+//   setSelectedReaction(myReaction?.type || null);
+// }, [reactionsState, userInfo?._id]);
+
 
   const handleReaction = async (type: string) => {
     if (!userInfo?._id) return;

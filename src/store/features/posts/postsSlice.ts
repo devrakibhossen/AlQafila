@@ -8,6 +8,7 @@ export interface Post {
   _id?: string;
   authorId: string;
   text: string;
+  slug?:string,
   hashtags?: string[];
   images?: PostImage[];
   shares?: number;

@@ -24,6 +24,7 @@ import { Pagination } from "swiper/modules";
 import CustomVideoPlayer from "../watch/components/CustomVideoPlayer";
 import { Skeleton } from "@/components/ui/skeleton";
 import UserReaction from "./UserReaction";
+import Link from "next/link";
 
 const Posts = () => {
   const [commentOpen, setCommentOpen] = useState<string | null>(null);
@@ -60,8 +61,6 @@ const Posts = () => {
       like: 27,
     },
   ];
-
-  
 
   if (loading) {
     return (
@@ -158,12 +157,13 @@ const Posts = () => {
             <div className="mb-2 md:px-3  px-2.5 ">
               <div className="flex justify-between gap-1.5 pb-1.5 w-full">
                 <div className="min-w-[100px]">
-
-                <UserReaction postId={post?._id || ""}/>
+                  <UserReaction postId={post?._id || ""} />
                 </div>
 
                 <div className="flex text-end items-center gap-2">
-                  <p className="text-[12px]">0 Comments,</p>
+                  <p className="text-[12px]">
+                    <Link href={`/post/${post._id}/${post?.slug}`}>0 Comments,</Link>
+                  </p>
                   <p className="text-[12px]">{post.shares || 0} Shares</p>
                 </div>
               </div>
