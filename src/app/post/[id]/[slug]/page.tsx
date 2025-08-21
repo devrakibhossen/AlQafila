@@ -5,8 +5,9 @@ export const metadata: Metadata = {
   title: "AlQafila | Post Details",
 };
 
-const Page = async (props: { params: { id: string; slug: string } }) => {
-  const { id, slug } = await props.params; 
+const Page = async (props: { params: Promise<{ id: string; slug: string }> }) => {
+  const params = await props.params;
+  const { id, slug } = params;
 
   let data = null;
 
