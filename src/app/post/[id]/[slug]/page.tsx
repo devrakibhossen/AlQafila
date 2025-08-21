@@ -5,14 +5,11 @@ export const metadata: Metadata = {
   title: "AlQafila | Post Details",
 };
 
-const Page = async ({
-  params,
-}: {
-  params: { id: string; slug: string };
-}) => {
-  const { id, slug } = params;
+const Page = async (props: { params: { id: string; slug: string } }) => {
+  const { id, slug } = await props.params; 
 
   let data = null;
+
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/posts/${id}/${slug}`
