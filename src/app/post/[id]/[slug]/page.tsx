@@ -13,7 +13,7 @@ interface ParamsProps {
 }
 const page = async({params}:ParamsProps) => {
 
-  const {id , slug } =await params ;
+  const {id , slug } = params ;
 
   console.log("This is params: " , id, slug);
   let data = null;
