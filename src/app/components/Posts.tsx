@@ -201,7 +201,7 @@ const Posts = () => {
                   />
                   {/* </div> */}
 
-                  {/* Actions: Icons and Post Button */}
+                  
                   <div className="justifyBetween mt-2 px-2">
                     <div className="flex items-center gap-3 text-gray-500 text-sm">
                       <button className="hover-green-accent transition">
