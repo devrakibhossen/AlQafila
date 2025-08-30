@@ -21,7 +21,7 @@ const Page = async (props: { params: Promise<{ id: string; slug: string }> }) =>
   }
 
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="md:w-11/12 mx-auto mx-1">
       <PostDetails post={data?.data} />
     </div>
   );
