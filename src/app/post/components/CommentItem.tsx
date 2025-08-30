@@ -66,8 +66,11 @@ function CommentItem({ comment, postId }: CommentItemProps) {
     console.log(comment._id);
   };
 
-  const isEditOption = userInfo?._id === comment?.authorId?._id;
- const replies = comment.replies ?? [];
+  const isEditOption =
+    typeof comment.authorId !== "string" &&
+    userInfo?._id === comment.authorId._id;
+
+  const replies = comment.replies ?? [];
   return (
     <div className=" mt-3">
       <div className="flex gap-3">
@@ -115,9 +118,7 @@ function CommentItem({ comment, postId }: CommentItemProps) {
 
             <AlertDialog>
               <AlertDialogTrigger>
-                {isEditOption &&
-                <MdDeleteOutline />
-}
+                {isEditOption && <MdDeleteOutline />}
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
@@ -151,9 +152,7 @@ function CommentItem({ comment, postId }: CommentItemProps) {
               className="flex items-center gap-1 text-blue-500 text-xs mt-1 hover:underline"
             >
               {showReplies ? <BsChevronDown /> : <BsChevronRight />}
-              {showReplies
-                ? "Hide replies"
-                : `Show ${replies?.length} replies`}
+              {showReplies ? "Hide replies" : `Show ${replies?.length} replies`}
             </button>
           )}
 
