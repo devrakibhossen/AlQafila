@@ -1,25 +1,27 @@
-export interface Author {
-  _id: string;
-  username: string;
-  name: string;
-  profileImage: string;
-}
+// export interface Author {
+//   _id: string;
+//   username: string;
+//   name: string;
+//   profileImage: string;
+// }
 
-export interface CommentData {
-  _id?: string;
-  postId: string;
-  content: string;
-  authorId: string | Author;
-  parentId?: string | null;
-  replies?: CommentData[];
-}
+import { CreateCommentData } from "@/types/comment";
+
+// export interface CommentData {
+//   _id?: string;
+//   postId: string;
+//   content: string;
+//   authorId: string | Author;
+//   parentId?: string | null;
+//   replies?: CommentData[];
+// }
 
 export interface updatedData {
   id: string;
   content: string;
 }
 
-export const addComment = async (data: CommentData) => {
+export const addComment = async (data: CreateCommentData) => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/comment`,
     {

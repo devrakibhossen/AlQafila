@@ -1,17 +1,19 @@
-export interface Author {
-  _id: string;
-  username: string;
-  name: string;
-  profileImage: string;
-}
-export interface CommentData {
-  _id: string;
-  postId: string;
-  content: string;
-  authorId: string | Author;
-  parentId?: string | null;
-  replies: CommentData[];
-}
+// export interface Author {
+//   _id: string;
+//   username: string;
+//   name: string;
+//   profileImage: string;
+// }
+// export interface CommentData {
+//   _id?: string;
+//   postId: string;
+//   content: string;
+//   authorId: string | Author;
+//   parentId?: string | null;
+//   replies: CommentData[];
+// }
+
+import { CommentData } from "@/types/comment";
 
 export const buildCommentTree = (comments: CommentData[]): CommentData[] => {
   const map: Record<string, CommentData> = {};

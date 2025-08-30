@@ -5,22 +5,29 @@ import {
   getComment,
   updatedComment,
 } from "./commentApi";
+import { CommentData, CreateCommentData } from "@/types/comment";
 
-export interface Author {
-  _id: string;
-  username: string;
-  name: string;
-  profileImage: string;
-}
+// export interface Author {
+//   _id: string;
+//   username: string;
+//   name: string;
+//   profileImage: string;
+// }
+// export interface CreateCommentData {
+//   postId: string;
+//   content: string;
+//   authorId: string | Author;
+//   parentId?: string | null;
+// }
 
-export interface CommentData {
-  _id?: string;
-  postId: string;
-  content: string;
-  authorId: string | Author;
-  parentId?: string | null;
-  replies?: CommentData[];
-}
+// export interface CommentData {
+//   _id?: string;
+//   postId: string;
+//   content: string;
+//   authorId: string | Author;
+//   parentId?: string | null;
+//   replies?: CommentData[];
+// }
 
 interface CommentsState {
   items: CommentData[];
@@ -34,7 +41,7 @@ const initialState: CommentsState = {
   error: null,
 };
 
-export const postComment = createAsyncThunk<CommentData, CommentData>(
+export const postComment = createAsyncThunk<CommentData, CreateCommentData>(
   "comments/postComment",
   async (data) => {
     try {

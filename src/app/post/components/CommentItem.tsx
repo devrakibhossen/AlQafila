@@ -25,21 +25,22 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useAppDispatch } from "@/store/hooks";
+import { CommentData } from "@/types/comment";
 
-export interface Author {
-  _id: string;
-  username: string;
-  name: string;
-  profileImage: string;
-}
-export interface CommentData {
-  _id?: string;
-  postId: string;
-  content: string;
-  authorId: string | Author;
-  parentId?: string | null;
-  replies: CommentData[];
-}
+// export interface Author {
+//   _id: string;
+//   username: string;
+//   name: string;
+//   profileImage: string;
+// }
+// export interface CommentData {
+//   _id?: string;
+//   postId: string;
+//   content: string;
+//   authorId: string | Author;
+//   parentId?: string | null;
+//   replies: CommentData[];
+// }
 
 interface CommentItemProps {
   comment: CommentData;

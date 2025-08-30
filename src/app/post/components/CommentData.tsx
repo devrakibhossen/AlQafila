@@ -9,16 +9,15 @@ interface CommentDataProps {
   postId: string;
 }
 
-const CommentData = ({ postId }:CommentDataProps) => {
+const CommentData = ({ postId }: CommentDataProps) => {
   const dispatch = useAppDispatch();
   const { items, error } = useAppSelector((state) => state.comments);
 
-  
-  console.log(error)
+  console.log(error);
 
   useEffect(() => {
     dispatch(fetchComment(postId));
-  }, [dispatch , postId]);
+  }, [dispatch, postId]);
 
   console.log("items", items);
 
@@ -27,7 +26,7 @@ const CommentData = ({ postId }:CommentDataProps) => {
   return (
     <div className="w-full max-w-xl mx-auto px-3 mt-5">
       {commentTree.map((c) => (
-        <CommentItem key={c._id} comment={c} postId={postId}/>
+        <CommentItem key={c._id} comment={c} postId={postId} />
       ))}
     </div>
   );
