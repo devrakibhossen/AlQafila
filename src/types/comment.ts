@@ -14,5 +14,5 @@ export interface CreateCommentData {
 
 export interface CommentData extends CreateCommentData {
   _id: string;
-  replies: CommentData[];
+  replies?: CommentData[];
 }

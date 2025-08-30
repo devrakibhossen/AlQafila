@@ -28,13 +28,15 @@ const Comment = ({ postId }: CommentProps) => {
   return (
     <div>
       <div className="flex gap-2 w-full px-3">
-        <Image
-          src="https://i.ibb.co/wq1b1Dr/1714319190841-2.jpg"
-          alt="user"
-          className="rounded-full w-9 h-9"
-          width={40}
-          height={40}
-        />
+        {userInfo?.profileImage && (
+          <Image
+            src={userInfo?.profileImage}
+            alt="logo"
+            width={40}
+            height={40}
+            className="w-9 h-9 rounded-full border"
+          />
+        )}
         <CommentForm onSubmit={handleSubmitComment} />
       </div>
       <CommentData postId={postId} />

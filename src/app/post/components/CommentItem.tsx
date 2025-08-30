@@ -27,21 +27,6 @@ import {
 import { useAppDispatch } from "@/store/hooks";
 import { CommentData } from "@/types/comment";
 
-// export interface Author {
-//   _id: string;
-//   username: string;
-//   name: string;
-//   profileImage: string;
-// }
-// export interface CommentData {
-//   _id?: string;
-//   postId: string;
-//   content: string;
-//   authorId: string | Author;
-//   parentId?: string | null;
-//   replies: CommentData[];
-// }
-
 interface CommentItemProps {
   comment: CommentData;
   postId: string;
@@ -62,6 +47,7 @@ function CommentItem({ comment, postId }: CommentItemProps) {
       parentId: comment?._id ?? "",
     };
     dispatch(postComment(data));
+    setShowReplyForm(false);
     console.log("Reply comment", data);
   };
 
@@ -79,12 +65,12 @@ function CommentItem({ comment, postId }: CommentItemProps) {
     dispatch(deleteComment(comment?._id ?? ""));
     console.log(comment._id);
   };
+
+  const isEditOption = userInfo?._id === comment?.authorId?._id;
+ const replies = comment.replies ?? [];
   return (
     <div className=" mt-3">
       <div className="flex gap-3">
-        {/* {typeof comment.authorId !== "string" && (
- 
-)} */}
         {typeof comment.authorId !== "string" && (
           <Image
             src={comment.authorId.profileImage}
@@ -118,16 +104,20 @@ function CommentItem({ comment, postId }: CommentItemProps) {
             >
               Reply
             </button>
-            <button
-              onClick={() => setIsEditing(!isEditing)}
-              className="text-green-500 text-lg"
-            >
-              <CiEdit />
-            </button>
+            {isEditOption && (
+              <button
+                onClick={() => setIsEditing(!isEditing)}
+                className="text-green-500 text-lg"
+              >
+                <CiEdit />
+              </button>
+            )}
 
             <AlertDialog>
               <AlertDialogTrigger>
+                {isEditOption &&
                 <MdDeleteOutline />
+}
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
@@ -155,7 +145,7 @@ function CommentItem({ comment, postId }: CommentItemProps) {
           )}
 
           {/* Arrow + Show reply text */}
-          {comment.replies?.length > 0 && (
+          {replies?.length > 0 && (
             <button
               onClick={() => setShowReplies(!showReplies)}
               className="flex items-center gap-1 text-blue-500 text-xs mt-1 hover:underline"
@@ -163,14 +153,14 @@ function CommentItem({ comment, postId }: CommentItemProps) {
               {showReplies ? <BsChevronDown /> : <BsChevronRight />}
               {showReplies
                 ? "Hide replies"
-                : `Show ${comment?.replies.length} replies`}
+                : `Show ${replies?.length} replies`}
             </button>
           )}
 
           {/* Nested Replies */}
-          {showReplies && comment?.replies?.length > 0 && (
+          {showReplies && replies.length > 0 && (
             <div className="ml-2 border-l pl-2 mt-2">
-              {comment?.replies.map((reply) => (
+              {replies.map((reply) => (
                 <CommentItem
                   key={comment._id}
                   comment={reply}
