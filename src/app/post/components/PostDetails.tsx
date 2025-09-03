@@ -85,7 +85,7 @@ const PostDetails = ({ post }: PostProps) => {
           )}
 
           {post?.video?.video && <CustomVideoPlayer src={post?.video?.video} />}
-            <PostActions postId={post?._id} postSlug={post?.slug}/>
+            <PostActions postId={post?._id ?? ""} postSlug={post?.slug ?? ""}/>
          <Comment postId={post?._id || ""}/>
         </div>
       </div>
