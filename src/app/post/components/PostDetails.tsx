@@ -1,14 +1,11 @@
 "use client";
 import Image from "next/image";
-import { FaRegComment } from "react-icons/fa";
-import Share from "@/app/components/Share";
 import PostHeader from "@/app/components/PostHeader";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import CustomVideoPlayer from "@/app/watch/components/CustomVideoPlayer";
-import Reaction from "@/app/components/Reaction";
-import UserReaction from "@/app/components/UserReaction";
 import Comment from "./Comment";
+import PostActions from "./PostActions";
 
 export interface PostImage {
   type: string;
@@ -88,27 +85,7 @@ const PostDetails = ({ post }: PostProps) => {
           )}
 
           {post?.video?.video && <CustomVideoPlayer src={post?.video?.video} />}
-          <div className="mb-2 md:px-3  px-2.5 ">
-            <div className="justifyBetween gap-1.5 pb-1.5 ">
-              <div className="min-w-[100px]">
-                <UserReaction postId={post?._id || ""} />
-              </div>
-              <div className="flex items-center gap-2">
-                <p className="text-[12px]">0 Comments,</p>
-                <p className="text-[12px]">{post?.shares || 0} Shares</p>
-              </div>
-            </div>
-
-            <div className=" grid grid-cols-3 gap-2 border-t pt-1.5">
-              <Reaction postId={post?._id || ""} />
-              <div className="flex justify-center gap-1.5 items-center cursor-pointer hover:bg-gray-200 dark:hover:bg-black p-1.5 rounded-md transition-colors duration-300">
-                <FaRegComment />
-                <p className="text-[13px] ">Comments</p>
-              </div>
-
-              <Share />
-            </div>
-          </div>
+            <PostActions postId={post?._id} postSlug={post?.slug}/>
          <Comment postId={post?._id || ""}/>
         </div>
       </div>

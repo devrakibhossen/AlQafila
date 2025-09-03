@@ -33,9 +33,9 @@ import {
   Languages,
   Search,
   X,
-  PlusSquare,
-  SquarePlay,
+  PlusSquare
 } from "lucide-react";
+import { GoVideo } from "react-icons/go";
 import { useTheme } from "next-themes";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
@@ -123,7 +123,7 @@ const handleLogOut = async () => {
                     : "text-gray-700 dark:text-gray-300"
                 }`}
               >
-                <SquarePlay className="w-5 h-5" />
+                <GoVideo className="text-xl" />
                 <p className="hidden lg:block">Video</p>
               </Link>
             </li>
