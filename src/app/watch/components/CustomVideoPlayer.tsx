@@ -613,7 +613,7 @@ const CustomVideoPlayer = ({ src }: CustomVideoPlayerProps) => {
   };
 
   return (
-    <div>
+    <div className="aspect-video max-h-[600px]">
       <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
     </div>
   );

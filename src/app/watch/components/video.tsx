@@ -47,7 +47,7 @@ export const VideoJS: React.FC<VideoJSProps> = ({ options, onReady }) => {
   }, []);
 
   return (
-    <div data-vjs-player>
+    <div data-vjs-player className="aspect-video max-h-[600px]">
       <div ref={videoRef} />
     </div>
   );

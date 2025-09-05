@@ -77,17 +77,16 @@ const AuthForm = ({ type }: { type: "sign-in" | "sign-up" }) => {
         router.push("/accounts/sign-in");
         // console.log("SIGN UP", values);
       } else {
-        await signIn("credentials", {
+        const res = await signIn("credentials", {
           redirect: false,
           email: values.email,
           password: values.password,
         });
 
-        // if (!res.ok) {
-        //   throw new Error(
-        //     data.message || "Something went wrong during sign up"
-        //   );
-        // }
+        if (res?.error) {
+          toast.error("Invalid email or password");
+          return;
+        }
         toast.success("Sign in successfully.");
         router.push("/");
 

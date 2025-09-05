@@ -50,13 +50,22 @@ const handler = NextAuth({
         });
 
         const result = await res.json();
+        console.log("Sign in API result:", result);
 
-        if (res.ok && result.success && result.data?.user) {
+        // এখানে শুধু res.ok চেক করো, success field এর উপর নির্ভর কোরো না
+        if (res.ok && result?.data?.user) {
           const user = result.data.user;
-
           return {
             ...user,
             token: result.data.token,
+          };
+        }
+
+        // fallback: user object সরাসরি রিটার্ন করো যদি data.user না থাকে
+        if (res.ok && result.user) {
+          return {
+            ...result.user,
+            token: result.token,
           };
         }
 
@@ -84,7 +93,10 @@ const handler = NextAuth({
       return session;
     },
     async signIn({ user, account }) {
-      if (account) {
+      if (
+        account &&
+        (account.provider === "google" || account.provider === "github")
+      ) {
         const { email: user_email, image, name } = user;
         if (!user_email) {
           console.error("Email is missing from social login user");
