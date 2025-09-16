@@ -23,6 +23,7 @@ const LayoutManager = ({ children }: { children: React.ReactNode }) => {
   const isInterviewPage = pathname.startsWith("/interview");
   const isGroupsPage = pathname.startsWith("/groups");
   const isCreateGroupPage = pathname.startsWith("/createGroup");
+  const isCreateCompanyPage = pathname.startsWith("/company");
   const isNoSidebar =
     isProfilePage ||
     isJobPage ||
@@ -30,6 +31,7 @@ const LayoutManager = ({ children }: { children: React.ReactNode }) => {
     isNetworkPage ||
     isInterviewPage ||
     isCreateGroupPage ||
+    isCreateCompanyPage ||
     isGroupsPage ||
     isSettingsPage;
 

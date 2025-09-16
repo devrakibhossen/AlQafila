@@ -52,7 +52,6 @@ const handler = NextAuth({
         const result = await res.json();
         console.log("Sign in API result:", result);
 
-        // এখানে শুধু res.ok চেক করো, success field এর উপর নির্ভর কোরো না
         if (res.ok && result?.data?.user) {
           const user = result.data.user;
           return {
@@ -61,7 +60,6 @@ const handler = NextAuth({
           };
         }
 
-        // fallback: user object সরাসরি রিটার্ন করো যদি data.user না থাকে
         if (res.ok && result.user) {
           return {
             ...result.user,

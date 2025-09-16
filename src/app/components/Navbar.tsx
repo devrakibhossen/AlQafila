@@ -295,10 +295,10 @@ const handleLogOut = async () => {
                 <HelpCircle className=" h-4 w-4" />
                 Help & Support
               </DropdownMenuItem>
-              <Link href="/createGroup" passHref>
+              <Link href="/company/create" passHref>
                 <DropdownMenuItem className="cursor-pointer">
                   <PlusSquare className=" h-4 w-4" />
-                  Create Group
+                 Create a Company Page
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuSeparator />
