@@ -34,7 +34,7 @@ const ReviewCard = ({
   };
 
   return (
-    <section className="p-6 shadow-md bg-gray-100 rounded-md  transition-shadow">
+    <section className="p-6 shadow-md bg-gray-100 dark:bg-black rounded-md  transition-shadow">
       <div className="flex items-start gap-4">
         <Image
           className="rounded-full h-11 w-11 border-2 border-gray-200 hover:border-primary transition-all"

@@ -62,7 +62,7 @@ const page = () => {
           {jobs.map((job) => (
             <div
               key={job._id}
-              className="p-5 bg-gray-100 shadow-sm rounded-xl space-y-8"
+              className="p-5 bg-gray-100 dark:bg-black shadow-sm rounded-xl space-y-8"
             >
               <div className="flex justify-between items-center gap-5">
                 <Image
@@ -103,7 +103,7 @@ const page = () => {
                     {job.location}
                   </p>
                 </div>
-                <button className="bg-black text-sm text-white py-1.5 px-3 rounded-md">
+                <button className="bg-green-accent text-sm text-white py-1.5 px-3 rounded-md">
                   Apply now
                 </button>
               </div>
