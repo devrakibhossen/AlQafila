@@ -44,7 +44,7 @@ const LayoutManager = ({ children }: { children: React.ReactNode }) => {
       <Suspense fallback={<Loading />}>
         <Navbar />
 
-        <div className="grid grid-cols-11 md:mt-20 mt-[75px]  max-w-[1300px] mx-auto">
+        <div className={`grid grid-cols-11  ${isMessagePage ?"w-full mt-[0px]":"md:mt-20 mt-[75px]  max-w-[1300px]"}  mx-auto`}>
           {/* Left Sidebar */}
           {!isNoSidebar && (
             <div className="hidden md:block col-span-4 lg:col-span-3">

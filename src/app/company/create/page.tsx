@@ -17,10 +17,10 @@ const page = () => {
         </p>
       </div>
       <div className="grid md:grid-cols-4 grid-cols-1 gap-5">
-        <div className="md:col-span-2 bg-white p-4 border rounded-md">
+        <div className="md:col-span-2 bg-white dark:bg-zinc-900 p-4 border rounded-md">
           <CreateForm />
         </div>
-        <div className="md:col-span-2 hidden md:block bg-white p-4 border rounded-md h-[400px]">
+        <div className="md:col-span-2 hidden md:block bg-white dark:bg-zinc-900 p-4 border rounded-md h-[400px]">
           <Image
             className="w-full h-full"
             src="/images/create-page.png"
