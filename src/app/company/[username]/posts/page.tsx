@@ -2,7 +2,7 @@
 const page = () => {
     return (
         <div>
-            This  is post
+            This  is posts page
         </div>
     );
 };
