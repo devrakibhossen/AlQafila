@@ -23,7 +23,7 @@ const CompanyProfileContent = ({ children }: CompanyProfileProps) => {
     setActiveTab(tab);
     if (tab === "About") router.push(`/company/programminghero`);
     if (tab === "Posts") router.push(`/company/programminghero/posts`);
-    if (tab === "Reviews") router.push(`/company/programminghero/`);
+    if (tab === "Reviews") router.push(`/company/programminghero/reviews`);
     if (tab === "Jobs") router.push(`/company/programminghero/jobs`);
   };
 
