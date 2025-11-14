@@ -46,7 +46,7 @@ const page = () => {
   ];
 
   return (
-    <div className="bg-white dark:bg-zinc-900 p-5 rounded-md ">
+    <div className="py-5 rounded-md ">
       <div className="flex justify-end mb-3">
         <Link href="/jobs/create-job">
           <button className="green-accent flex items-center cursor-pointer justify-center mb-3 gap-1 rounded-full border dark:border-zinc-800 border-gray-300 overflow-hidden shadow-sm bg-white dark:bg-zinc-900 text-sm font-medium py-1 px-2.5 transition-all">
@@ -62,7 +62,7 @@ const page = () => {
           {jobs.map((job) => (
             <div
               key={job._id}
-              className="p-5 bg-gray-100 dark:bg-black shadow-sm rounded-xl space-y-8"
+              className="p-5 bg-white dark:bg-zinc-900  shadow-sm rounded-xl space-y-8"
             >
               <div className="flex justify-between items-center gap-5">
                 <Image
@@ -73,7 +73,7 @@ const page = () => {
                   width="100"
                   height="100"
                 />
-                <button className="flex items-center rounded-md bg-white gap-1 border py-1 px-2 text-sm">
+                <button className="flex items-center rounded-md bg-white dark:bg-black gap-1 border py-1 px-2 text-sm">
                   <MdOutlineModeEdit />
                   Edit
                 </button>
@@ -87,10 +87,10 @@ const page = () => {
                 </div>
                 <h2 className="text-2xl">{job.role}</h2>
                 <div className="flex items-center gap-3">
-                  <button className="border border-md py-1 px-3 bg-white rounded-md">
+                  <button className="border border-md py-1 px-3 bg-white dark:bg-black rounded-md">
                     full-time
                   </button>
-                  <button className="border border-md py-1 px-3 bg-white rounded-md">
+                  <button className="border border-md py-1 px-3 bg-white dark:bg-black rounded-md">
                     remote
                   </button>
                 </div>

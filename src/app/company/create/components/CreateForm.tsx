@@ -17,9 +17,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import uploadImageToCloudinary from "@/lib/uploadImage";
 import { companySizes } from "@/utils/companySizes";
 import { industries } from "@/utils/industryList";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FiUploadCloud } from "react-icons/fi";
 import { z } from "zod";
@@ -30,10 +32,28 @@ const formSchema = z.object({
   industry: z.string(),
   website: z.string(),
   company_size: z.string(),
+  company_logo: z.string(),
   about: z.string(),
 });
 
 const CreateForm = () => {
+  const [image, setImage] = useState(null);
+  const [url, setUrl] = useState<string>("");
+
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) {
+      return setImage(file);
+    }
+
+    const imageUrl = await uploadImageToCloudinary(file);
+    if (imageUrl) {
+      setUrl(imageUrl);
+       form.setValue("company_logo", imageUrl);
+      console.log("Uploaded Image URL:", imageUrl);
+    }
+  };
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,6 +62,7 @@ const CreateForm = () => {
       industry: "",
       website: "",
       company_size: "",
+      company_logo: url,
       about: "",
     },
   });
@@ -175,6 +196,7 @@ const CreateForm = () => {
                 type="file"
                 id="company_logo"
                 accept="image/*"
+                onChange={handleUpload}
                 className="absolute w-full h-full opacity-0 cursor-pointer"
               />
             </div>
